@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>js\app\common\io.js - integra</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="../assets/css/logo.png" title="integra"></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 1.0.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/admin.auction.html">admin.auction</a></li>
+            
+                <li><a href="../classes/admin.log.html">admin.log</a></li>
+            
+                <li><a href="../classes/admin.manage.html">admin.manage</a></li>
+            
+                <li><a href="../classes/auction.crazy.html">auction.crazy</a></li>
+            
+                <li><a href="../classes/auction.normal.html">auction.normal</a></li>
+            
+                <li><a href="../classes/history.detail.html">history.detail</a></li>
+            
+                <li><a href="../classes/history.index.html">history.index</a></li>
+            
+                <li><a href="../classes/index.html">index</a></li>
+            
+                <li><a href="../classes/my.html">my</a></li>
+            
+                <li><a href="../classes/rank.html">rank</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="../modules/admin.html">admin</a></li>
+            
+                <li><a href="../modules/auction.html">auction</a></li>
+            
+                <li><a href="../modules/history.html">history</a></li>
+            
+                <li><a href="../modules/index.html">index</a></li>
+            
+                <li><a href="../modules/my.html">my</a></li>
+            
+                <li><a href="../modules/rank.html">rank</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: js\app\common\io.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+define(function(require, exports, module) {
+    &#x27;use strict&#x27;;
+
+	var $ = require(&#x27;$&#x27;),
+        util = require(&#x27;./util&#x27;),
+        ConfirmBox = require(&#x27;./dialog/confirmbox&#x27;),
+        io = {};
+
+    // helper
+    var isArray = Array.isArray || isType(&#x27;Array&#x27;);
+    function isType(type) {
+        return function(obj) {
+            return Object.prototype.toString.call(obj) === &#x27;[object &#x27; + type + &#x27;]&#x27;;
+        };
+    }
+
+	io.processor = function(json, callback) {
+
+		var msg,
+			success,
+			error,
+			input;
+
+		//全局异常处理(login|error)
+		/*if ( json.result == &#x27;login&#x27; ) {
+		        //登录页跳转
+		        window.location.href = io.$cfg(&#x27;page_login&#x27;);
+		    }*/
+		if (json.result == &#x27;error&#x27;) {
+			//异常提示
+			console.error(json.messages);
+			return;
+		}
+
+		/**
+		 * 业务相关回调,参数中包含业务的成功失败消息
+		 * 1. success(message)|failure(message)
+		 *
+		 * 表单验证
+		 * 2. input(fieldErrors)
+		 */
+		if ($.inArray(json.result, [&#x27;success&#x27;, &#x27;failure&#x27;]) != -1) {
+			msg = json.messages;
+			if (isArray(msg)) {
+				msg = msg.join(&#x27;&lt;br/&gt;&#x27;).replace(&#x27;\n&#x27;, &#x27;&lt;br/&gt;&#x27;);
+			}
+			success = callback[&#x27;success&#x27;] || callback;
+			error = callback[&#x27;error&#x27;] ||
+				function(msg) {
+                    util.showMessage(msg);
+			    };
+
+			(json.result == &#x27;success&#x27;) ? success.call(json, msg) : error.call(json, msg);
+
+		} else if (json.result == &#x27;input&#x27;) {
+
+			if (!$.isEmptyObject(json[&#x27;fieldErrors&#x27;])) {
+
+				$.each(json[&#x27;fieldErrors&#x27;], function(field, v) {
+
+					msg = (v.shift &amp;&amp; v.shift()) || v;
+
+					input = callback[&#x27;input&#x27;];
+
+					input &amp;&amp; input[field] &amp;&amp; input[field].call(json, msg);
+				});
+
+			} else {
+
+				msg = json.messages.shift() || json.messages;
+
+				callback[&#x27;input&#x27;] ? (callback[&#x27;input&#x27;].call(json, msg))
+				//: ($.message(msg).modal());
+				: console.log(msg);
+			}
+		}
+	};
+
+	io.post = function(url, data, callback) {
+		if (typeof callback == &#x27;undefined&#x27;) {
+			callback = data;
+			data = {};
+		}
+		var cfg = {
+			url: url,
+			data: data,
+			callback: callback,
+			type: &#x27;post&#x27;
+		};
+		io.ajax(cfg);
+	};
+
+	io.syncPost = function(url, data, callback) {
+		if (typeof callback == &#x27;undefined&#x27;) {
+			callback = data;
+			data = {};
+		}
+		var cfg = {
+			async: false,
+			url: url,
+			data: data,
+			callback: callback,
+			type: &#x27;post&#x27;
+		};
+		io.ajax(cfg);
+	};
+
+	io.get = function(url, data, callback) {
+		if (typeof callback == &#x27;undefined&#x27;) {
+			callback = data;
+			data = {};
+		}
+		var cfg = {
+			url: url,
+			data: data,
+			callback: callback,
+			type: &#x27;get&#x27;
+		};
+		io.ajax(cfg);
+	};
+
+	io.syncGet = function(url, data, callback) {
+		if (typeof callback == &#x27;undefined&#x27;) {
+			callback = data;
+			data = {};
+		}
+		var cfg = {
+			async: false,
+			url: url,
+			data: data,
+			callback: callback,
+			type: &#x27;get&#x27;
+		};
+		io.ajax(cfg);
+	};
+
+	io.ajax = function(cfg) {
+		var async = typeof cfg.async == &#x27;undefined&#x27; ? true : false;
+
+		$.ajax({
+			async: async,
+            cache: false,
+			url: cfg.url,
+			dataType: &#x27;json&#x27;,
+			traditional: true,
+			type: cfg.type,
+			data: cfg.data,
+			success: function(d) {
+				//callback(d);
+				d &amp;&amp; io.processor(d, cfg.callback);
+			},
+			error: function() {
+				console.warn(&#x27;server error: &#x27; + cfg.url);
+			}
+		});
+	};
+
+	return io;
+});
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

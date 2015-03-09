@@ -1,0 +1,23 @@
+{{#judge listData.length 0}}
+    <tr>
+        <td colspan="7" style="height: 100px; line-height: 100px; text-align: center;">
+            暂无记录
+        </td>
+    </tr>
+{{else}}
+    {{#each listData}}
+        <tr>
+            <td>{{fdate createTime}}</td>
+            <td>{{systemCode}}</td>
+            <td>{{operateUserno}}</td>
+            <td>{{userno}}</td>
+            {{#judge operateType "1"}}
+                <td>扣除</td>
+            {{else}}
+                <td>授予</td>
+            {{/judge}}
+            <td>{{score}}</td>
+            <td>{{{urlResolve comments}}}</td>
+        </tr>
+    {{/each}}
+{{/judge}}

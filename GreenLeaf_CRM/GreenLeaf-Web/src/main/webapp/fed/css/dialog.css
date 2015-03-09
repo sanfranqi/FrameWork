@@ -1,0 +1,6 @@
+.alert-messages { position: fixed; top: -60px; left: 0; right: 0; z-index: 10000 }
+.alert-message { position: relative; width: 600px; padding: 20px; margin: 0 auto; background: #fff; background-color: rgba(255, 255, 255, .97); border-radius: 0 0 6px 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, .5); border: 1px solid #CCC; }
+.alert-message .alert-message-text { display: block; margin-right: 20px; color: #66757f; color: rgba(102, 117, 127, .6); font-size: 14px; line-height: 16px; text-align: center }
+.alert-messages .close { position: relative; top: -30px; right: -10px; display: none }
+.alert-error .alert-message-text { color: #a94442 }
+.alert-error .close { display: block }

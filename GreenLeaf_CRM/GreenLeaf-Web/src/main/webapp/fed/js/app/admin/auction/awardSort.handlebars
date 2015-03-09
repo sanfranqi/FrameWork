@@ -1,0 +1,24 @@
+<div class="mod-hd">
+    <h2 class="tit">物品列表</h2>
+    <button type="button" class="btn btn2 btn-sm" id="J_Sort_Back">返回</button>
+    <button type="button" class="btn btn2 btn-sm" id="J_Sort_Save">保存</button>
+</div>
+<div class="mod-bd">
+    {{#each this}}
+        <div class="area2-c1-c2 mt20">
+            <div class="hd"><h2 class="tit">{{title}} <span class="c-gray">{{time}}</span></h2></div>
+            <div class="bd">
+                <ul class="gb-list2 J_Sort_List" style="min-height:144px;">
+                    {{#each data}}
+                        <li class="gb-list2-item J_Sort_Item" style="display: block; float: left;" data-id="{{id}}">
+                            <span class="gb-list2-con">
+                                <span class="gb-list2-c1"><img src="{{getImage image}}" alt="" width="120" height="120" class="avatar"></span>
+                                <span class="gb-list2-c2"><span class="txt">{{name}}</span></span>
+                            </span>
+                        </li>
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+    {{/each}}
+</div>

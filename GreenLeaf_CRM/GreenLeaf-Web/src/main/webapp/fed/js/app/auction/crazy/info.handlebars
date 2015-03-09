@@ -1,0 +1,16 @@
+{{#judge awardState '5'}}
+    &nbsp;
+{{else}}
+    {{#if awardLeaderName}}
+        <span>
+            <span class="ico ico-cj"></span>
+            <span class="tt">
+                <span class="tt-c" title="{{awardLeaderName}} [{{awardLeaderDepartment}}]">{{awardLeaderName}} [{{awardLeaderDepartment}}]</span>
+                <span class="tt-c"> 出价：{{awardLeaderScore}}</span>
+            </span>
+        </span>
+        <a href="javascript:;" class="jpxq" data-role="get">竞拍详情</a>
+    {{else}}
+        暂无人问津
+    {{/if}}
+{{/judge}}

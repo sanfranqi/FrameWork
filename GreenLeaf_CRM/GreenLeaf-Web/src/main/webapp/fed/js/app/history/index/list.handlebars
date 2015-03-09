@@ -1,0 +1,12 @@
+{{#each listData}}
+    <li class="goods-history">
+        <div class="text">
+            <h2 class="tit"><a href="/history/detail/{{id}}.htm">{{title}}</a><span class="jfs"><i class="ico ico-lh"></i>{{awardCount}}</span></h2>
+            <p class="p1">{{details}}</p>
+            <p class="p2">开始时间：{{fdate startTime}} | 竞拍时间：{{fdate auctionTime}} | 场次：{{getBase base}}</p>
+        </div>
+        <div class="linkico">
+            <a href="/history/detail/{{id}}.htm" class="ico"></a>
+        </div>
+    </li>
+{{/each}}

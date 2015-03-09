@@ -1,0 +1,145 @@
+{{#each auctionBatchVos}}
+    <ul class="sell-goods-list clearfix" data-batch="{{auctionBatch}}">
+        {{#each awardForeVos}}
+            {{#soonBegin batch}}
+                {{! 未开始 }}
+                <li class="goods-item begin">
+                <span class="pic">
+                    <span class="pic-c1">
+                        <img src="{{getImage image}}" width="308" height="216" alt="">
+                    </span>
+                    <span class="pic-c2">
+                        <span class="clearfix">
+                            <span class="name" title="{{name}}">{{name}}</span>
+                            <span class="jiage">￥{{price}}</span>
+                        </span>
+                        <b class="mask"></b>
+                    </span>
+                    <span class="bq-time">
+                        <span class="bq-time-c J_List_CountDown"></span>
+                    </span>
+                </span>
+                    <div class="text">
+                        <div class="text-c1" title="{{description}}">{{description}}</div>
+                        <div class="text-c2">
+                            {{#if awardLeaderUserno}}
+                                <span>
+                                    <span class="ico ico-cj"></span>
+                                    <span class="tt">
+                                        <span class="tt-c" title="{{awardLeaderName}} [{{awardLeaderDepartment}}]">{{awardLeaderName}} [{{awardLeaderDepartment}}]</span>
+                                        <span class="tt-c"> 出价：{{awardLeaderScore}}</span>
+                                    </span>
+                                </span>
+                            {{else}}
+                                暂无人问津
+                            {{/if}}
+                        </div>
+                    </div>
+                    <div class="gz-xq"><div class="gz-xq-in">即将开始</div></div>
+                </li>
+            {{else}}
+                {{#isSuccess awardState}}
+                    {{! 已结束 }}
+                    <li class="goods-item over" data-awardid="{{id}}">
+                        <a href="javascript:;" class="pic" data-role="get">
+                            <span class="pic-c1">
+                                <img src="{{getImage image}}" width="308" height="216" alt="">
+                            </span>
+                            <span class="pic-c2">
+                                <span class="clearfix">
+                                    <span class="name" title="{{name}}">{{name}}</span>
+                                    <span class="jiage">￥{{price}}</span>
+                                </span>
+                                <b class="mask"></b>
+                            </span>
+                            <span class="bq-time">
+                                <span class="bq-time-c">已结束</span>
+                            </span>
+                        </a>
+                        <div class="text">
+                            <div class="text-c1" title="{{description}}">{{description}}</div>
+                            <div class="text-c2">
+                                <span class="J_Info">
+                                    <span class="ico ico-cj"></span>
+                                    <span class="tt">
+                                        <span class="tt-c" title="{{awardLeaderName}} [{{awardLeaderDepartment}}]">{{awardLeaderName}} [{{awardLeaderDepartment}}]</span>
+                                        <span class="tt-c"> 出价：{{awardLeaderScore}}</span>
+                                    </span>
+                                </span>
+                                <a href="javascript:;" class="jpxq" data-role="get">竞拍详情</a>
+                            </div>
+                        </div>
+                        <div class="gz-xq">
+                            <div class="gz-xq-in">物品由<strong>{{awardLeaderName}}</strong>竞拍成功^_^</div>
+                        </div>
+                    </li>
+                {{else}}
+                    {{#isCurrent batch awardState}}
+                        {{! 正在竞拍 }}
+                        <li class="goods-item" id="{{id}}" data-awardid="{{id}}">
+                            <a href="javascript:;" class="pic" data-role="get">
+                                <span class="pic-c1">
+                                    <img src="{{getImage image}}" width="308" height="216" alt="">
+                                </span>
+                                <span class="pic-c2">
+                                    <span class="clearfix">
+                                        <span class="name" title="{{name}}">{{name}}</span>
+                                        <span class="jiage">￥{{price}}</span>
+                                    </span>
+                                    <b class="mask"></b>
+                                </span>
+                                <span class="bq-time">
+                                    <span class="bq-time-c" id="J_CountDown_{{id}}"></span>
+                                </span>
+                            </a>
+                            <div class="text">
+                                <div class="text-c1" title="{{description}}">{{description}}</div>
+                                <div class="text-c2 J_Info">
+                                    {{#if awardLeaderUserno}}
+                                        <span>
+                                            <span class="ico ico-cj"></span>
+                                            <span class="tt">
+                                                <span class="tt-c" title="{{awardLeaderName}} [{{awardLeaderDepartment}}]">{{awardLeaderName}} [{{awardLeaderDepartment}}]</span>
+                                                <span class="tt-c"> 出价：{{awardLeaderScore}}</span>
+                                            </span>
+                                        </span>
+                                        <a href="javascript:;" class="jpxq" data-role="get">竞拍详情</a>
+                                    {{else}}
+                                        暂无人问津
+                                    {{/if}}
+                                </div>
+                            </div>
+                            <div id="J_Ctrl_{{id}}" style="width:308px;height:48px;"></div>
+                        </li>
+                    {{else}}
+                        {{! 流拍 }}
+                        <li class="goods-item liupai">
+                            <span href="javascript:;" class="pic">
+                                <span class="pic-c1">
+                                    <img src="{{getImage image}}" width="308" height="216" alt="">
+                                </span>
+                                <span class="pic-c2">
+                                    <span class="clearfix">
+                                        <span class="name" title="{{name}}">{{name}}</span>
+                                        <span class="jiage">￥{{price}}</span>
+                                    </span>
+                                    <b class="mask"></b>
+                                </span>
+                                <span class="bq-time">
+                                    <span class="bq-time-c">流拍</span>
+                                </span>
+                            </span>
+                            <div class="text">
+                                <div class="text-c1" title="{{description}}">{{description}}</div>
+                                <div class="text-c2"></div>
+                            </div>
+                            <div class="gz-xq">
+                                <div class="gz-xq-in">该物品流拍</div>
+                            </div>
+                        </li>
+                    {{/isCurrent}}
+                {{/isSuccess}}
+            {{/soonBegin}}
+        {{/each}}
+    </ul>
+{{/each}}

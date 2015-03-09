@@ -1,0 +1,23 @@
+{{#if isOK}}
+    <div class="wycj">
+        <form class="form-inline" id="J_Form" onsubmit="return false;">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">我要出价：</label>
+                <input type="text" class="form-control" autocomplete="off" name="score" id="J_Dialog_Input">
+            </div>
+            <button type="button" class="btn" disabled id="J_Dialog_Save">确定</button>
+            <button type="button" class="btn" id="J_Dialog_Allin">All in</button>
+            <div class="form-group ml10">
+                <span class="">可用积分: <span class="red" id="J_Score">{{score}}</span></span>
+            </div>
+            <input type="hidden" name="awardId" value="{{awardId}}">
+            <input type="hidden" name="auctionId" value="{{auctionId}}">
+        </form>
+    </div>
+{{else}}
+    {{#if isLeader}}
+        <div class="txt">您已领拍，无法参与其他物品竞拍</div>
+    {{else}}
+        <div class="txt">您的积分不够，无法参与该物品竞拍</div>
+    {{/if}}
+{{/if}}
