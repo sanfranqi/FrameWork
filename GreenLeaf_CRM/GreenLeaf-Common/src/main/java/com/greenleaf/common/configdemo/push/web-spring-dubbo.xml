@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
-    xmlns:soa="http://www.17173.com/schema/soa"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans         
 	    http://www.springframework.org/schema/beans/spring-beans.xsd
 	    http://www.17173.com/schema/soa http://www.17173.com/schema/soa/soa.xsd
 	    http://code.alibabatech.com/schema/dubbo         
 	    http://code.alibabatech.com/schema/dubbo/dubbo.xsd " default-lazy-init="false">
 
-    <soa:extension appPassword="" authSkip="true"
-                   loginSkip="true" logSkip="true"></soa:extension>
-
-
-	<dubbo:application name="push" />
+	<!-- <dubbo:application name="push" />
 	<dubbo:protocol port="20400"></dubbo:protocol>
 
 	<dubbo:registry address="${dubbo.registry.address}"
@@ -23,6 +18,6 @@
 	<bean id="pushSOAService" class="com.cyou.fz.web.services.push.impl.PushSOAServiceImpl" />
 	
 	<dubbo:service cluster="failfast" version="${dubbo.version}"
-		interface="com.cyou.fz.services.push.IPushSOAService" ref="pushSOAService" />
+		interface="com.cyou.fz.services.push.IPushSOAService" ref="pushSOAService" /> -->
 		
 </beans>

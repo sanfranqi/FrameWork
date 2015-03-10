@@ -5,15 +5,15 @@
 	xsi:schemaLocation="
    http://www.springframework.org/schema/beans 
    http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
-   http://www.springframework.org/schema/data/mongo
-   http://www.springframework.org/schema/data/mongo/spring-mongo-1.3.xsd
    http://www.springframework.org/schema/context      
    http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
-    <mongo:repositories base-package="com.cyou.fz.sync" />
+   <!-- http://www.springframework.org/schema/data/mongo
+   http://www.springframework.org/schema/data/mongo/spring-mongo-1.3.xsd -->
+   <!--  <mongo:repositories base-package="com.cyou.fz.sync" /> -->
 
     <!-- 数据库集群配置 -->
-    <mongo:mongo id="mongo" replica-set="${mongo.server.addr}">
+  <!--   <mongo:mongo id="mongo" replica-set="${mongo.server.addr}">
         <mongo:options connections-per-host="${mongo.connections-per-host}"
                        threads-allowed-to-block-for-connection-multiplier="${mongo.threads-allowed-to-block-for-connection-multiplier}"
                        connect-timeout="${mongo.connect-timeout}" max-wait-time="${mongo.max-wait-time}"
@@ -21,12 +21,12 @@
                        socket-timeout="${mongo.socket-timeout}" slave-ok="${mongo.slave-ok}"
                        write-number="${mongo.write-number}" write-timeout="${mongo.write-timeout}"
                        write-fsync="${mongo.write-fsync}" />
-    </mongo:mongo>
+    </mongo:mongo> -->
 
     <!-- DB配置 -->
-    <mongo:db-factory id="mongoDbFactory" mongo-ref="mongo"
+    <!-- <mongo:db-factory id="mongoDbFactory" mongo-ref="mongo"
                       dbname="${mongo.server.dbname}" username="${mongo.server.username}" password="${mongo.server.password}" />
-
+ -->
     <!-- 去除默认_class属性 begin -->
     <bean id="mappingContext"
           class="org.springframework.data.mongodb.core.mapping.MongoMappingContext" />

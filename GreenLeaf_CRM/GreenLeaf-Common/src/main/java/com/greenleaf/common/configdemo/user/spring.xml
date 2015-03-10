@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:jee="http://www.springframework.org/schema/jee"
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
 	xsi:schemaLocation="http://www.springframework.org/schema/aop 
 	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd   
 	http://www.springframework.org/schema/beans 
@@ -18,26 +15,25 @@
 	http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
 	http://code.alibabatech.com/schema/dubbo
     http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
-	
+
 	<!-- 定时器配置 -->
 	<import resource="classpath:spring_quartz.xml" />
 
-    <aop:aspectj-autoproxy proxy-target-class="true"/>
-    <!-- zookeeper://zk1.soa.local.17173.com:2181?backup=zk2.soa.local.17173.com:2181,zk3.soa.local.17173.com:2181 -->
-	<!--  ******************************** dubbo 服务注册  ******************* zookeeper://10.5.117.141:2181   zookeeper://10.5.121.143:2181-->
-	<dubbo:application name="17173-ermp-service-app" />
-	
-	<dubbo:registry 
-		address="zookeeper://10.5.117.141:2181" />
-	
-	<dubbo:service timeout="20000" interface="com.cyou.fz.services.ermp.api.service.LevelDubboService" ref="level_Dubbo" version="1.0.1"/>
-	<dubbo:service timeout="20000" interface="com.cyou.fz.services.ermp.api.service.PositionDubboService" ref="position_Dubbo" version="1.0.1"/>
-	<dubbo:service timeout="20000" interface="com.cyou.fz.services.ermp.api.service.UserDubboService" ref="user_Dubbo" version="1.0.1"/>
-	<dubbo:service timeout="20000" interface="com.cyou.fz.services.ermp.api.service.DictDubboService" ref="treeDict_Dubbo" version="1.0.1"/>
-	
-	<dubbo:reference check="false" timeout="20000" interface="com.cyou.fz.services.mc.api.service.MessageDubboService" id="mc_Dubbo" version="1.0.0"/>
-	
-    <dubbo:protocol name="dubbo" port="-1" /> 
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+	<!-- zookeeper://zk1.soa.local.17173.com:2181?backup=zk2.soa.local.17173.com:2181,zk3.soa.local.17173.com:2181 -->
+	<!-- ******************************** dubbo 服务注册 ******************* zookeeper://10.5.117.141:2181 
+		zookeeper://10.5.121.143:2181 -->
+	<!-- <dubbo:application name="17173-ermp-service-app" /> -->
+
+	<!-- <dubbo:registry address="zookeeper://10.5.117.141:2181" /> -->
+
+	<!-- <dubbo:service timeout="20000" interface="com.cyou.fz.services.ermp.api.service.LevelDubboService" 
+		ref="level_Dubbo" version="1.0.1"/> <dubbo:service timeout="20000" interface="com.cyou.fz.services.ermp.api.service.PositionDubboService" 
+		ref="position_Dubbo" version="1.0.1"/> <dubbo:service timeout="20000" interface="com.cyou.fz.services.ermp.api.service.UserDubboService" 
+		ref="user_Dubbo" version="1.0.1"/> <dubbo:service timeout="20000" interface="com.cyou.fz.services.ermp.api.service.DictDubboService" 
+		ref="treeDict_Dubbo" version="1.0.1"/> <dubbo:reference check="false" timeout="20000" 
+		interface="com.cyou.fz.services.mc.api.service.MessageDubboService" id="mc_Dubbo" 
+		version="1.0.0"/> <dubbo:protocol name="dubbo" port="-1" /> -->
 
 	<!-- 配置文件读取 -->
 	<bean id="propertyPlaceholderConfigurer"
@@ -106,63 +102,69 @@
 	</bean>
 
 	<!-- ******************************** Xmemcached 配置 ******************************** -->
-	<bean id="cacheProxy" class="com.cyou.fz.ermp.util.cache.memcached.XmemcachedCacheProxy">
+	<bean id="cacheProxy"
+		class="com.cyou.fz.ermp.util.cache.memcached.XmemcachedCacheProxy">
 		<property name="addressList" value="${memcached.servers}" />
 		<property name="connectionPoolSize" value="${memcached.connectionPoolSize}" />
 	</bean>
 
 	<!-- ******************************** FreeMarker 配置 ******************************** -->
-    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
-        <property name="messageConverters">
-            <list>
-                <ref bean="mappingJacksonHttpMessageConverter"/>
-                <!-- json转换器 -->
-            </list>
-        </property>
-        <property name="webBindingInitializer">
-            <bean class="com.cyou.fz.ermp.web.springmvc.BindingInitializer"/>
-        </property>
-    </bean>
-    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
-        <property name="messageConverters">
-            <list>
-                <ref bean="mappingJacksonHttpMessageConverter"/>
-                <!-- json转换器 -->
-            </list>
-        </property>
-        <property name="webBindingInitializer">
-            <bean class="com.cyou.fz.ermp.web.springmvc.BindingInitializer"/>
-        </property>
-    </bean>
-    <bean id="mappingJacksonHttpMessageConverter" class="com.cyou.fz.ermp.web.springmvc.MappingJackson2HttpMessageConverter">
-        <property name="supportedMediaTypes">
-            <list>
-                <value>text/html;charset=UTF-8</value>
-            </list>
-        </property>
-    </bean>
-    <bean id="handlerMapping" class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
-        <property name="defaultHandler" ref="wildcardMVCController"/>
-    </bean>
-	<bean id="wildcardMVCController" class="com.cyou.fz.ermp.web.springmvc.WildcardMVCController"/>
-	<bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
-        <property name="templateLoaderPath" value=""/>
-        <property name="freemarkerSettings">
-            <props>
-                <prop key="tag_syntax">auto_detect</prop>
-                <prop key="template_update_delay">0</prop>
-                <prop key="defaultEncoding">UTF-8</prop>
-                <prop key="url_escaping_charset">UTF-8</prop>
-                <prop key="locale">en_US</prop>
-                <prop key="boolean_format">true,false</prop>
-                <prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>
-                <prop key="date_format">yyyy-MM-dd</prop>
-                <prop key="time_format">HH:mm:ss</prop>
-                <prop key="number_format">0.######</prop>
-                <prop key="whitespace_stripping">true</prop>
-            </props>
-        </property>
-    </bean>
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<ref bean="mappingJacksonHttpMessageConverter" />
+				<!-- json转换器 -->
+			</list>
+		</property>
+		<property name="webBindingInitializer">
+			<bean class="com.cyou.fz.ermp.web.springmvc.BindingInitializer" />
+		</property>
+	</bean>
+	<bean
+		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<ref bean="mappingJacksonHttpMessageConverter" />
+				<!-- json转换器 -->
+			</list>
+		</property>
+		<property name="webBindingInitializer">
+			<bean class="com.cyou.fz.ermp.web.springmvc.BindingInitializer" />
+		</property>
+	</bean>
+	<bean id="mappingJacksonHttpMessageConverter"
+		class="com.cyou.fz.ermp.web.springmvc.MappingJackson2HttpMessageConverter">
+		<property name="supportedMediaTypes">
+			<list>
+				<value>text/html;charset=UTF-8</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="handlerMapping"
+		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+		<property name="defaultHandler" ref="wildcardMVCController" />
+	</bean>
+	<bean id="wildcardMVCController" class="com.cyou.fz.ermp.web.springmvc.WildcardMVCController" />
+	<bean
+		class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<property name="templateLoaderPath" value="" />
+		<property name="freemarkerSettings">
+			<props>
+				<prop key="tag_syntax">auto_detect</prop>
+				<prop key="template_update_delay">0</prop>
+				<prop key="defaultEncoding">UTF-8</prop>
+				<prop key="url_escaping_charset">UTF-8</prop>
+				<prop key="locale">en_US</prop>
+				<prop key="boolean_format">true,false</prop>
+				<prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>
+				<prop key="date_format">yyyy-MM-dd</prop>
+				<prop key="time_format">HH:mm:ss</prop>
+				<prop key="number_format">0.######</prop>
+				<prop key="whitespace_stripping">true</prop>
+			</props>
+		</property>
+	</bean>
 	<!-- ******************************** spring mvc全局异常处理 ******************************** -->
 	<bean class="com.cyou.fz.ermp.web.GlobalExceptionHandler">
 		<property name="contentType" value="${system.contentType}" />
@@ -186,5 +188,5 @@
 		<property name="from" value="${mail.addr}" />
 	</bean>
 
-    <bean id="applicationContextUtil" class="com.cyou.fz.ermp.util.context.ApplicationContextUtil"></bean>
+	<bean id="applicationContextUtil" class="com.cyou.fz.ermp.util.context.ApplicationContextUtil"></bean>
 </beans>

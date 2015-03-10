@@ -8,9 +8,9 @@ import com.greenleaf.common.exception.UnCaughtException;
 
 /**
  * Xmemcached缓存实现.
- * 
- * @author yangz
- * @date 2013-4-7 下午3:59:28
+ *
+ * @author QISF
+ * @date 2015-03-10
  */
 public class XmemcachedCacheProxy implements ISimpleCacheProxy {
 
@@ -87,33 +87,6 @@ public class XmemcachedCacheProxy implements ISimpleCacheProxy {
 		}
 	}
 
-	public String getAddressList() {
-		return addressList;
-	}
-
-	public void setAddressList(String addressList) {
-		this.addressList = addressList;
-	}
-
-	public int getConnectionPoolSize() {
-		return connectionPoolSize;
-	}
-
-	public void setConnectionPoolSize(int connectionPoolSize) {
-		this.connectionPoolSize = connectionPoolSize;
-	}
-
-	@Override
-	public void afterPropertiesSet() throws Exception {
-		try {
-			XMemcachedClientBuilder builder = new XMemcachedClientBuilder(addressList);
-			builder.setConnectionPoolSize(connectionPoolSize);
-			client = builder.build();
-		} catch (Exception e) {
-			throw new UnCaughtException(e);
-		}
-	}
-
 	@Override
 	public boolean add(String key, Object value, int timeOut) {
 		try {
@@ -130,6 +103,34 @@ public class XmemcachedCacheProxy implements ISimpleCacheProxy {
 		} catch (Exception e) {
 			throw new UnCaughtException(e);
 		}
+	}
+
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		try {
+			XMemcachedClientBuilder builder = new XMemcachedClientBuilder(
+					addressList);
+			builder.setConnectionPoolSize(connectionPoolSize);
+			client = builder.build();
+		} catch (Exception e) {
+			throw new UnCaughtException(e);
+		}
+	}
+
+	public String getAddressList() {
+		return addressList;
+	}
+
+	public void setAddressList(String addressList) {
+		this.addressList = addressList;
+	}
+
+	public int getConnectionPoolSize() {
+		return connectionPoolSize;
+	}
+
+	public void setConnectionPoolSize(int connectionPoolSize) {
+		this.connectionPoolSize = connectionPoolSize;
 	}
 
 }
