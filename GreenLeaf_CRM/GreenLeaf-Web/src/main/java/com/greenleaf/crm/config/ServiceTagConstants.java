@@ -1,7 +1,7 @@
 package com.greenleaf.crm.config;
 
 
-import com.greenleaf.crm.utils.context.ApplicationContextUtil;
+import com.greenleaf.common.context.ApplicationContextUtil;
 
 public class ServiceTagConstants {
 

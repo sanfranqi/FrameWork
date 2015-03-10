@@ -51,9 +51,9 @@
         <property name="rewardUrl">
             <value>${reward.url}</value>
         </property>
-        <property name="addItionMap">
+        <property name="config">
             <map>
-                <entry key="tempPath" value="${file.tempPath}"/>
+                <entry key="propertyPath" value="${file.propertyPath}"/>
                 <entry key="fileSize" value="${file.fileSize}"/>
             </map>
         </property>

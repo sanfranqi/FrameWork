@@ -20,9 +20,6 @@ import com.greenleaf.common.utils.ClassUtil;
 import com.greenleaf.common.utils.ObjectUtil;
 import com.greenleaf.common.utils.StringUtil;
 
-/**
- * 默认的CRUD User: wangj Date: 13-11-8 Time: 上午9:32
- */
 public abstract class BaseCrudProvider<T> {
 	private static final Logger logger = LoggerFactory.getLogger(BaseCrudProvider.class);
 

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+   http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+   http://www.springframework.org/schema/aop
+   http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+   http://www.springframework.org/schema/tx
+   http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+   http://www.springframework.org/schema/context
+   http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+	<bean id="springContext" class="com.cyou.fz.common.base.spring.SpringContext" />
+	<!-- 扫描所有类路径下的所有的配置文件 -->
+	<context:property-placeholder location="classpath:conf/server_cfg.properties" />
+
+	<import resource="core-spring-cache.xml" />
+	<import resource="core-spring-db.xml" />
+	<import resource="core-spring-depend.xml" />
+	<import resource="core-spring-jms.xml" />
+	<context:annotation-config />
+	<context:component-scan base-package="com.cyou.fz.push.core" />
+
+	<!-- 图片相关配置 -->
+	<bean id="imageConfig" class="com.cyou.fz.push.core.config.ImageConfig">
+		<property name="notificationLogoURL" value="${image.default.notificationLogoURL}" />
+		<property name="messageLogoURL" value="${image.default.messageLogoURL}" />
+	</bean>
+
+	<!-- HBase表名配置. -->
+	<bean id="hBaseTableNameConfig" class="com.cyou.fz.push.core.config.HBaseTableNameConfig">
+		<property name="SUBJECT_MESSAGE" value="${hbase.tablename.prefix}SUBJECT_MESSAGE" />
+		<property name="SUBJECT_MESSAGE_TIME_INDEX"
+			value="${hbase.tablename.prefix}SUBJECT_MESSAGE_TIME_INDEX" />
+		<property name="MULTICAST_MESSAGE" value="${hbase.tablename.prefix}MULTICAST_MESSAGE" />
+		<property name="BROADCAST_MESSAGE" value="${hbase.tablename.prefix}BROADCAST_MESSAGE" />
+		<property name="BROADCAST_MESSAGE_TIME_INDEX"
+			value="${hbase.tablename.prefix}BROADCAST_MESSAGE_TIME_INDEX" />
+		<property name="INBOX" value="${hbase.tablename.prefix}INBOX" />
+		<property name="INBOX_TIME_INDEX" value="${hbase.tablename.prefix}INBOX_TIME_INDEX" />
+		<property name="USER_SUBJECT_RELA" value="${hbase.tablename.prefix}USER_SUBJECT_RELA" />
+		<property name="SUBJECT_USER_RELA" value="${hbase.tablename.prefix}SUBJECT_USER_RELA" />
+		<property name="USER_READ_RECORD" value="${hbase.tablename.prefix}USER_READ_RECORD" />
+		<property name="PUBLISH_TIME_RECORD" value="${hbase.tablename.prefix}PUBLISH_TIME_RECORD" />
+		<property name="ONLINE_USER" value="${hbase.tablename.prefix}ONLINE_USER" />
+		<property name="INBOX_UNREAD_MESSAGE" value="${hbase.tablename.prefix}INBOX_UNREAD_MESSAGE" />
+		<property name="INBOX_TIME_INDEX_UNREAD_MESSAGE" value="${hbase.tablename.prefix}INBOX_TIME_INDEX_UNREAD_MESSAGE" />
+		<property name="SUBJECT_CASCADE_RELA" value="${hbase.tablename.prefix}SUBJECT_CASCADE_RELA" />
+	</bean>
+
+	<!-- Nginx的配置. -->
+	<bean id="nginxConfig" class="com.cyou.fz.push.core.config.NginxConfig">
+		<property name="mode" value="${nginx.mode}" />
+		<property name="devServer" value="${nginx.dev.server}" />
+		<property name="devMod" value="${nginx.dev.mod}" />
+		<property name="produceServer" value="${nginx.produce.server}" />
+		<property name="produceMod" value="${nginx.produce.mod}" />
+		<property name="produceHostMapping" value="${nginx.produce.host.mapping}" />
+	</bean>
+
+</beans>

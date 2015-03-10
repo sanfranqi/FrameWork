@@ -1,8 +1,8 @@
 package com.greenleaf.crm.files.cfg;
 
 
+import com.greenleaf.common.context.ApplicationContextUtil;
 import com.greenleaf.crm.config.SystemConfig;
-import com.greenleaf.crm.utils.context.ApplicationContextUtil;
 
 /**
  * 文件上传配置.
