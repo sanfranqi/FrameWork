@@ -12,7 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.greenleaf.common.utils.Response;
+import com.greenleaf.common.response.Response;
 import com.greenleaf.crm.config.SystemConfig;
 
 @Controller

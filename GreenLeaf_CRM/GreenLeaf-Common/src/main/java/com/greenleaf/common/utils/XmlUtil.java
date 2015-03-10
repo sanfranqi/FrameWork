@@ -24,6 +24,8 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+import com.greenleaf.common.exception.UnCaughtException;
+
 /**
  * XmlDom工具包.
  * 
@@ -172,10 +174,8 @@ public class XmlUtil {
 				t.setOutputProperty(OutputKeys.INDENT, "yes");
 				t.setOutputProperty(OutputKeys.METHOD, "xml"); // xml, html,
 				// text
-				t.setOutputProperty(
-						"{http://xml.apache.org/xslt}indent-amount", "4");
-				t.transform(new DOMSource(document.getDocumentElement()),
-						strResult);
+				t.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+				t.transform(new DOMSource(document.getDocumentElement()), strResult);
 			} catch (Exception e) {
 				System.err.println("XML.toString(Document): " + e);
 			}
@@ -189,7 +189,7 @@ public class XmlUtil {
 
 		return result;
 	}
-	
+
 	/**
 	 * 获得org.w3c.dom.Node节点下指定nodeName节点.
 	 * 
@@ -201,8 +201,7 @@ public class XmlUtil {
 	 * @author qingwu
 	 * @date 2013-6-26 上午10:00:00
 	 */
-	public static org.w3c.dom.Node getChildNode(org.w3c.dom.Node node,
-			String nodeName) {
+	public static org.w3c.dom.Node getChildNode(org.w3c.dom.Node node, String nodeName) {
 		NodeList list = node.getChildNodes();
 		for (int i = 0; i < list.getLength(); i++) {
 			if (list.item(i).getNodeName().equals(nodeName)) {

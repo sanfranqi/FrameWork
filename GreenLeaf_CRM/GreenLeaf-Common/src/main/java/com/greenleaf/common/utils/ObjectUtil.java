@@ -17,6 +17,8 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeansException;
 
+import com.greenleaf.common.exception.UnCaughtException;
+
 /**
  * 对象工具类.
  * 
@@ -71,9 +73,7 @@ public class ObjectUtil {
 		if (value == null) {
 			return true;
 		}
-		if ((value instanceof String)
-				&& ((((String) value).trim().length() <= 0) || "null"
-						.equalsIgnoreCase((String) value))) {
+		if ((value instanceof String) && ((((String) value).trim().length() <= 0) || "null".equalsIgnoreCase((String) value))) {
 			return true;
 		}
 		if ((value instanceof Object[]) && (((Object[]) value).length <= 0)) {
@@ -85,8 +85,7 @@ public class ObjectUtil {
 			for (int i = 0; i < t.length; i++) {
 				if (t[i] != null) {
 					if (t[i] instanceof String) {
-						if (((String) t[i]).trim().length() > 0
-								|| "null".equalsIgnoreCase((String) t[i])) {
+						if (((String) t[i]).trim().length() > 0 || "null".equalsIgnoreCase((String) t[i])) {
 							return false;
 						}
 					} else {
@@ -96,12 +95,10 @@ public class ObjectUtil {
 			}
 			return true;
 		}
-		if ((value instanceof Collection)
-				&& ((Collection<?>) value).size() <= 0) {
+		if ((value instanceof Collection) && ((Collection<?>) value).size() <= 0) {
 			return true;
 		}
-		if ((value instanceof Dictionary)
-				&& ((Dictionary<?, ?>) value).size() <= 0) {
+		if ((value instanceof Dictionary) && ((Dictionary<?, ?>) value).size() <= 0) {
 			return true;
 		}
 		if ((value instanceof Map) && ((Map<?, ?>) value).size() <= 0) {
@@ -146,9 +143,7 @@ public class ObjectUtil {
 		try {
 			BeanUtils.copyProperties(source, target);
 		} catch (BeansException e) {
-			throw new RuntimeException(
-					"ObjectUtil copyProperties bad for src :"
-							+ source.toString() + " dest: " + target.toString());
+			throw new RuntimeException("ObjectUtil copyProperties bad for src :" + source.toString() + " dest: " + target.toString());
 		}
 		return target;
 	}
@@ -170,8 +165,7 @@ public class ObjectUtil {
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();
 		}
-		throw new RuntimeException("convert obj error! source class :"
-				+ obj.getClass() + ",target :" + clazz);
+		throw new RuntimeException("convert obj error! source class :" + obj.getClass() + ",target :" + clazz);
 	}
 
 	public static <M, T> List<T> convertList(List<M> objList, Class<T> clazz) {
@@ -182,8 +176,7 @@ public class ObjectUtil {
 		return list;
 	}
 
-	public static <M, T> List<T> convertList(List<M> objList,
-			Converter<M, T> converter) {
+	public static <M, T> List<T> convertList(List<M> objList, Converter<M, T> converter) {
 		List<T> list = new ArrayList<T>();
 		for (M m : objList) {
 			list.add(converter.convert(m));
@@ -203,8 +196,7 @@ public class ObjectUtil {
 	 * @param <M>
 	 * @return
 	 */
-	public static <M> List<M> toBeanList(Class<M> clazz,
-			List<Map<String, Object>> mapList) {
+	public static <M> List<M> toBeanList(Class<M> clazz, List<Map<String, Object>> mapList) {
 		List<M> objectList = new ArrayList<M>();
 		for (Map<String, Object> map : mapList) {
 			objectList.add(toBean(clazz, map));
@@ -226,8 +218,7 @@ public class ObjectUtil {
 		try {
 			BeanInfo beanInfo = Introspector.getBeanInfo(type); // 获取类属性
 			obj = type.newInstance();
-			PropertyDescriptor[] propertyDescriptors = beanInfo
-					.getPropertyDescriptors();
+			PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();
 			for (int i = 0; i < propertyDescriptors.length; i++) {
 				PropertyDescriptor descriptor = propertyDescriptors[i];
 				String propertyName = descriptor.getName();
@@ -239,8 +230,7 @@ public class ObjectUtil {
 				}
 			}
 		} catch (Exception e) {
-			RuntimeException ex = new RuntimeException(
-					"convent map to object error");
+			RuntimeException ex = new RuntimeException("convent map to object error");
 			ex.initCause(e);
 			throw ex;
 		}
@@ -259,8 +249,7 @@ public class ObjectUtil {
 	public static <M> M addToBean(M obj, Class<M> type, Map<String, Object> map) {
 		try {
 			BeanInfo beanInfo = Introspector.getBeanInfo(type);
-			PropertyDescriptor[] propertyDescriptors = beanInfo
-					.getPropertyDescriptors();
+			PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();
 			for (int i = 0; i < propertyDescriptors.length; i++) {
 				PropertyDescriptor descriptor = propertyDescriptors[i];
 				String propertyName = descriptor.getName();
@@ -272,8 +261,7 @@ public class ObjectUtil {
 				}
 			}
 		} catch (Exception e) {
-			RuntimeException ex = new RuntimeException(
-					"convent map to object error");
+			RuntimeException ex = new RuntimeException("convent map to object error");
 			ex.initCause(e);
 			throw ex;
 		}
@@ -295,8 +283,7 @@ public class ObjectUtil {
 			Class<?> type = bean.getClass();
 			returnMap = new HashMap<String, Object>();
 			BeanInfo beanInfo = Introspector.getBeanInfo(type);
-			PropertyDescriptor[] propertyDescriptors = beanInfo
-					.getPropertyDescriptors();
+			PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();
 			for (int i = 0; i < propertyDescriptors.length; i++) {
 				PropertyDescriptor descriptor = propertyDescriptors[i];
 				String propertyName = descriptor.getName();
@@ -313,8 +300,7 @@ public class ObjectUtil {
 						returnMap.put(propertyName, result);
 					} else if (ObjectUtil.isCollection(result)) {
 						Collection<?> collectionResult = (Collection<?>) result;
-						Collection collection = (Collection) result.getClass()
-								.newInstance();
+						Collection collection = (Collection) result.getClass().newInstance();
 						for (Object o : collectionResult) {
 							if (ObjectUtil.isValueType(o)) {
 								collection.add(o);
@@ -425,9 +411,7 @@ public class ObjectUtil {
 	 * @date 2012-9-26 下午03:01:44
 	 */
 	public static boolean isValueType(Object obj) {
-		if (obj == null || obj instanceof String || obj instanceof Number
-				|| obj instanceof Boolean || obj instanceof Character
-				|| obj instanceof Date) {
+		if (obj == null || obj instanceof String || obj instanceof Number || obj instanceof Boolean || obj instanceof Character || obj instanceof Date) {
 			return true;
 		} else {
 			return false;
@@ -507,11 +491,8 @@ public class ObjectUtil {
 	 * @author qingwu
 	 * @date 2014-2-19 下午1:28:14
 	 */
-	public static Object getFieldValue(Object obj, String fieldName)
-			throws Exception {
-		String methodName = "get"
-				+ String.valueOf(fieldName.charAt(0)).toUpperCase()
-				+ fieldName.substring(1);
+	public static Object getFieldValue(Object obj, String fieldName) throws Exception {
+		String methodName = "get" + String.valueOf(fieldName.charAt(0)).toUpperCase() + fieldName.substring(1);
 		return invokeMethod(obj, methodName, new Object[] {});
 	}
 
@@ -530,8 +511,7 @@ public class ObjectUtil {
 	 * @date 2014-2-19 下午1:28:14
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public static Object invokeMethod(Object owner, String methodName,
-			Object[] args) throws Exception {
+	public static Object invokeMethod(Object owner, String methodName, Object[] args) throws Exception {
 		Class ownerClass = owner.getClass();
 		Class[] argsClass = new Class[args.length];
 		for (int i = 0, j = args.length; i < j; i++) {
@@ -556,8 +536,7 @@ public class ObjectUtil {
 	 * @date 2014-2-19 下午1:28:14
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public static Object invokeStaticMethod(Class ownerClass,
-			String methodName, Object[] args) throws Exception {
+	public static Object invokeStaticMethod(Class ownerClass, String methodName, Object[] args) throws Exception {
 		Class[] argsClass = new Class[args.length];
 		for (int i = 0, j = args.length; i < j; i++) {
 			argsClass[i] = args[i].getClass();

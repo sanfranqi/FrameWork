@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.greenleaf.common.utils.Response;
+import com.greenleaf.common.response.Response;
 
 /**
  * 结果VO.
