@@ -2,6 +2,7 @@ package com.greenleaf.common.mybatis.service;
 
 import static java.util.Locale.ENGLISH;
 
+import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -19,10 +20,8 @@ import com.greenleaf.common.utils.ClassUtil;
 import com.greenleaf.common.utils.ColumnUtils;
 import com.greenleaf.common.utils.ObjectUtil;
 
-public class BaseService<T> implements ApplicationContextAware {
-
-	private final static Logger logger = LoggerFactory
-			.getLogger(BaseService.class);
+public abstract class BaseService<T> implements ApplicationContextAware {
+	private final static Logger logger = LoggerFactory.getLogger(BaseService.class);
 
 	protected Class<T> t;
 	private ApplicationContext applicationContext;
@@ -71,7 +70,7 @@ public class BaseService<T> implements ApplicationContextAware {
 
 		try {
 			Query query = Query.build(t);
-			query.addEq(ColumnUtils.getIdFieldName(t), id);
+			query.addEq(ColumnUtils.getIdFieldName(t), new BigDecimal(id));
 			List<T> objects = findByQuery(query);
 			if (objects.size() > 0) {
 				return objects.get(0);
@@ -96,7 +95,7 @@ public class BaseService<T> implements ApplicationContextAware {
 	public void delete(int id) {
 		try {
 			Query query = Query.build(t);
-			query.addEq(ColumnUtils.getIdFieldName(t), id);
+			query.addEq(ColumnUtils.getIdFieldName(t), new BigDecimal(id));
 			getDAO().deleteByQuery(query);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -165,8 +164,7 @@ public class BaseService<T> implements ApplicationContextAware {
 	public Paged<T> findPagedByQuery(Query query) {
 		List<T> objects = findByQuery(query);
 		int count = getDAO().count(query);
-		return new Paged<T>(objects, count, query.getPageNo(),
-				query.getPageSize());
+		return new Paged<T>(objects, count, query.getPageNo(), query.getPageSize());
 	}
 
 	protected BaseDAO<T> getDAO() {
@@ -197,8 +195,7 @@ public class BaseService<T> implements ApplicationContextAware {
 	}
 
 	@Override
-	public void setApplicationContext(ApplicationContext applicationContext)
-			throws BeansException {
+	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
 		this.applicationContext = applicationContext;
 	}
 }

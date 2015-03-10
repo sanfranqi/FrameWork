@@ -1,8 +1,13 @@
 package com.greenleaf.common.mybatis.bean;
 
-import org.apache.commons.lang.StringUtils;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import java.util.*;
+import org.apache.commons.lang.StringUtils;
 
 public class Query<T> {
 	public static Map<String, String> MYSQL_SPECIAL_STR = new HashMap<String, String>();
@@ -44,6 +49,15 @@ public class Query<T> {
 	List<String> includeField = new ArrayList<String>();
 
 	Map<String, DBOrder> orders = new HashMap<String, DBOrder>();
+
+	/**
+	 * oralce分页查询，起始行.
+	 */
+	public int rowStart;
+	/**
+	 * oralce分页查询，结束行.
+	 */
+	public int rowEnd;
 
 	public Query(Class<T> type) {
 		this.type = type;
@@ -281,6 +295,14 @@ public class Query<T> {
 		}
 
 		return (pageNo - 1) * pageSize;
+	}
+
+	public int getRowStart() {
+		return getOffset() + 1;
+	}
+
+	public int getRowEnd() {
+		return getOffset() + pageSize;
 	}
 
 	/**
