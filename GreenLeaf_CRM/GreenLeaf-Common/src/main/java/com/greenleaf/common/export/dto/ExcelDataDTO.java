@@ -10,8 +10,7 @@ import com.greenleaf.common.utils.DateUtil;
 /**
  * excel数据单元格DTO.
  * 
- * @author qingwu
- * @date 2014-1-24 下午5:52:02
+ * @author QiSF 2015-03-11
  */
 public class ExcelDataDTO {
 
@@ -132,8 +131,6 @@ public class ExcelDataDTO {
 	 * @param mapperField
 	 * @param row
 	 * @param col
-	 * @author qingwu
-	 * @date 2014-1-24 下午6:27:37
 	 */
 	public void init(String colName, String cellValue, String valueType, String mapperField, Integer row, Integer col) {
 		this.colName = colName;
@@ -152,14 +149,12 @@ public class ExcelDataDTO {
 					final String _colName = this.colName;
 					final String _format = this.dateFormat;
 					this.check = new ICheck() {
-
 						@Override
 						public ResultVO validate(Object cellValue) {
 							ResultVO result = new ResultVO(false);
 							result.addMsg(_colName + "不符合日期格式[" + _format + "]!");
 							return result;
 						}
-
 					};
 				}
 			} else if (this.valueType.equals(ExcelCellType.DOUBLE)) {
@@ -170,10 +165,6 @@ public class ExcelDataDTO {
 
 	/**
 	 * 校验.
-	 * 
-	 * @return
-	 * @author qingwu
-	 * @date 2014-1-26 上午9:42:33
 	 */
 	public ResultVO validate() {
 		if (this.check != null) {
@@ -199,8 +190,6 @@ public class ExcelDataDTO {
 	 * @param msg
 	 *            错误信息
 	 * @return
-	 * @author qingwu
-	 * @date 2014-1-24 下午5:47:31
 	 */
 	private String getErrMsg(int rowIndex, int colIndex, String msg) {
 		String[] col = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };

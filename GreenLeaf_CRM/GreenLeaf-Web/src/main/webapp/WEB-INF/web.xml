@@ -11,7 +11,7 @@
         </param-value>
 	</context-param>
 	<listener>
-		<listener-class>com.greenleaf.crm.utils.context.ContextLoaderListenerManager</listener-class>
+		<listener-class>com.greenleaf.common.context.ContextLoaderListenerManager</listener-class>
 	</listener>
 	<filter>
 		<filter-name>WebFilter</filter-name>
@@ -93,7 +93,6 @@
 		<error-code>403</error-code>
 		<location>/404.htm</location>
 	</error-page>
-
 	<error-page>
 		<error-code>404</error-code>
 		<location>/404.htm</location>

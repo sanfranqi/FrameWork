@@ -1,13 +1,15 @@
 package com.greenleaf.common.exception;
 
+import java.io.Serializable;
+
 /**
  * 不被捕获的异常,将抛至最顶层.
  * 
- * @author yangz
- * @date 2012-7-28 下午03:07:44
+ * @author QiSF 2015-03-11
  */
-@SuppressWarnings("serial")
-public class UnCaughtException extends RuntimeException {
+public class UnCaughtException extends RuntimeException implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	public UnCaughtException() {
 		super();

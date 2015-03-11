@@ -1,17 +1,9 @@
-/**
- * 北京畅游是空软件技术有限公司福州分公司 - 版权所有
- * 2013-4-12 上午10:37:04
- */
 package com.greenleaf.common.export.dto;
 
 /**
  * EXPORT_COL导出列配置DTO对象.
  * 
- * <pre>
- * 修改记录：
- * 修改日期　　　修改人　　　修改原因
- * 2013-04-12   zhufu　　　新建
- * </pre>
+ * @author QiSF 2015-03-11
  */
 public class ExportColInfoDTO implements java.io.Serializable {
 
@@ -20,7 +12,6 @@ public class ExportColInfoDTO implements java.io.Serializable {
 	 */
 	private static final long serialVersionUID = 111212160336135L;
 
-	// Fields
 	/**
 	 * 列字段名.
 	 */
@@ -30,13 +21,10 @@ public class ExportColInfoDTO implements java.io.Serializable {
 	 */
 	private String colName;
 	/**
-	 * 导出标识TRUE.导出 FALSE不导出.(暂时为保留字段不使用)
+	 * 导出标识.TRUE:导出,FALSE:不导出.(暂时为保留字段不使用)
 	 */
 	private Boolean exportFlag;
 
-	// Constructors
-
-	/** default constructor */
 	public ExportColInfoDTO() {
 	}
 

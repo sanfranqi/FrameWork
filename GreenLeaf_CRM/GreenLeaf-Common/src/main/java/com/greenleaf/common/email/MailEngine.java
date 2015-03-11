@@ -1,5 +1,11 @@
 package com.greenleaf.common.email;
 
+import java.io.IOException;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeUtility;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,27 +15,20 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeUtility;
-import java.io.IOException;
-
 /**
- * 提供邮件的配置
+ * 邮件配置.
  * 
- * @author jianleizhuo
- * 
+ * @author QiSF 2015-03-11
  */
 public class MailEngine {
 
-	private static final Logger logger = LoggerFactory
-			.getLogger(MailEngine.class);
+	private static final Logger logger = LoggerFactory.getLogger(MailEngine.class);
 
 	@Autowired
 	private MailSender mailSender;
 
 	/**
-	 * 发送带附件的邮件
+	 * 发送带附件的邮件.
 	 * 
 	 * @param emailAddresses
 	 *            收件人地址
@@ -41,31 +40,25 @@ public class MailEngine {
 	 *            附件dto
 	 * @throws MessagingException
 	 */
-	public void sendEmailWithAttach(String[] emailAddresses, String bodyText,
-			String subject, MailDTO... mailDTOs) throws MessagingException,
-			IOException {
+	public void sendEmailWithAttach(String[] emailAddresses, String bodyText, String subject, MailDTO... mailDTOs) throws MessagingException, IOException {
 
-		MimeMessage message = ((JavaMailSenderImpl) mailSender)
-				.createMimeMessage();
+		MimeMessage message = ((JavaMailSenderImpl) mailSender).createMimeMessage();
 
 		MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
 		helper.setTo(emailAddresses);
-        helper.setFrom(((JavaMailSenderImpl) mailSender).getUsername());
-        helper.setText(bodyText);
+		helper.setFrom(((JavaMailSenderImpl) mailSender).getUsername());
+		helper.setText(bodyText);
 		helper.setSubject(subject);
 
 		for (MailDTO dto : mailDTOs) {
-			helper.addAttachment(MimeUtility.encodeWord(dto.getFileName()),
-					new ByteArrayResource(dto.getAttachBytes()));
+			helper.addAttachment(MimeUtility.encodeWord(dto.getFileName()), new ByteArrayResource(dto.getAttachBytes()));
 		}
 
 		((JavaMailSenderImpl) mailSender).send(message);
 	}
 
 	/**
-	 * 发送简单邮件
-	 * 
-	 * @param mailMessage
+	 * 发送简单邮件.
 	 */
 	public void sendSimpleEmail(SimpleMailMessage mailMessage) {
 		try {
@@ -82,10 +75,8 @@ public class MailEngine {
 	 * @param content
 	 * @throws MessagingException
 	 */
-	public void sendEmailWithContent(SimpleMailMessage mailMessage,
-			String content) throws MessagingException {
-		MimeMessage message = ((JavaMailSenderImpl) mailSender)
-				.createMimeMessage();
+	public void sendEmailWithContent(SimpleMailMessage mailMessage, String content) throws MessagingException {
+		MimeMessage message = ((JavaMailSenderImpl) mailSender).createMimeMessage();
 
 		MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
 
@@ -115,16 +106,10 @@ public class MailEngine {
 	 *            主题
 	 * @param mailAttachDTOs
 	 *            邮件附件dtos
-	 * @author zhufu
-	 * @version 2013-9-29 下午4:45:12
 	 * @throws IOException
 	 * @throws MessagingException
 	 */
-	public void sendEmailWithAttach(String emailAddress, String bodyText,
-			String subject, MailDTO... mailAttachDTOs)
-			throws MessagingException, IOException {
-		sendEmailWithAttach(new String[] { emailAddress }, bodyText, subject,
-				mailAttachDTOs);
-
+	public void sendEmailWithAttach(String emailAddress, String bodyText, String subject, MailDTO... mailAttachDTOs) throws MessagingException, IOException {
+		sendEmailWithAttach(new String[] { emailAddress }, bodyText, subject, mailAttachDTOs);
 	}
 }

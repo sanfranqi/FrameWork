@@ -8,8 +8,7 @@ import javax.crypto.Cipher;
 /**
  * 加密解密工具类.
  * 
- * @author qingwu
- * @date 2014-1-23 下午2:40:08
+ * @author QiSF 2015-03-11
  */
 public class CipherUtil {
 	private static String strDefaultKey = "fe14c7c41f7d2a940";

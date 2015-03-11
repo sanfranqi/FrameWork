@@ -8,9 +8,8 @@ import com.greenleaf.common.response.Response;
 
 /**
  * 结果VO.
- *
- * @author QISF
- * @date 2015-03-10
+ * 
+ * @author QiSF 2015-03-11
  */
 public class ResultVO implements Serializable {
 
@@ -39,53 +38,42 @@ public class ResultVO implements Serializable {
 		this.isSuccess = isSuccess;
 	}
 
-	/**
-	 * @return the isSuccess
-	 */
 	public boolean isSuccess() {
 		return isSuccess;
 	}
 
-	/**
-	 * @param isSuccess
-	 *            the isSuccess to set
-	 */
 	public void setSuccess(boolean isSuccess) {
 		this.isSuccess = isSuccess;
 	}
 
-	/**
-	 * @return the msg
-	 */
 	public List<String> getMsg() {
 		return msg;
 	}
 
-	/**
-	 * @param msg
-	 *            the msg to set
-	 */
 	public void setMsg(List<String> msg) {
 		this.msg = msg;
 	}
 
-	/**
-	 * @return the errorCode
-	 */
 	public List<String> getErrorCode() {
 		return errorCode;
 	}
 
-	/**
-	 * @param errorCode
-	 *            the errorCode to set
-	 */
 	public void setErrorCode(List<String> errorCode) {
 		this.errorCode = errorCode;
 	}
 
+	public void addMsg(String s) {
+		this.msg.add(s);
+	}
+
+	public void addErrorCode(String e) {
+		this.errorCode.add(e);
+	}
+
 	/**
 	 * 获得提示信息的字符串.
+	 * 
+	 * @author QiSF 2015-03-11
 	 */
 	public String getStringMsg() {
 		String str = "";
@@ -97,6 +85,8 @@ public class ResultVO implements Serializable {
 
 	/**
 	 * 获得提示信息的字符串，多个用逗号','相隔.
+	 * 
+	 * @author QiSF 2015-03-11
 	 */
 	public String getStringMsgDivide() {
 		String str = "";
@@ -110,21 +100,9 @@ public class ResultVO implements Serializable {
 	}
 
 	/**
-	 * 添加提示信息.
-	 */
-	public void addMsg(String s) {
-		this.msg.add(s);
-	}
-
-	/**
-	 * 添加错误代码.
-	 */
-	public void addErrorCode(String e) {
-		this.errorCode.add(e);
-	}
-
-	/**
 	 * 获得错误代码，多个用逗号','相隔.
+	 * 
+	 * @author QiSF 2015-03-11
 	 */
 	public String getErrorCodeStr() {
 		String s = "";
@@ -138,7 +116,9 @@ public class ResultVO implements Serializable {
 	}
 
 	/**
-	 * 转response.
+	 * 转Response.
+	 * 
+	 * @author QiSF 2015-03-11
 	 */
 	public <T> void toResponse(Response<T> response) {
 		if (this.isSuccess == true) {
@@ -153,5 +133,4 @@ public class ResultVO implements Serializable {
 			}
 		}
 	}
-
 }

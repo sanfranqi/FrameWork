@@ -15,10 +15,7 @@ import com.greenleaf.common.export.dto.ExportWorksheetInfoDTO;
 /**
  * 导出处理器抽象类.
  * 
- * <pre>
- * 修改日期     修改人 修改原因
- * 2013-04-12   zhufu   新建
- * </pre>
+ * @author QiSF 2015-03-11
  */
 public abstract class AbstractExportProcessor implements IExportProcessor {
 	/**
@@ -33,12 +30,10 @@ public abstract class AbstractExportProcessor implements IExportProcessor {
 	 * response.
 	 */
 	protected OutputStream outputStream;
-
 	/**
 	 * 默认编码.
 	 */
 	protected String defaultEncoding = "utf-8";
-
 	/**
 	 * 导出数据编码.
 	 */
@@ -56,11 +51,6 @@ public abstract class AbstractExportProcessor implements IExportProcessor {
 	 * @param postfix
 	 *            文件名后缀
 	 * @return 包含返回true，不包含返回false
-	 * 
-	 *         <pre>
-	 * 修改日期     修改人 修改原因
-	 * 2013-04-12   zhufu   新建
-	 * </pre>
 	 */
 	protected boolean checkPostfix(String exportName, String postfix) {
 		if (exportName.contains(postfix)) {
@@ -113,14 +103,6 @@ public abstract class AbstractExportProcessor implements IExportProcessor {
 
 	/**
 	 * 导出表头.
-	 * 
-	 * <pre>
-	 * 修改日期     修改人 修改原因
-	 * 2013-04-12   zhufu   新建
-	 * </pre>
-	 * 
-	 * @throws IOException
-	 *             IO异常
 	 */
 	protected abstract void exportColHeader() throws IOException;
 
@@ -135,11 +117,6 @@ public abstract class AbstractExportProcessor implements IExportProcessor {
 	 *            编码
 	 * @throws IOException
 	 *             io异常
-	 * 
-	 *             <pre>
-	 * 修改日期     修改人 修改原因
-	 * 2013-04-12   zhufu   新建
-	 * </pre>
 	 */
 	protected void writeArrayToResponse(List<String> list, String separator, String encoding) throws IOException {
 		String args = encoding;
@@ -151,11 +128,6 @@ public abstract class AbstractExportProcessor implements IExportProcessor {
 
 	/**
 	 * 去除不需要导出的列.
-	 * 
-	 * <pre>
-	 * 修改日期     修改人 修改原因
-	 * 2011-12-21   zhufu   新建
-	 * </pre>
 	 */
 	protected void exclusionCol() {
 	}
@@ -179,13 +151,6 @@ public abstract class AbstractExportProcessor implements IExportProcessor {
 		this.exportColInfoList = exportColInfoList;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.cyou.fz.common.export.processor.IExportProcessor#export(java.util
-	 * .List)
-	 */
 	@Override
 	public void export(List<Map<String, Object>>... dataLists) {
 		processBegin();
@@ -193,17 +158,10 @@ public abstract class AbstractExportProcessor implements IExportProcessor {
 		processEnd();
 	}
 
-	/**
-	 * @return the exportWorksheetInfoList
-	 */
 	public List<ExportWorksheetInfoDTO> getExportWorksheetInfoList() {
 		return exportWorksheetInfoList;
 	}
 
-	/**
-	 * @param exportWorksheetInfoList
-	 *            the exportWorksheetInfoList to set
-	 */
 	public void setExportWorksheetInfoList(List<ExportWorksheetInfoDTO> exportWorksheetInfoList) {
 		this.exportWorksheetInfoList = exportWorksheetInfoList;
 	}

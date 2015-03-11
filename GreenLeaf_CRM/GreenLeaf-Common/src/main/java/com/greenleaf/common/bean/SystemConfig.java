@@ -4,9 +4,17 @@ import org.springframework.stereotype.Component;
 
 import com.greenleaf.common.utils.PropertiesUtil;
 
+/**
+ * 系统常量.
+ * 
+ * @author QiSF 2015-03-11
+ */
 @Component
 public class SystemConfig {
 
+	/**
+	 * 资源文件路径.
+	 */
 	private String propertyPath;
 
 	/**

@@ -1,7 +1,3 @@
-/**
- * 北京畅游是空软件技术有限公司福州分公司 - 版权所有
- * 2013-4-12 上午10:37:04
- */
 package com.greenleaf.common.export.processor;
 
 import java.io.IOException;
@@ -22,15 +18,9 @@ import com.greenleaf.common.utils.ValueUtil;
 /**
  * excel导出处理器.
  * 
- * <pre>
- * 修改日期     修改人 修改原因
- * 2013-04-12   zhufu   新建
- * </pre>
+ * @author QiSF 2015-03-11
  */
 public class ExcelExportProcessor extends AbstractExportProcessor implements IExportProcessor {
-	/**
-	 * 日志.
-	 */
 	private static Logger logger = LoggerFactory.getLogger(ExcelExportProcessor.class);
 
 	/**
@@ -49,7 +39,6 @@ public class ExcelExportProcessor extends AbstractExportProcessor implements IEx
 
 	/**
 	 * 构造.
-	 * 
 	 */
 	public ExcelExportProcessor(List<ExportColInfoDTO> exportColInfoList, OutputStream outputStream) {
 		super(exportColInfoList, outputStream);
@@ -57,19 +46,11 @@ public class ExcelExportProcessor extends AbstractExportProcessor implements IEx
 
 	/**
 	 * 构造.带有worksheet信息
-	 * 
 	 */
 	public ExcelExportProcessor(List<ExportColInfoDTO> exportColInfoList, List<ExportWorksheetInfoDTO> exportWorksheetInfoList, OutputStream outputStream) {
 		super(exportColInfoList, exportWorksheetInfoList, outputStream);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.shine.eframe.webapp.base.pub.export.processor.AbstractExportProcessor
-	 * #exportColHeader()
-	 */
 	@Override
 	protected void exportColHeader() throws IOException {
 		StringBuffer data = new StringBuffer();
@@ -82,35 +63,16 @@ public class ExcelExportProcessor extends AbstractExportProcessor implements IEx
 		IOUtils.write(data.toString(), outputStream, defaultEncoding);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @seecom.shine.eframe.webapp.servlet.rpc.helper.RpcShineRowSetProcessor#
-	 * processBegin()
-	 */
 	@Override
 	public void processBegin() {
 		exclusionCol();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.shine.eframe.webapp.servlet.rpc.helper.RpcShineRowSetProcessor#processEnd
-	 * ()
-	 */
 	@Override
 	public void processEnd() {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @seecom.shine.eframe.webapp.servlet.rpc.helper.RpcShineRowSetProcessor#
-	 * processResult(com.shine.pub.query.ShineRowSet)
-	 */
 	@Override
 	public void processResult(List<Map<String, Object>>... dataLists) throws UnCaughtException {
 		try {
@@ -132,11 +94,6 @@ public class ExcelExportProcessor extends AbstractExportProcessor implements IEx
 	 * 
 	 * @throws IOException
 	 *             IOException
-	 * 
-	 *             <pre>
-	 * 修改日期     修改人 修改原因
-	 * 2013-04-12   zhufu   新建
-	 * </pre>
 	 */
 	private void exportData() throws IOException {
 		// 导出数据
@@ -194,11 +151,6 @@ public class ExcelExportProcessor extends AbstractExportProcessor implements IEx
 	 * 
 	 * @throws IOException
 	 *             IOException
-	 * 
-	 *             <pre>
-	 * 修改日期     修改人 修改原因
-	 * 2013-04-12   zhufu   新建
-	 * </pre>
 	 */
 	private void exportHeader() throws IOException {
 		StringBuffer data = new StringBuffer();
@@ -238,8 +190,6 @@ public class ExcelExportProcessor extends AbstractExportProcessor implements IEx
 	 * @param worksheetName
 	 *            worksheet名称
 	 * @throws IOException
-	 * @author zhufu
-	 * @version 2013-9-26 下午11:42:16
 	 */
 	private void exportWorksheetBegin(String worksheetName) throws IOException {
 		StringBuilder data = new StringBuilder();
@@ -259,8 +209,6 @@ public class ExcelExportProcessor extends AbstractExportProcessor implements IEx
 	 * 
 	 * @throws IOException
 	 *             IOException
-	 * @author zhufu
-	 * @version 2013-9-26 下午5:10:32
 	 */
 	private void exportWorksheetEnd() throws IOException {
 		IOUtils.write("</Table>\r\n</Worksheet>\r\n", outputStream, defaultEncoding);
@@ -271,14 +219,8 @@ public class ExcelExportProcessor extends AbstractExportProcessor implements IEx
 	 * 
 	 * @throws IOException
 	 *             IOException
-	 * 
-	 *             <pre>
-	 * 修改日期     修改人 修改原因
-	 * 2013-04-12   zhufu   新建
-	 * </pre>
 	 */
 	private void exportLaster() throws IOException {
 		IOUtils.write("</Workbook>", outputStream, defaultEncoding);
 	}
-
 }

@@ -12,11 +12,9 @@ import com.greenleaf.common.utils.Jackson2Util;
 import com.greenleaf.common.utils.WebUtil;
 
 /**
- * 全局异常处理
+ * 全局异常处理.
  * 
- * @Company : cyou
- * @author yangz
- * @date 2012-10-10 上午09:11:47
+ * @author QiSF 2015-03-11
  */
 public class GlobalExceptionHandler implements HandlerExceptionResolver {
 	public final static String ERROR_PAGE = "exception/error";
@@ -30,8 +28,6 @@ public class GlobalExceptionHandler implements HandlerExceptionResolver {
 	 * @param handler
 	 * @param ex
 	 * @return
-	 * @author yangz
-	 * @date 2012-10-10 上午09:40:02
 	 */
 	public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
 		try {

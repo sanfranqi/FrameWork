@@ -5,28 +5,18 @@ import java.io.Serializable;
 /**
  * excel worksheet信息.
  * 
- * @author zhufu
- * @version 2013-9-26 下午11:24:48
+ * @author QiSF 2015-03-11
  */
 public class ExportWorksheetInfoDTO implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	/** worksheet名称. */
 	private String name;
 
-	/**
-	 * @param name
-	 */
 	public ExportWorksheetInfoDTO(String name) {
 		this.name = name;
 	}
 
-	/**
-	 * 
-	 */
 	public ExportWorksheetInfoDTO() {
 		super();
 	}
@@ -50,11 +40,6 @@ public class ExportWorksheetInfoDTO implements Serializable {
 		this.name = name;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -63,5 +48,4 @@ public class ExportWorksheetInfoDTO implements Serializable {
 		builder.append("]");
 		return builder.toString();
 	}
-
 }
