@@ -1,20 +1,15 @@
 package com.greenleaf.common.response;
 
-
 /**
  * 常用Response工厂.
  * 
- * @Company : cyou
- * @author yangz
- * @date 2012-9-29 下午02:29:23
+ * @author QiSF 2015-03-11
  */
 public class ResponseFactory {
 	/**
 	 * 获取默认操作成功Response.
 	 * 
 	 * @return
-	 * @author yangz
-	 * @date 2012-9-29 下午02:30:07
 	 */
 	public static <T> Response<T> getDefaultSuccessResponse() {
 		Response<T> response = new Response<T>();
@@ -32,8 +27,6 @@ public class ResponseFactory {
 	 * 获取默认操作失败Response.
 	 * 
 	 * @return
-	 * @author yangz
-	 * @date 2012-11-14 下午04:37:39
 	 */
 	public static <T> Response<T> getDefaultFailureResponse() {
 		Response<T> response = new Response<T>();

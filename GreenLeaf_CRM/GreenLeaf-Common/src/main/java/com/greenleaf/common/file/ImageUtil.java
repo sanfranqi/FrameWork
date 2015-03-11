@@ -10,18 +10,17 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.greenleaf.common.encrypt.EncryptUtil;
 import com.greenleaf.common.utils.PropertiesUtil;
+import com.greenleaf.common.utils.RandomUtil;
 
 /**
- * ImageUtil
- *
- * @author longlin(longlin@cyou-inc.com)
- * @date 2013-11-11
- * @since V1.0
+ * ImageUtil.
+ * 
+ * @author QiSF 2015-03-11
  */
 public class ImageUtil {
 	private static final Logger LOG = LoggerFactory.getLogger(ImageUtil.class);
 	/**
-	 * 图片限制100K
+	 * 图片限制100KB
 	 */
 	public static final int IMAGE_CAPACITY_LIMIT = 100;
 
@@ -67,8 +66,14 @@ public class ImageUtil {
 				// bmp格式的图片是以424d开头
 				return FileType.IMAGE_TYPE_BMP;
 			}
+			// else if (start.equals("d0cf")) {
+			// // els格式的图片是以424d开头
+			// return FileType.OFFICE_TYPE_XLS;
+			// } else if (start.equals("504b")) {
+			// // elsx格式的图片是以424d开头
+			// return FileType.OFFICE_TYPE_XLSX;
+			// }
 		} catch (Exception e) {
-			// do nothing
 		}
 		return null;
 	}
@@ -81,9 +86,14 @@ public class ImageUtil {
 	 * @return 返回图片的fid
 	 */
 	public static String generateImageFid(long time) {
-		return RandomUtil.randomLetter(6) + EncryptUtil.encodeTimestamp(time);
+		return RandomUtil.getRandomNumber(6) + EncryptUtil.encodeTimestamp(time);
 	}
 
+	/**
+	 * 上传图片.
+	 * 
+	 * @author QiSF 2015-03-11
+	 */
 	public static String uploadImage(MultipartFile imageFile) {
 		String savePath = new PropertiesUtil().getProperties("file.imagePath");
 		new File(savePath).mkdir();

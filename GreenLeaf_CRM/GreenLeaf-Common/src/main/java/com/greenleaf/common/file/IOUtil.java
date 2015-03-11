@@ -20,11 +20,9 @@ import org.slf4j.LoggerFactory;
 import com.greenleaf.common.exception.UnCaughtException;
 
 /**
- * IOUtil
- *
- * @author longlin(longlin@cyou-inc.com)
- * @date 2013-11-11
- * @since V1.0
+ * IOUtil.
+ * 
+ * @author QiSF 2015-03-11
  */
 public class IOUtil extends FileUtils {
 	private static final Logger LOG = LoggerFactory.getLogger(IOUtil.class);
@@ -93,13 +91,13 @@ public class IOUtil extends FileUtils {
 	 *
 	 * @param bytes
 	 *            文件流
-	 * @param pathname
+	 * @param filePath
 	 *            文件路径
 	 * @return
 	 * @throws java.io.IOException
 	 */
-	public static File byte2File(byte[] bytes, String pathname) throws IOException {
-		return in2File(bytes2In(bytes), pathname);
+	public static File byte2File(byte[] bytes, String filePath) throws IOException {
+		return in2File(bytes2In(bytes), filePath);
 	}
 
 	/**
@@ -107,17 +105,17 @@ public class IOUtil extends FileUtils {
 	 *
 	 * @param in
 	 *            文件流
-	 * @param pathname
+	 * @param filePath
 	 *            文件路径
 	 * @return
 	 * @throws java.io.IOException
 	 */
-	public static File in2File(InputStream in, String pathname) throws IOException {
-		mkParentDir(pathname);
+	public static File in2File(InputStream in, String filePath) throws IOException {
+		mkParentDir(filePath);
 		File file = null;
 		OutputStream os = null;
 		try {
-			file = new File(pathname);
+			file = new File(filePath);
 			os = new FileOutputStream(file);
 
 			int bytesRead;
@@ -238,9 +236,6 @@ public class IOUtil extends FileUtils {
 	 * 
 	 * @param path
 	 *            相对于classPath
-	 * @return
-	 * @author yangz
-	 * @date 2012-7-28 下午04:50:52
 	 */
 	public static InputStream getClassPathInputStream(String path) {
 		return Thread.currentThread().getContextClassLoader().getResourceAsStream(path);
@@ -251,8 +246,6 @@ public class IOUtil extends FileUtils {
 	 * 
 	 * @param input
 	 * @param output
-	 * @author yangz
-	 * @date 2013-2-19 下午6:53:27
 	 */
 	public static void copy(InputStream input, OutputStream output) {
 		try {
@@ -266,8 +259,6 @@ public class IOUtil extends FileUtils {
 	 * 关闭输入输出流.
 	 * 
 	 * @param stream
-	 * @author yangz
-	 * @date 2013-2-19 下午6:51:18
 	 */
 	public static void close(Object stream) {
 		try {
@@ -295,8 +286,6 @@ public class IOUtil extends FileUtils {
 	 * 
 	 * @param file
 	 * @return
-	 * @author yangz
-	 * @date 2013-5-7 上午12:34:26
 	 */
 	public static byte[] getBytes(File file) {
 		BufferedInputStream bufferedInputStream = null;
@@ -319,8 +308,6 @@ public class IOUtil extends FileUtils {
 	 * 
 	 * @param url
 	 * @return
-	 * @author yangz
-	 * @date 2013-6-12 下午4:32:45
 	 */
 	public static boolean urlExists(String url) {
 		try {

@@ -21,30 +21,23 @@ public class RandomUtil {
 	/**
 	 * 小写英文字母数组
 	 */
-	private static final String[] RANDOM_LOWER_ALPHABET = { "a", "b", "c", "d",
-			"e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q",
-			"r", "s", "t", "u", "v", "w", "x", "y", "z" };
+	private static final String[] RANDOM_LOWER_ALPHABET = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
 	/**
 	 * 大写英文字母数组
 	 */
-	private static final String[] RANDOM_UPPER_ALPHABET = { "A", "B", "C", "D",
-			"E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q",
-			"R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
+	private static final String[] RANDOM_UPPER_ALPHABET = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
 	/**
 	 * 数字数组
 	 */
-	private static final String[] RANDOM_NUMBER = { "0", "1", "2", "3", "4",
-			"5", "6", "7", "8", "9" };
+	private static final String[] RANDOM_NUMBER = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 	/**
 	 * 大小写英文字母数组
 	 */
-	private static final String[] RANDOM_ALPHABET = (String[]) ArrayUtils
-			.addAll(RANDOM_LOWER_ALPHABET, RANDOM_UPPER_ALPHABET);
+	private static final String[] RANDOM_ALPHABET = (String[]) ArrayUtils.addAll(RANDOM_LOWER_ALPHABET, RANDOM_UPPER_ALPHABET);
 	/**
 	 * 大小写英文字母和数字数组
 	 */
-	private static final String[] RANDOM_ALPHABET_NUMBER = (String[]) ArrayUtils
-			.addAll(RANDOM_ALPHABET, RANDOM_NUMBER);
+	private static final String[] RANDOM_ALPHABET_NUMBER = (String[]) ArrayUtils.addAll(RANDOM_ALPHABET, RANDOM_NUMBER);
 
 	/**
 	 * 随机获英文字母字符串.

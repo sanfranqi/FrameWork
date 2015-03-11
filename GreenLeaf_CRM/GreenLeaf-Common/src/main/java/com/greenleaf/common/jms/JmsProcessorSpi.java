@@ -3,13 +3,9 @@ package com.greenleaf.common.jms;
 import javax.jms.Message;
 
 /**
+ * 应用信息消息处理器接口.
  * 
- * 接口说明:应用信息消息处理器接口.
- * 
- * <pre>
- * 修改日期      修改人    修改原因
- * 2013-03-24    崔诗杰    新建
- * </pre>
+ * @author QiSF 2015-03-11
  */
 public interface JmsProcessorSpi {
 
@@ -20,11 +16,6 @@ public interface JmsProcessorSpi {
 	 * @param message
 	 *            消息对象
 	 * @return
-	 * 
-	 *         <pre>
-	 * 修改日期      修改人    修改原因
-	 * 2013-03-24    崔诗杰    新建
-	 * </pre>
 	 */
 	void processMsg(Message message);
 }

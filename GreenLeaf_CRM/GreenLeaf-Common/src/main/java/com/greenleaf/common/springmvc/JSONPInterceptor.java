@@ -8,6 +8,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.greenleaf.common.utils.ObjectUtil;
 
+/**
+ * JSONP.
+ * 
+ * @author QiSF 2015-03-11
+ */
 public class JSONPInterceptor implements HandlerInterceptor {
 
 	public static final String DEFAULT_CALLBACK = "callback";

@@ -303,49 +303,4 @@ public class HttpClientReq {
 		return JsonUtil.toObject(response, type);
 	}
 
-	public static void main(String[] args) {
-		List<BasicNameValuePair> params = new ArrayList<BasicNameValuePair>();
-		params.add(new BasicNameValuePair("id", "12545"));
-		params.add(new BasicNameValuePair("channelId", "4521"));
-		params.add(new BasicNameValuePair("name", "/nizhege 你这个碧池"));
-		params.add(new BasicNameValuePair("path", "/nizhege 路径"));
-		params.add(new BasicNameValuePair("open", "true"));
-		params.add(new BasicNameValuePair("isTrue", "true"));
-		File file1 = new File("e:/cd.txt");
-		File file2 = new File("e:/我去呀.txt");
-		Map fileMap = new HashMap();
-		fileMap.put("file1", file1);
-		fileMap.put("file2", file2);
-		String content = null;
-		try {
-			HttpClientReq util = HttpClientReq.build("http://127.0.0.1:8080/hello/postData.do?h=1");
-			util.addParam("id", "123");
-			content = util.get();
-			System.out.println(content);
-
-			// get请求方式一 参数列表
-			// content =
-			// HttpClientUtil.instance.get("http://127.0.0.1:8080/hello/postData.do",params);
-			// //gen请求方式二
-			// content =
-			// HttpClientUtil.get("http://127.0.0.1:8080/hello/postData.do?name=你好");
-			//
-			// //post请求一 参数列表
-			// content =
-			// HttpClientUtil.post("http://127.0.0.1:8080/hello/postData.do",
-			// params);
-			// //post请求二 文件名 文件
-			// content =
-			// HttpClientUtil.post("http://127.0.0.1:8080/hello/file2.do","file2",file2);
-			// //post请求三 文件名 文件 参数列表
-			// content =
-			// HttpClientUtil.post("http://127.0.0.1:8080/hello/file2.do","file2",file2,params);
-			// //post请求四 文件map 参数列表
-			// content =
-			// HttpClientUtil.post("http://127.0.0.1:8080/hello/file2.do",fileMap,params);
-		} catch (HttpRuntimeException e) {
-			e.printStackTrace();
-		}
-		System.out.println(content);
-	}
 }

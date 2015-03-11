@@ -23,9 +23,7 @@ import com.greenleaf.common.utils.WebUtil;
 /**
  * security认证入口点,如果认证失败将执行commence, MultiRequestAuthenticationEntryPoint支持ajax.
  * 
- * @Company : cyou
- * @author yangz
- * @date 2012-11-1 上午01:41:09
+ * @author QiSF 2015-03-11
  */
 @SuppressWarnings("deprecation")
 public class MultiRequestAuthenticationEntryPoint extends LoginUrlAuthenticationEntryPoint {

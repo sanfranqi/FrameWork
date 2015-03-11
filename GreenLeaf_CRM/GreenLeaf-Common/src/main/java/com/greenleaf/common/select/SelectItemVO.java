@@ -5,8 +5,7 @@ import java.io.Serializable;
 /**
  * 下拉框VO.
  * 
- * @author qingwu
- * @date 2014-2-19 上午11:35:20
+ * @author QiSF 2015-03-11
  */
 public class SelectItemVO implements Serializable {
 

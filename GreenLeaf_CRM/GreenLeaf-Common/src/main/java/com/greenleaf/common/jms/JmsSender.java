@@ -16,10 +16,7 @@ import com.greenleaf.common.context.ApplicationContextUtil;
 /**
  * 消息发送类.
  * 
- * <pre>
- * 修改日期         修改人     修改原因
- * 2013-03-24 崔诗杰    新建
- * </pre>
+ * @author QiSF 2015-03-11
  */
 public class JmsSender {
 
@@ -50,11 +47,6 @@ public class JmsSender {
 
 	/**
 	 * 构造函数。
-	 * 
-	 * <pre>
-	 * 修改日期         修改人     修改原因
-	 * 2011-11-29       崔诗杰         新建
-	 * </pre>
 	 */
 	public JmsSender() {
 		queueTemplate = ApplicationContextUtil.getBean(QUEUETEMPLATE);
@@ -66,11 +58,6 @@ public class JmsSender {
 	 * 
 	 * @param topic
 	 *            是否发布订阅模式
-	 * 
-	 *            <pre>
-	 * 修改日期         修改人     修改原因
-	 * 2011-11-29       崔诗杰         新建
-	 * </pre>
 	 */
 	public JmsSender(boolean topic) {
 		this.topic = topic;
@@ -89,11 +76,6 @@ public class JmsSender {
 	 *            是否发布订阅模式
 	 * @param deliveryMode
 	 *            持久化模式
-	 * 
-	 *            <pre>
-	 * 修改日期         修改人     修改原因
-	 * 2011-11-29       崔诗杰         新建
-	 * </pre>
 	 */
 	public JmsSender(boolean topic, boolean deliveryMode) {
 		this(topic);
@@ -110,11 +92,6 @@ public class JmsSender {
 	 *            消息类型
 	 * @param message
 	 *            消息体对象
-	 * 
-	 *            <pre>
-	 * 修改日期         修改人     修改原因
-	 * 2011-11-29       崔诗杰         新建
-	 * </pre>
 	 */
 	public void sendObjectMsg(final String destinationName, final String messageType, final Serializable message) {
 		MessageCreator messageCreator = new MessageCreator() {
@@ -138,11 +115,6 @@ public class JmsSender {
 	 *            消息类型
 	 * @param message
 	 *            消息体对象
-	 * 
-	 *            <pre>
-	 * 修改日期         修改人     修改原因
-	 * 2011-11-29       崔诗杰         新建
-	 * </pre>
 	 */
 	public void sendTextMsg(final String destinationName, final String messageType, final String message) {
 
@@ -167,11 +139,6 @@ public class JmsSender {
 	 *            消息类型
 	 * @param messageCreator
 	 *            消息体创建对象
-	 * 
-	 *            <pre>
-	 * 修改日期         修改人     修改原因
-	 * 2011-11-29       崔诗杰         新建
-	 * </pre>
 	 */
 	public void sendMsg(String destinationName, String messageType, MessageCreator messageCreator) {
 

@@ -29,8 +29,7 @@ import com.greenleaf.common.exception.UnCaughtException;
 /**
  * XmlDom工具包.
  * 
- * @author qingwu
- * @date 2013-6-26 上午10:00:00
+ * @author QiSF 2015-03-11
  */
 public class XmlUtil {
 
@@ -46,8 +45,6 @@ public class XmlUtil {
 	 * @param xml
 	 *            xml字符串
 	 * @return org.dom4j.Document文档对象
-	 * @author qingwu
-	 * @date 2013-6-26 上午10:00:00
 	 */
 	public static org.dom4j.Document strToDom4jDoc(String xml) {
 		try {
@@ -63,8 +60,6 @@ public class XmlUtil {
 	 * @param is
 	 *            输入流
 	 * @return org.dom4j.Document文档对象
-	 * @author qingwu
-	 * @date 2013-6-26 上午10:00:00
 	 */
 	public static org.dom4j.Document inputStreamToDom4jDoc(InputStream is) {
 		try {
@@ -81,8 +76,6 @@ public class XmlUtil {
 	 * @param document
 	 *            org.dom4j.Document文档对象
 	 * @return xml字符串
-	 * @author qingwu
-	 * @date 2013-6-26 上午10:00:00
 	 */
 	public static String docToStr(org.dom4j.Document document) {
 		return document.asXML();
@@ -94,8 +87,6 @@ public class XmlUtil {
 	 * @param fileName
 	 *            文件路径
 	 * @return
-	 * @author qingwu
-	 * @date 2014-2-25 下午5:20:35
 	 */
 	public static org.dom4j.Document filePathToDom4jDoc(String fileName) {
 		InputStream is = XmlUtil.class.getResourceAsStream(fileName);
@@ -112,8 +103,6 @@ public class XmlUtil {
 	 * @param xml
 	 *            xml字符串
 	 * @return org.dom4j.Document文档对象
-	 * @author qingwu
-	 * @date 2013-6-26 上午10:00:00
 	 */
 	public static org.w3c.dom.Document strToW3cDoc(String xml) {
 		DocumentBuilder builder;
@@ -135,8 +124,6 @@ public class XmlUtil {
 	 * @param is
 	 *            输入流
 	 * @return org.dom4j.Document文档对象
-	 * @author qingwu
-	 * @date 2013-6-26 上午10:00:00
 	 */
 	public static org.w3c.dom.Document inputStreamToW3cDoc(InputStream is) {
 		DocumentBuilder builder;
@@ -158,8 +145,6 @@ public class XmlUtil {
 	 * @param document
 	 *            org.dom4j.Document文档对象
 	 * @return xml字符串
-	 * @author qingwu
-	 * @date 2013-6-26 上午10:00:00
 	 */
 	public static String docToStr(org.w3c.dom.Document document) {
 		String result = null;
@@ -198,8 +183,6 @@ public class XmlUtil {
 	 * @param nodeName
 	 *            节点名称
 	 * @return
-	 * @author qingwu
-	 * @date 2013-6-26 上午10:00:00
 	 */
 	public static org.w3c.dom.Node getChildNode(org.w3c.dom.Node node, String nodeName) {
 		NodeList list = node.getChildNodes();
@@ -218,8 +201,6 @@ public class XmlUtil {
 	 * 
 	 * @param xmlMsg
 	 * @return
-	 * @author qingwu
-	 * @date 2013-6-26 上午10:00:00
 	 */
 	public static String formatXml(String xmlMsg) {
 		return formatXml(xmlMsg, null);
@@ -231,8 +212,6 @@ public class XmlUtil {
 	 * @param xmlMsg
 	 * @param encoding
 	 * @return
-	 * @author qingwu
-	 * @date 2013-6-26 上午10:00:00
 	 */
 	public static String formatXml(String xmlMsg, String encoding) {
 		org.dom4j.Document _document = strToDom4jDoc(xmlMsg);

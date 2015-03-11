@@ -1,7 +1,10 @@
 package com.greenleaf.common.file;
 
+import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Enumeration;
@@ -13,6 +16,8 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
 import org.apache.commons.compress.archivers.zip.ZipFile;
@@ -28,11 +33,9 @@ import com.greenleaf.common.exception.UnCaughtException;
 import com.greenleaf.common.utils.PropertiesUtil;
 
 /**
- * 压缩工具类
- *
- * @author longlin(longlin@cyou-inc.com)
- * @date 2013-11-11
- * @since V1.0
+ * 压缩工具类.
+ * 
+ * @author QiSF 2015-03-11
  */
 public class CompressUtil {
 
@@ -45,6 +48,12 @@ public class CompressUtil {
 	 * 压缩包处理线程数
 	 */
 	public static final int COMPRESSED_THREAD_LIMIT = 3;
+
+	/**
+	 * zip扩展名.
+	 */
+	private final static String ZIP_EXT = ".zip";
+
 	private static ExecutorService compressedExecutorService = Executors.newFixedThreadPool(COMPRESSED_THREAD_LIMIT);
 
 	/**
@@ -263,6 +272,92 @@ public class CompressUtil {
 		return IOUtil.getFileCapacity(bytes) <= COMPRESS_CAPACITY_LIMIT * 1024.0;
 	}
 
+	/**
+	 * 压缩成zip文件, 隐藏文件不可见.
+	 * 
+	 * @param zipFilePath
+	 *            压缩文件存放的路径.
+	 * @param filePath
+	 *            文件路径或者文件夹路径.
+	 */
+	public static void zip(String zipFilePath, String filePath) {
+		zip(zipFilePath, filePath, false);
+	}
+
+	/**
+	 * 压缩成zip文件.
+	 * 
+	 * @param zipFilePath
+	 *            压缩文件存放的路径.
+	 * @param filePath
+	 *            文件路径或者文件夹路径.
+	 * @param hiddenVisible
+	 *            隐藏文件是否可见.
+	 */
+	public static void zip(String zipFilePath, String filePath, boolean hiddenVisible) {
+		ZipOutputStream out = null;
+		String zipPath = zipFilePath;
+		try {
+			FileUtil.mkdirs(zipPath);
+			if (FileUtil.isDirectory(zipPath)) {
+				zipPath = FileUtil.appendFileName(zipPath, new File(zipPath).getName() + ZIP_EXT);
+			}
+			zipPath = FileUtil.toStandardPath(zipPath);
+			out = new ZipOutputStream(new FileOutputStream(zipPath));
+			File file = new File(FileUtil.toStandardPath(filePath));
+			zip(out, file, "/", zipPath, hiddenVisible);
+		} catch (Exception e) {
+			throw new UnCaughtException(e);
+		} finally {
+			IOUtil.close(out);
+		}
+	}
+
+	/**
+	 * 循环压缩文件.
+	 * 
+	 * @param out
+	 * @param file
+	 * @param base
+	 */
+	private static void zip(ZipOutputStream out, File file, String base, String zipPath, boolean hiddenVisible) {
+		BufferedInputStream in = null;
+		try {
+			if (!file.isHidden() || hiddenVisible) {
+				if (file.isDirectory()) {
+					File[] fl = file.listFiles();
+					for (File file2 : fl) {
+						if (!FileUtil.toStandardPath(file2.getPath()).equals(zipPath)) {
+							String path = "/";
+							if (file2.isDirectory()) {
+								path = FileUtil.appendPath(base, file2.getName());
+							} else {
+								path = FileUtil.appendFileName(base, file2.getName());
+							}
+							zip(out, file2, path, zipPath, hiddenVisible);
+						}
+					}
+				} else {
+					out.putNextEntry(new ZipEntry(base));
+					in = new BufferedInputStream(new FileInputStream(file));
+					byte[] buffer = new byte[1024];
+					while (in.read(buffer) != -1) {
+						out.write(buffer);
+					}
+				}
+			}
+		} catch (Exception e) {
+			throw new UnCaughtException(e);
+		} finally {
+			IOUtil.close(in);
+		}
+	}
+
+	/**
+	 * 上传压缩包.
+	 * 
+	 * @author QiSF 2015-03-11
+	 */
 	public static String uploadZipFile(MultipartFile zipFile) {
 		String savePath = new PropertiesUtil().getProperties("file.imagePath");
 		new File(savePath).mkdir();
@@ -270,7 +365,7 @@ public class CompressUtil {
 		String originalFilename = zipFile.getOriginalFilename();
 		if (StringUtils.isBlank(originalFilename))
 			throw new UnCaughtException("上传失败，请重试");
-		String fileName = FileUtil.generateImageFid(System.currentTimeMillis()) + "." + IOUtil.getFileSuffix(originalFilename);
+		String fileName = ImageUtil.generateImageFid(System.currentTimeMillis()) + "." + IOUtil.getFileSuffix(originalFilename);
 		try {
 			if (!validCompressCapacity(zipFile.getBytes()))
 				throw new RuntimeException("压缩包大小不能超过" + COMPRESS_CAPACITY_LIMIT + "M！");

@@ -15,11 +15,7 @@ import com.greenleaf.common.exception.UnCaughtException;
 /**
  * 消息处理类.
  * 
- * <pre>
- * 修改日期			修改人		修改原因
- * 2013-03-24       崔诗杰                        新建
- * 
- * </pre>
+ * @author QiSF 2015-03-11
  */
 public class JmsSpringReceiverListener implements MessageListener {
 	/** 日志处理器 . */
@@ -33,11 +29,6 @@ public class JmsSpringReceiverListener implements MessageListener {
 	 * 
 	 * @param message
 	 *            消息对象
-	 * 
-	 *            <pre>
-	 * 修改日期        修改人    修改原因
-	 * 2011-11-29       崔诗杰         新建
-	 * </pre>
 	 */
 	@Override
 	public void onMessage(Message message) {

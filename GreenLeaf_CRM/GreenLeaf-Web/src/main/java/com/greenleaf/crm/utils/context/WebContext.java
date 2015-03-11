@@ -1,6 +1,6 @@
 package com.greenleaf.crm.utils.context;
 
-
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,12 +22,12 @@ public class WebContext {
 	/**
 	 * 注入使用的容器
 	 */
-//	private static MatrixUserService matrixUserService = ApplicationContextUtil.getBean(MatrixUserService.class);
+	// private static MatrixUserService matrixUserService =
+	// ApplicationContextUtil.getBean(MatrixUserService.class);
 
-    private static Map<String, Object> cacheKey = new HashMap<String, Object>();
+	private static Map<String, Object> cacheKey = new HashMap<String, Object>();
 
-
-    /**
+	/**
 	 * 放入web请求
 	 *
 	 * @param r
@@ -85,28 +85,28 @@ public class WebContext {
 		response.remove();
 	}
 
-//	public static Token getLoginToken() {
-//		if (WebContext.getRequest() == null) {
-//            return null;
-//        }
-//		//HttpSession session = (HttpSession) cacheKey.get(WebContext.getRequest().getSession().getId());
-//        HttpSession session = WebContext.getRequest().getSession(true);
-//		if (session == null)
-//			return null;
-//		Token token = (Token) session.getAttribute("token");
-//		return token;
-//	}
+	// public static Token getLoginToken() {
+	// if (WebContext.getRequest() == null) {
+	// return null;
+	// }
+	// //HttpSession session = (HttpSession)
+	// cacheKey.get(WebContext.getRequest().getSession().getId());
+	// HttpSession session = WebContext.getRequest().getSession(true);
+	// if (session == null)
+	// return null;
+	// Token token = (Token) session.getAttribute("token");
+	// return token;
+	// }
 
-//	public static Long getLoginUserId() {
-//        if(getLoginToken()==null) return null;
-//		return getLoginToken().getUser().getUserId();
-//	}
-//
-//	public static String getLoginTokenString() {
-//        if(getLoginToken()==null) return null;
-//		return getLoginToken().getWebToken();
-//	}
-
+	// public static Long getLoginUserId() {
+	// if(getLoginToken()==null) return null;
+	// return getLoginToken().getUser().getUserId();
+	// }
+	//
+	// public static String getLoginTokenString() {
+	// if(getLoginToken()==null) return null;
+	// return getLoginToken().getWebToken();
+	// }
 
 	public static Boolean setLoginToken(Token token) {
 		if (WebContext.getRequest() == null) {
@@ -114,15 +114,30 @@ public class WebContext {
 		}
 		HttpSession session = WebContext.getRequest().getSession(true);
 		session.setAttribute("token", token);
-        //cacheKey.put(session.getId(), session);
+		// cacheKey.put(session.getId(), session);
 		return true;
 	}
 
-//    public static boolean isLoginUserAdmin() {
-//        String userId = getLoginUserId().toString();
-//        if (StringUtil.isEmpty(userId)) {
-//            return false;
-//        }
-//        return ServiceTagConstants.ADMINUSERIDS.contains(userId);
-//    }
+	// public static boolean isLoginUserAdmin() {
+	// String userId = getLoginUserId().toString();
+	// if (StringUtil.isEmpty(userId)) {
+	// return false;
+	// }
+	// return ServiceTagConstants.ADMINUSERIDS.contains(userId);
+	// }
+
+	/**
+	 * 传入文件名,获取导出excel的response.
+	 * 
+	 * @param filename
+	 *            文件名
+	 * @return response
+	 */
+	public static HttpServletResponse getExcelResponse(String filename) {
+		HttpServletResponse res = response.get();
+		res.setContentType("application/x-xls");
+		res.setCharacterEncoding("gbk");// excel必须是这样.
+		res.setHeader("Content-disposition", "attachment;filename=" + URLEncoder.encode(filename) + ".xls");
+		return res;
+	}
 }

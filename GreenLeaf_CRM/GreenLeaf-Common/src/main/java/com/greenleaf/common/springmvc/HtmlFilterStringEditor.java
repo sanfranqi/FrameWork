@@ -9,10 +9,8 @@ import com.greenleaf.common.utils.ObjectUtil;
 /**
  * html 字符过滤, 防止脚本注入.
  * 
- * @author yangz
- * @date 2013-3-30 下午3:14:08
+ * @author QiSF 2015-03-11
  */
-
 public class HtmlFilterStringEditor extends PropertyEditorSupport {
 	public void setAsText(String text) throws IllegalArgumentException {
 		if (!ObjectUtil.isEmpty(text)) {

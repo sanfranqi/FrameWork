@@ -9,8 +9,7 @@ import com.greenleaf.common.utils.ObjectUtil;
 /**
  * 下拉框转化工厂.
  * 
- * @author qingwu
- * @date 2014-2-19 下午1:17:47
+ * @author QiSF 2015-03-11
  */
 public class SelectFactory {
 
@@ -24,8 +23,6 @@ public class SelectFactory {
 	 * @param textFieldName
 	 *            text字段名称
 	 * @return
-	 * @author qingwu
-	 * @date 2014-2-19 下午1:34:56
 	 */
 	public static <T> List<SelectItemVO> getSelectList(List<T> sourceList, String valueFieldName, String textFieldName) {
 		List<SelectItemVO> list = new ArrayList<SelectItemVO>();

@@ -9,6 +9,9 @@ import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 
+/**
+ * @author QiSF 2015-03-11
+ */
 public class Query<T> {
 	public static Map<String, String> MYSQL_SPECIAL_STR = new HashMap<String, String>();
 
@@ -101,7 +104,6 @@ public class Query<T> {
 		if (begin == null || end == null) {
 			return this;
 		}
-
 		if (begin > end || begin == 0 || end == 0) {
 			return this;
 		}

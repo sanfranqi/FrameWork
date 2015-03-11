@@ -3,8 +3,7 @@ package com.greenleaf.common.springmvc;
 /**
  * springMVC时间类型的输出格式.
  * 
- * @author qingwu
- * @date 2014-2-25 上午10:48:05
+ * @author QiSF 2015-03-11
  */
 public class JsonDateFormat {
 

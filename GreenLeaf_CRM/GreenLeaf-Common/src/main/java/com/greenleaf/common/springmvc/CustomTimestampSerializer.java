@@ -12,17 +12,14 @@ import org.codehaus.jackson.map.SerializerProvider;
 /**
  * Timestamp类型参数JSON输出(通过注解方式).
  * 
- * @author qingwu
- * @date 2014-2-25 上午10:34:59
+ * @author QiSF 2015-03-11
  */
 public class CustomTimestampSerializer extends JsonSerializer<Timestamp> {
 
 	public static String FORMATTER = "yyyy-MM-dd HH:mm:ss";
 
 	@Override
-	public void serialize(Timestamp value, JsonGenerator jgen,
-			SerializerProvider provider) throws IOException,
-			JsonProcessingException {
+	public void serialize(Timestamp value, JsonGenerator jgen, SerializerProvider provider) throws IOException, JsonProcessingException {
 		SimpleDateFormat formatter = new SimpleDateFormat(FORMATTER);
 		String formattedDate = formatter.format(value);
 		jgen.writeString(formattedDate);

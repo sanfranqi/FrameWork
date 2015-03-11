@@ -1,17 +1,16 @@
-/**
- * 
- */
 package com.greenleaf.common.mybatis.bean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 分页对象.
+ * 
+ * @author QiSF 2015-03-11
+ */
 public class Paged<T> implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -3563058571948937207L;
 
 	/*
@@ -45,8 +44,7 @@ public class Paged<T> implements Serializable {
 		this.pageSize = pageSize;
 	}
 
-	public Paged(List<T> listData, int totalHit, int pageNo, int pageSize,
-			boolean needPaged) {
+	public Paged(List<T> listData, int totalHit, int pageNo, int pageSize, boolean needPaged) {
 		int start = (pageNo - 1) * pageSize;
 		if (start < 0)
 			start = 0;

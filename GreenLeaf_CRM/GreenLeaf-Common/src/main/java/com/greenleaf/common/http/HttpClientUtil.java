@@ -30,6 +30,11 @@ import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * HTTP工具.
+ * 
+ * @author QiSF 2015-03-11
+ */
 public class HttpClientUtil {
 
 	private static Logger logger = LoggerFactory.getLogger(HttpClientUtil.class);
@@ -333,46 +338,5 @@ public class HttpClientUtil {
 			}
 		}
 		return multipartEntityBuilder.build();
-	}
-
-	public static void main(String[] args) {
-		List<BasicNameValuePair> params = new ArrayList<BasicNameValuePair>();
-		params.add(new BasicNameValuePair("id", "12545"));
-		params.add(new BasicNameValuePair("channelId", "4521"));
-		params.add(new BasicNameValuePair("name", "/nizhege 你这个碧池"));
-		params.add(new BasicNameValuePair("path", "/nizhege 路径"));
-		params.add(new BasicNameValuePair("open", "true"));
-		params.add(new BasicNameValuePair("isTrue", "true"));
-		File file1 = new File("e:/cd.txt");
-		File file2 = new File("e:/我去呀.txt");
-		Map fileMap = new HashMap();
-		fileMap.put("file1", file1);
-		fileMap.put("file2", file2);
-		String content = null;
-		try {
-
-			// get请求方式一 参数列表
-			content = HttpClientUtil.get("http://127.0.0.1:8080/hello/postData.do", params);
-			// //gen请求方式二
-			// content =
-			// HttpClientUtil.get("http://127.0.0.1:8080/hello/postData.do?name=你好");
-			//
-			// //post请求一 参数列表
-			// content =
-			// HttpClientUtil.post("http://127.0.0.1:8080/hello/postData.do",
-			// params);
-			// //post请求二 文件名 文件
-			// content =
-			// HttpClientUtil.post("http://127.0.0.1:8080/hello/file2.do","file2",file2);
-			// //post请求三 文件名 文件 参数列表
-			// content =
-			// HttpClientUtil.post("http://127.0.0.1:8080/hello/file2.do","file2",file2,params);
-			// //post请求四 文件map 参数列表
-			// content =
-			// HttpClientUtil.post("http://127.0.0.1:8080/hello/file2.do",fileMap,params);
-		} catch (HttpRuntimeException e) {
-			e.printStackTrace();
-		}
-		System.out.println(content);
 	}
 }

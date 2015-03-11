@@ -1,9 +1,9 @@
 package com.greenleaf.common.scheduler;
 
 /**
- * Created by Administrator on 14-3-7.
+ * @author QiSF 2015-03-11
  */
 public interface SchedulerCallable extends Runnable {
 
-    public abstract void close();
+	public abstract void close();
 }
