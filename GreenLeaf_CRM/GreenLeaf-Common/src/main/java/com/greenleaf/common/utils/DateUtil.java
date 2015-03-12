@@ -15,15 +15,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * 日期工具类.
  * 
- * 类说明: 日期工具类.
- * 
- * 类用途：提供日期操作的各种方法
- * 
- * <pre>
- * 修改日期      修改人    修改原因
- * 2013-04-13    qingwu   新建
- * </pre>
+ * @author QiSF 2015-03-12
  */
 public class DateUtil {
 
@@ -65,11 +59,6 @@ public class DateUtil {
 	 * @param newFormat
 	 *            新的日期格式
 	 * @return 新的日期字符串
-	 * 
-	 *         <pre>
-	 * 修改日期        修改人    修改原因
-	 * 2010-12-20        新建
-	 * </pre>
 	 */
 	public static String transformDateFormat(String date, String oldFormat, String newFormat) {
 		if (date == null) {
@@ -87,13 +76,6 @@ public class DateUtil {
 	 * @param stringDate
 	 *            日期字符串
 	 * @return 日期对象
-	 * 
-	 *         <pre>
-	 * 修改日期      修改人    修改原因
-	 * 2010-11-15        新建
-	 * 2010-12-07        修改注释和注释格式
-	 * </pre>
-	 * 
 	 */
 	public static Date parseDate(String stringDate) {
 		return parseDate(stringDate, ISO_DATE_FORMAT);
@@ -109,12 +91,6 @@ public class DateUtil {
 	 * @param format
 	 *            日期格式
 	 * @return 日期类型
-	 * 
-	 *         <pre>
-	 * 修改日期      修改人    修改原因
-	 * 2010-11-15        整理
-	 * 2010-12-07        修改注释和注释格式
-	 * </pre>
 	 * 
 	 */
 	public static Date parseDate(String stringDate, String format) {
@@ -144,12 +120,6 @@ public class DateUtil {
 	 * @param formates
 	 *            日期格式的集合
 	 * @return 日期类型
-	 * 
-	 *         <pre>
-	 * 修改日期      修改人    修改原因
-	 * 2010-11-15        整理
-	 * </pre>
-	 * 
 	 */
 	public static Date parseDate(String stringDate, Collection<String> formates) {
 		if (formates == null || formates.size() == 0) {
@@ -172,12 +142,6 @@ public class DateUtil {
 	 * @param srcDate
 	 *            源日期
 	 * @return 格式化后的日期字符串
-	 * 
-	 *         <pre>
-	 * 修改日期      修改人    修改原因
-	 * 2010-11-15        整理
-	 * </pre>
-	 * 
 	 */
 	public static String formatDate(Date srcDate) {
 		return formatDate(srcDate, ISO_DATE_FORMAT);
@@ -191,12 +155,6 @@ public class DateUtil {
 	 * @param pattern
 	 *            格式
 	 * @return 格式化的日期字符串
-	 * 
-	 *         <pre>
-	 * 修改日期      修改人    修改原因
-	 * 2010-11-15        新建
-	 * </pre>
-	 * 
 	 */
 	public static String formatDate(Date srcDate, String pattern) {
 		if (srcDate == null) {
@@ -213,8 +171,6 @@ public class DateUtil {
 	 * @param pattern
 	 *            格式
 	 * @return 格式化后的字符串
-	 * @author zhufu
-	 * @version 2013年10月18日 上午9:40:01
 	 */
 	private static String formatDate(long time, String pattern) {
 		return DateFormatUtils.format(time, pattern);
@@ -226,8 +182,6 @@ public class DateUtil {
 	 * @param date
 	 *            时间
 	 * @return 格式化后的字符串
-	 * @author zhufu
-	 * @version 2013年10月18日 上午9:41:42
 	 */
 	public static String formatDateyyyyMMddHHmmss(Date date) {
 		return formatDate(date, NUMBER_DATE_TIME_FORMAT);
@@ -239,8 +193,6 @@ public class DateUtil {
 	 * @param time
 	 *            时间
 	 * @return 格式化后的字符串
-	 * @author zhufu
-	 * @version 2013年10月18日 上午9:42:25
 	 */
 	public static String formatDateyyyyMMddHHmmss(long time) {
 		return formatDate(time, NUMBER_DATE_TIME_FORMAT);
@@ -254,11 +206,6 @@ public class DateUtil {
 	 * @param amount
 	 *            增加天数
 	 * @return 计算后的日期
-	 * 
-	 *         <pre>
-	 * 修改日期      修改人    修改原因
-	 * 2010-11-15        新建
-	 * </pre>
 	 */
 	public static Date addDays(Date date, int amount) {
 		return DateUtils.addDays(date, amount);
@@ -272,11 +219,6 @@ public class DateUtil {
 	 * @param amount
 	 *            增加月数
 	 * @return 计算后的日期
-	 * 
-	 *         <pre>
-	 * 修改日期      修改人    修改原因
-	 * 2010-11-15        新建
-	 * </pre>
 	 */
 	public static Date addMonths(Date date, int amount) {
 		return DateUtils.addMonths(date, amount);
@@ -290,11 +232,6 @@ public class DateUtil {
 	 * @param amount
 	 *            增加周数
 	 * @return 计算后的日期
-	 * 
-	 *         <pre>
-	 * 修改日期      修改人    修改原因
-	 * 2010-11-15        新建
-	 * </pre>
 	 */
 	public static Date addWeeks(Date date, int amount) {
 		return DateUtils.addWeeks(date, amount);
@@ -308,11 +245,6 @@ public class DateUtil {
 	 * @param amount
 	 *            增加年数
 	 * @return 计算后的日期
-	 * 
-	 *         <pre>
-	 * 修改日期      修改人    修改原因
-	 * 2010-11-15        新建
-	 * </pre>
 	 */
 	public static Date addYears(Date date, int amount) {
 		return DateUtils.addYears(date, amount);
@@ -326,11 +258,6 @@ public class DateUtil {
 	 * @param amount
 	 *            增加小时数
 	 * @return 计算后的日期
-	 * 
-	 *         <pre>
-	 * 修改日期      修改人    修改原因
-	 * 2010-11-15                  整理
-	 * </pre>
 	 */
 	public static Date addHours(Date date, int amount) {
 		return DateUtils.addHours(date, amount);
@@ -344,11 +271,6 @@ public class DateUtil {
 	 * @param amount
 	 *            增加分钟数
 	 * @return 计算后的日期
-	 * 
-	 *         <pre>
-	 * 修改日期      修改人    修改原因
-	 * 2010-11-15        整理
-	 * </pre>
 	 */
 	public static Date addMinutes(Date date, int amount) {
 		return DateUtils.addMinutes(date, amount);
@@ -362,11 +284,6 @@ public class DateUtil {
 	 * @param amount
 	 *            增加秒数
 	 * @return 计算后的日期
-	 * 
-	 *         <pre>
-	 * 修改日期      修改人    修改原因
-	 * 2010-11-15        新建
-	 * </pre>
 	 */
 	public static Date addSeconds(Date date, int amount) {
 		return DateUtils.addSeconds(date, amount);
@@ -380,11 +297,6 @@ public class DateUtil {
 	 * @param amount
 	 *            增加毫秒数
 	 * @return 计算后的日期
-	 * 
-	 *         <pre>
-	 * 修改日期      修改人    修改原因
-	 * 2010-11-15        新建
-	 * </pre>
 	 */
 	public static Date addMilliseconds(Date date, int amount) {
 		return DateUtils.addMilliseconds(date, amount);
@@ -394,11 +306,6 @@ public class DateUtil {
 	 * 获取格式为“yyyyMMdd”的日期.
 	 * 
 	 * @return 日期字符串
-	 * 
-	 *         <pre>
-	 * 修改日期      修改人    修改原因
-	 * 2010-04-13        整理
-	 * </pre>
 	 */
 	public static String getDate() {
 		return getDate(new Date());
@@ -409,11 +316,6 @@ public class DateUtil {
 	 * 
 	 * @param date
 	 * @return
-	 * 
-	 *         <pre>
-	 * 修改日期        修改人    修改原因
-	 * 2012-1-10    陈建榕    新建
-	 * </pre>
 	 */
 	public final static String getDate(Date date) {
 		return formatDate(date, NUMBER_DATE_FORMAT);
@@ -424,11 +326,6 @@ public class DateUtil {
 	 * 
 	 * @param date
 	 * @return 日期字符串
-	 * 
-	 *         <pre>
-	 * 修改日期        修改人    修改原因
-	 * 2011-12-14    陈建榕    新建
-	 * </pre>
 	 */
 	public static String getDateStr(Date date) {
 		return formatDate(date, NUMBER_DATE_FORMAT);
@@ -438,11 +335,6 @@ public class DateUtil {
 	 * 获取格式为"yyyyMMdd"的数值型日期.
 	 * 
 	 * @return
-	 * 
-	 *         <pre>
-	 * 修改日期        修改人    修改原因
-	 * 2011-12-14    陈建榕    新建
-	 * </pre>
 	 */
 	public static final Integer getNumDate() {
 		return Integer.valueOf(getDate());
@@ -453,11 +345,6 @@ public class DateUtil {
 	 * 
 	 * @param date
 	 * @return
-	 * 
-	 *         <pre>
-	 * 修改日期        修改人    修改原因
-	 * 2011-12-14    陈建榕    新建
-	 * </pre>
 	 */
 	public static final Integer getNumDate(Date date) {
 		return Integer.valueOf(getDate(date));
@@ -467,11 +354,6 @@ public class DateUtil {
 	 * 获取格式“HHmmss”的时间.
 	 * 
 	 * @return 时间字符串
-	 * 
-	 *         <pre>
-	 * 修改日期      修改人    修改原因
-	 * 2010-04-13        整理
-	 * </pre>
 	 */
 	public static String getTime() {
 		return formatDate(new Date(), NUMBER_TIME_FORMAT);
@@ -481,11 +363,6 @@ public class DateUtil {
 	 * 获取格式为“yyyy-MM-dd HH:mm:ss”的日期和时间.
 	 * 
 	 * @return 时间日期字符串
-	 * 
-	 *         <pre>
-	 * 修改日期      修改人    修改原因
-	 * 2010-04-13        整理
-	 * </pre>
 	 */
 	public static String getDateTime() {
 		return formatDate(new Date(), ISO_DATE_TIME_FORMAT);
@@ -495,11 +372,6 @@ public class DateUtil {
 	 * 获取格式为“yyyy-MM-dd HH:mm:ss”的日期和时间.
 	 * 
 	 * @return 时间日期字符串
-	 * 
-	 *         <pre>
-	 * 修改日期      修改人    修改原因
-	 * 2010-04-13        整理
-	 * </pre>
 	 */
 	public static String getDateTime(Date date) {
 		return formatDate(date, ISO_DATE_TIME_FORMAT);
@@ -509,11 +381,6 @@ public class DateUtil {
 	 * 获取格式为“yyyy-MM-dd HH:mm:ss”的日期和时间.
 	 * 
 	 * @return 时间日期字符串
-	 * 
-	 *         <pre>
-	 * 修改日期      修改人    修改原因
-	 * 2010-04-13        整理
-	 * </pre>
 	 */
 	public static String getDateTime(long time) {
 		return formatDate(new Date(time), ISO_DATE_TIME_FORMAT);
@@ -524,11 +391,6 @@ public class DateUtil {
 	 * 
 	 * @param date
 	 * @return
-	 * 
-	 *         <pre>
-	 * 修改日期        修改人    修改原因
-	 * 2011-12-13    陈建榕    新建
-	 * </pre>
 	 */
 	public final static Date getClearDate(Date date) {
 		Calendar calendar = Calendar.getInstance();
@@ -547,11 +409,6 @@ public class DateUtil {
 	 * 
 	 * @param date
 	 * @return
-	 * 
-	 *         <pre>
-	 * 修改日期        修改人    修改原因
-	 * 2011-12-13    陈建榕    新建
-	 * </pre>
 	 */
 	public final static Date getClearMonth(Date date) {
 		Calendar calendar = Calendar.getInstance();
@@ -574,11 +431,6 @@ public class DateUtil {
 	 * @param pattern
 	 *            格式
 	 * @return 格式化的日期字符串
-	 * 
-	 *         <pre>
-	 * 修改日期         修改人    修改原因
-	 * 2013-07-09  qingwu    新建
-	 * </pre>
 	 * 
 	 */
 	public static String formatDate(Timestamp srcDate, String pattern) {

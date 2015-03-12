@@ -31,10 +31,10 @@ public abstract class BaseCrudProvider<T> {
 	 * @throws Exception
 	 */
 	public String findByQuery(Query<T> query) throws Exception {
-		T obj = ObjectUtil.toBean(query.getType(), query.getParams());
-		ObjectUtil.addToBean(obj, query.getType(), query.getParamLikes());
-		ObjectUtil.addToBean(obj, query.getType(), query.getLtParams());
-		ObjectUtil.addToBean(obj, query.getType(), query.getGtParams());
+		T obj = ObjectUtil.mapToBean(query.getType(), query.getParams());
+		ObjectUtil.mapAddToBean(obj, query.getType(), query.getParamLikes());
+		ObjectUtil.mapAddToBean(obj, query.getType(), query.getLtParams());
+		ObjectUtil.mapAddToBean(obj, query.getType(), query.getGtParams());
 		return findPageByObject(obj, query);
 	}
 
@@ -42,10 +42,10 @@ public abstract class BaseCrudProvider<T> {
 	 * 执行删除操作
 	 */
 	public String deleteByQuery(Query<T> query) throws Exception {
-		T obj = ObjectUtil.toBean(query.getType(), query.getParams());
-		ObjectUtil.addToBean(obj, query.getType(), query.getParamLikes());
-		ObjectUtil.addToBean(obj, query.getType(), query.getLtParams());
-		ObjectUtil.addToBean(obj, query.getType(), query.getGtParams());
+		T obj = ObjectUtil.mapToBean(query.getType(), query.getParams());
+		ObjectUtil.mapAddToBean(obj, query.getType(), query.getParamLikes());
+		ObjectUtil.mapAddToBean(obj, query.getType(), query.getLtParams());
+		ObjectUtil.mapAddToBean(obj, query.getType(), query.getGtParams());
 
 		SQL sql = new SQL();
 		sql.DELETE_FROM(obtainTableName(obj.getClass()));
@@ -72,10 +72,10 @@ public abstract class BaseCrudProvider<T> {
 	 * @throws Exception
 	 */
 	public String count(Query<T> query) throws Exception {
-		T obj = ObjectUtil.toBean(query.getType(), query.getParams());
-		ObjectUtil.addToBean(obj, query.getType(), query.getParamLikes());
-		ObjectUtil.addToBean(obj, query.getType(), query.getLtParams());
-		ObjectUtil.addToBean(obj, query.getType(), query.getGtParams());
+		T obj = ObjectUtil.mapToBean(query.getType(), query.getParams());
+		ObjectUtil.mapAddToBean(obj, query.getType(), query.getParamLikes());
+		ObjectUtil.mapAddToBean(obj, query.getType(), query.getLtParams());
+		ObjectUtil.mapAddToBean(obj, query.getType(), query.getGtParams());
 
 		return count(obj, query);
 

@@ -2,7 +2,6 @@ package com.greenleaf.common.mybatis.service;
 
 import static java.util.Locale.ENGLISH;
 
-import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -70,7 +69,7 @@ public abstract class BaseService<T> implements ApplicationContextAware {
 
 		try {
 			Query query = Query.build(t);
-			query.addEq(ColumnUtils.getIdFieldName(t), new BigDecimal(id));
+			query.addEq(ColumnUtils.getIdFieldName(t), id);
 			List<T> objects = findByQuery(query);
 			if (objects.size() > 0) {
 				return objects.get(0);
@@ -92,10 +91,10 @@ public abstract class BaseService<T> implements ApplicationContextAware {
 		return null;
 	}
 
-	public void delete(int id) {
+	public void delete(Integer id) {
 		try {
 			Query query = Query.build(t);
-			query.addEq(ColumnUtils.getIdFieldName(t), new BigDecimal(id));
+			query.addEq(ColumnUtils.getIdFieldName(t), id);
 			getDAO().deleteByQuery(query);
 		} catch (Exception e) {
 			e.printStackTrace();

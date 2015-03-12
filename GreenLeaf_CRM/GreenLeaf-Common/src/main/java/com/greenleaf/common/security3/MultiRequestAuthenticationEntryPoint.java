@@ -17,7 +17,7 @@ import org.springframework.security.web.authentication.LoginUrlAuthenticationEnt
 
 import com.greenleaf.common.file.IOUtil;
 import com.greenleaf.common.response.Response;
-import com.greenleaf.common.utils.JsonUtil;
+import com.greenleaf.common.utils.Jackson2Util;
 import com.greenleaf.common.utils.WebUtil;
 
 /**
@@ -67,7 +67,7 @@ public class MultiRequestAuthenticationEntryPoint extends LoginUrlAuthentication
 			responseData.setMessage("request refused, no login.");
 			PrintWriter writer = response.getWriter();
 			try {
-				writer.write(JsonUtil.toJson(responseData));
+				writer.write(Jackson2Util.toJson(responseData));
 			} finally {
 				IOUtil.close(writer);
 			}

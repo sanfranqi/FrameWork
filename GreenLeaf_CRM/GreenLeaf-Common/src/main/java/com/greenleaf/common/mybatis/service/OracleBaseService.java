@@ -2,6 +2,7 @@ package com.greenleaf.common.mybatis.service;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -9,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContextAware;
 
 import com.greenleaf.common.mybatis.bean.Query;
+import com.greenleaf.common.utils.ColumnUtils;
 
 public class OracleBaseService<T> extends BaseService<T> implements ApplicationContextAware {
 
@@ -33,6 +35,41 @@ public class OracleBaseService<T> extends BaseService<T> implements ApplicationC
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	/**
+	 * 获取单个
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public T get(Integer id) {
+		if (id == null) {
+			return null;
+		}
+
+		try {
+			Query query = Query.build(t);
+			query.addEq(ColumnUtils.getIdFieldName(t), new BigDecimal(id));
+			List<T> objects = findByQuery(query);
+			if (objects.size() > 0) {
+				return objects.get(0);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
+	public void delete(Integer id) {
+		try {
+			Query query = Query.build(t);
+			query.addEq(ColumnUtils.getIdFieldName(t), new BigDecimal(id));
+			getDAO().deleteByQuery(query);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	private T attachIdForObject(T object) {

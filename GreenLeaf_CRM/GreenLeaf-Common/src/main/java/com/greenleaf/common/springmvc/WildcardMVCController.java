@@ -19,8 +19,6 @@ public class WildcardMVCController {
 	 * 默认匹配所有地址.
 	 *
 	 * @return
-	 * @author qingwu
-	 * @date 2013-4-15 下午2:16:00
 	 */
 	@RequestMapping("/**/*.htm")
 	public ModelAndView htmMapping(HttpServletRequest request, HttpServletResponse response) {
@@ -34,8 +32,6 @@ public class WildcardMVCController {
 	 * 默认匹配所有地址.
 	 *
 	 * @return
-	 * @author qingwu
-	 * @date 2013-4-15 下午2:16:00
 	 */
 	@RequestMapping("/**/*.html")
 	public ModelAndView htmlMapping(HttpServletRequest request, HttpServletResponse response) {
@@ -51,8 +47,6 @@ public class WildcardMVCController {
 	 * @param requestURI
 	 * @param suffix
 	 * @return
-	 * @author qingwu
-	 * @date 2014-2-10 下午3:36:55
 	 */
 	public String getViewName(String requestURI, String suffix) {
 		String viewName = requestURI;

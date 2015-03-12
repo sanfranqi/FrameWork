@@ -16,12 +16,9 @@ import org.apache.log4j.Logger;
 import com.greenleaf.common.exception.UnCaughtException;
 
 /**
+ * Class工具类.
  * 
- * @Description: Class工具类
- * @Company : cyou
- * @author yangz
- * @date 2012-9-26 下午02:55:57
- * @version V1.0
+ * @author QiSF 2015-03-12
  */
 public class ClassUtil {
 
@@ -32,8 +29,6 @@ public class ClassUtil {
 	 * 
 	 * @param clz
 	 * @return
-	 * @author yangz
-	 * @date 2012-9-26 下午03:17:09
 	 */
 	public static boolean isValueType(Class<?> clz) {
 		try {
@@ -58,8 +53,6 @@ public class ClassUtil {
 	 * 
 	 * @param className
 	 * @return
-	 * @author yangz
-	 * @date 2012-7-29 上午10:55:03
 	 */
 	public static Object newInstance(String className) {
 		Object result = null;
@@ -78,8 +71,6 @@ public class ClassUtil {
 	 * 
 	 * @param c
 	 * @return
-	 * @author yangz
-	 * @date 2012-7-29 上午10:57:08
 	 */
 	@SuppressWarnings("rawtypes")
 	public static Object newInstance(Class c) {
@@ -100,8 +91,6 @@ public class ClassUtil {
 	 * @param clz
 	 * @param fieldName
 	 * @return
-	 * @author yangz
-	 * @date 2012-9-27 下午04:08:47
 	 */
 	@SuppressWarnings("rawtypes")
 	public static Field getField(Class clz, String fieldName) {
@@ -119,8 +108,6 @@ public class ClassUtil {
 	 * @param clz
 	 * @param fieldName
 	 * @return
-	 * @author yangz
-	 * @date 2012-9-27 下午04:08:47
 	 */
 	@SuppressWarnings("rawtypes")
 	public static Field getField(Class clz, String fieldName, boolean exception) {
@@ -153,8 +140,6 @@ public class ClassUtil {
 	 * 
 	 * @param type
 	 * @return
-	 * @author yangz
-	 * @date 2012-9-27 下午04:28:40
 	 */
 	@SuppressWarnings("rawtypes")
 	public static Type[] getActualTypes(Type type) {
@@ -187,8 +172,6 @@ public class ClassUtil {
 	 * 
 	 * @param type
 	 * @return
-	 * @author yangz
-	 * @date 2013-1-5 下午02:10:31
 	 */
 	@SuppressWarnings("rawtypes")
 	public static boolean isCGLibProxy(Class type) {
@@ -201,8 +184,6 @@ public class ClassUtil {
 	 * 
 	 * @param type
 	 * @return
-	 * @author yangz
-	 * @date 2012-9-27 下午04:28:40
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T> Class<T> getActualType(Type type) {
@@ -215,8 +196,6 @@ public class ClassUtil {
 	 * @param clz
 	 * @param propertyName
 	 * @return
-	 * @author yangz
-	 * @date 2012-9-29 上午11:21:59
 	 */
 	@SuppressWarnings("rawtypes")
 	public static boolean actualTypeHasProperty(Class clz, String propertyName) {
@@ -237,8 +216,6 @@ public class ClassUtil {
 	 * @param clz
 	 * @param propertyName
 	 * @return
-	 * @author yangz
-	 * @date 2012-9-29 上午11:21:59
 	 */
 	@SuppressWarnings("rawtypes")
 	public static boolean hasProperty(Class clz, String propertyName) {
@@ -272,8 +249,6 @@ public class ClassUtil {
 	 * @param beanInfo
 	 * @param property
 	 * @return
-	 * @author yangz
-	 * @date 2012-10-11 下午06:32:14
 	 */
 	@SuppressWarnings("rawtypes")
 	public static Class getPropertyType(BeanInfo beanInfo, String property) {
@@ -286,8 +261,6 @@ public class ClassUtil {
 	 * @param beanInfo
 	 * @param property
 	 * @return
-	 * @author yangz
-	 * @date 2012-10-12 下午04:50:08
 	 */
 	public static PropertyDescriptor getProperty(BeanInfo beanInfo, String property) {
 		PropertyDescriptor[] propertys = beanInfo.getPropertyDescriptors();
@@ -305,8 +278,6 @@ public class ClassUtil {
 	 * @param beanClass
 	 * @param property
 	 * @return
-	 * @author yangz
-	 * @date 2012-10-12 下午04:52:20
 	 */
 	public static PropertyDescriptor getProperty(Class<?> beanClass, String property) {
 		try {
@@ -321,8 +292,6 @@ public class ClassUtil {
 	 * 
 	 * @param property
 	 * @return
-	 * @author yangz
-	 * @date 2012-10-12 下午04:55:14
 	 */
 	public static Object readProperty(Object obj, String property) {
 		try {
@@ -338,8 +307,6 @@ public class ClassUtil {
 	 * @param value
 	 * @param type
 	 * @return
-	 * @author yangz
-	 * @date 2013-2-8 下午5:26:26
 	 */
 	public static Object castValue(Object value, Class<?> type) {
 		if (int.class.isAssignableFrom(type) || Integer.class.isAssignableFrom(type)) {

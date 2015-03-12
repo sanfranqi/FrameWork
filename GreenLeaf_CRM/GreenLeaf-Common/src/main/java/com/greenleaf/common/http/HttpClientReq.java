@@ -29,12 +29,12 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
-import org.codehaus.jackson.type.TypeReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.greenleaf.common.utils.JsonUtil;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.greenleaf.common.utils.Jackson2Util;
 
 public class HttpClientReq {
 
@@ -300,7 +300,7 @@ public class HttpClientReq {
 			this.addParam(entry.getKey(), entry.getValue().toString());
 		}
 		String response = this.post();
-		return JsonUtil.toObject(response, type);
+		return Jackson2Util.toObject(response, type);
 	}
 
 }

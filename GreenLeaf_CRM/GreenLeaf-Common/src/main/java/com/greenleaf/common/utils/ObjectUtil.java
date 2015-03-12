@@ -22,8 +22,7 @@ import com.greenleaf.common.exception.UnCaughtException;
 /**
  * 对象工具类.
  * 
- * @author qingwu
- * @date 2014-1-16 下午6:41:57
+ * @author QiSF 2015-03-12
  */
 public class ObjectUtil {
 
@@ -33,8 +32,6 @@ public class ObjectUtil {
 	 * @param str
 	 * @param c
 	 * @return
-	 * @author qingwu
-	 * @date 2014-1-16 下午6:49:33
 	 */
 	public static Object strToObj(String str, Class<?> rClass) {
 		String rType = rClass.getName();
@@ -66,8 +63,6 @@ public class ObjectUtil {
 	 * 
 	 * @param value
 	 * @return
-	 * @author qingwu
-	 * @date 2014-1-16 下午6:49:33
 	 */
 	public static boolean isEmpty(Object value) {
 		if (value == null) {
@@ -110,7 +105,6 @@ public class ObjectUtil {
 	/**
 	 * list<String>判空
 	 * 
-	 * @author wangj
 	 * @param list
 	 * @return
 	 */
@@ -134,10 +128,7 @@ public class ObjectUtil {
 	}
 
 	/***
-	 * Bean的copy方法，使用Spring-BeanUtils.copyProperties方法
-	 * 若出现转换异常则抛出CommonRuntimeException
-	 * 
-	 * @author jianchen 2013-6-13
+	 * 拷贝对象.
 	 */
 	public static Object copyPorperties(Object source, Object target) {
 		try {
@@ -149,13 +140,13 @@ public class ObjectUtil {
 	}
 
 	/**
-	 * 对象那个转换啊 例如:Game -> simpleGame
+	 * 拷贝对象.
 	 * 
 	 * @param obj
 	 * @param clazz
 	 * @return
 	 */
-	public static <M, T> T convertObj(M obj, Class<T> clazz) {
+	public static <M, T> T copyPorperties(M obj, Class<T> clazz) {
 		try {
 			T instance = clazz.newInstance();
 			ObjectUtil.copyPorperties(obj, instance);
@@ -168,10 +159,19 @@ public class ObjectUtil {
 		throw new RuntimeException("convert obj error! source class :" + obj.getClass() + ",target :" + clazz);
 	}
 
+	/**
+	 * 拷贝List.
+	 * 
+	 * @param objList
+	 *            要拷贝的list
+	 * @param clazz
+	 *            目标list的对象类型
+	 * @author QiSF 2015-03-12
+	 */
 	public static <M, T> List<T> convertList(List<M> objList, Class<T> clazz) {
 		List<T> list = new ArrayList<T>();
 		for (M m : objList) {
-			list.add(convertObj(m, clazz));
+			list.add(copyPorperties(m, clazz));
 		}
 		return list;
 	}
@@ -189,17 +189,18 @@ public class ObjectUtil {
 	}
 
 	/**
-	 * 转换成实体
+	 * 将List<Map>转换成List<Object>
 	 * 
 	 * @param clazz
+	 *            Object的类型
 	 * @param mapList
-	 * @param <M>
+	 *            要转换的list
 	 * @return
 	 */
 	public static <M> List<M> toBeanList(Class<M> clazz, List<Map<String, Object>> mapList) {
 		List<M> objectList = new ArrayList<M>();
 		for (Map<String, Object> map : mapList) {
-			objectList.add(toBean(clazz, map));
+			objectList.add(mapToBean(clazz, map));
 		}
 		return objectList;
 	}
@@ -210,11 +211,9 @@ public class ObjectUtil {
 	 * @param type
 	 * @param map
 	 * @return
-	 * @author yangz
-	 * @date 2012-9-26 下午03:39:54
 	 */
-	public static <M> M toBean(Class<M> type, Map<String, Object> map) {
-		M obj = null;
+	public static <T> T mapToBean(Class<T> type, Map<String, Object> map) {
+		T obj = null;
 		try {
 			BeanInfo beanInfo = Introspector.getBeanInfo(type); // 获取类属性
 			obj = type.newInstance();
@@ -238,15 +237,13 @@ public class ObjectUtil {
 	}
 
 	/**
-	 * 将map值转化成对象, 无递归嵌套
+	 * 将map值加入对象中, 无递归嵌套
 	 * 
 	 * @param type
 	 * @param map
 	 * @return
-	 * @author yangz
-	 * @date 2012-9-26 下午03:39:54
 	 */
-	public static <M> M addToBean(M obj, Class<M> type, Map<String, Object> map) {
+	public static <M> M mapAddToBean(M obj, Class<M> type, Map<String, Object> map) {
 		try {
 			BeanInfo beanInfo = Introspector.getBeanInfo(type);
 			PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();
@@ -273,11 +270,9 @@ public class ObjectUtil {
 	 * 
 	 * @param bean
 	 * @return
-	 * @author qingwu
-	 * @date 2012-9-26 下午03:40:56
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public static Map<String, Object> toMap(Object bean) {
+	public static Map<String, Object> beanToMap(Object bean) {
 		Map<String, Object> returnMap;
 		try {
 			Class<?> type = bean.getClass();
@@ -305,7 +300,7 @@ public class ObjectUtil {
 							if (ObjectUtil.isValueType(o)) {
 								collection.add(o);
 							} else {
-								collection.add(toMap(o));
+								collection.add(beanToMap(o));
 							}
 						}
 						returnMap.put(propertyName, collection);
@@ -314,7 +309,7 @@ public class ObjectUtil {
 						// throw new UnCaughtException(
 						// "bean property can't be array");
 					} else { // 自定义对象
-						returnMap.put(propertyName, toMap(result));
+						returnMap.put(propertyName, beanToMap(result));
 					}
 				}
 			}
@@ -329,8 +324,6 @@ public class ObjectUtil {
 	 * 
 	 * @param obj
 	 * @return
-	 * @author qingwu
-	 * @date 2013-7-9 下午03:01:44
 	 */
 	@SuppressWarnings("rawtypes")
 	public static boolean isValueType(Class rClass) {
@@ -362,8 +355,6 @@ public class ObjectUtil {
 	 * 
 	 * @param obj
 	 * @return
-	 * @author qingwu
-	 * @date 2013-7-9 下午03:01:44
 	 */
 	@SuppressWarnings("rawtypes")
 	public static boolean isValueTypeWithoutDate(Class rClass) {
@@ -391,8 +382,6 @@ public class ObjectUtil {
 	 * 
 	 * @param obj
 	 * @return
-	 * @author qingwu
-	 * @date 2012-9-26 下午03:50:55
 	 */
 	public static boolean isCollection(Object obj) {
 		if (obj instanceof Collection<?>) {
@@ -407,8 +396,6 @@ public class ObjectUtil {
 	 * 
 	 * @param obj
 	 * @return
-	 * @author qingwu
-	 * @date 2012-9-26 下午03:01:44
 	 */
 	public static boolean isValueType(Object obj) {
 		if (obj == null || obj instanceof String || obj instanceof Number || obj instanceof Boolean || obj instanceof Character || obj instanceof Date) {
@@ -427,8 +414,6 @@ public class ObjectUtil {
 	 *            字段名称
 	 * @param value
 	 *            值
-	 * @author qingwu
-	 * @date 2014-1-26 上午9:52:52
 	 */
 	public static void setField(Object obj, String fieldName, Object value) {
 		String setterName = "set" + StringUtils.capitalize(fieldName);
@@ -457,8 +442,6 @@ public class ObjectUtil {
 	 * @param targetClass
 	 *            目标类型
 	 * @return
-	 * @author qingwu
-	 * @date 2014-2-12 下午4:51:24
 	 */
 	@SuppressWarnings("rawtypes")
 	public static <T> List<T> copyList(List sourceList, Class<T> targetClass) {
