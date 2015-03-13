@@ -10,8 +10,7 @@ import com.greenleaf.common.context.ApplicationContextUtil;
 /**
  * Properties工具类.
  * 
- * @author qingwu
- * @date 2013-04-26
+ * @author QiSF 2015-03-13
  */
 public class PropertiesUtil {
 	/**

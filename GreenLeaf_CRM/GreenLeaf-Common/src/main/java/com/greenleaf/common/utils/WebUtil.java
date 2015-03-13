@@ -13,11 +13,9 @@ import org.apache.commons.lang.StringUtils;
 import com.greenleaf.common.exception.UnCaughtException;
 
 /**
- * web开发工具类
+ * web开发工具类.
  * 
- * @Company : cyou
- * @author yangz
- * @date 2012-10-10 下午06:05:02
+ * @author QiSF 2015-03-13
  */
 public class WebUtil {
 	/**
@@ -25,8 +23,6 @@ public class WebUtil {
 	 * 
 	 * @param request
 	 * @return
-	 * @author yangz
-	 * @date 2012-7-30 下午02:59:10
 	 */
 	public static boolean isAjaxRequest(HttpServletRequest request) {
 		return !StringUtils.isEmpty(request.getHeader("X-Requested-With"));
@@ -48,14 +44,12 @@ public class WebUtil {
 		}
 		return forwardIP;
 	}
-	
+
 	/**
 	 * 获取远程访问的IP地址.
 	 * 
 	 * @param request
 	 * @return
-	 * @author yangz
-	 * @date 2012-9-18 上午09:02:09
 	 */
 	public static String getIpAddress(HttpServletRequest request) {
 		String ip = request.getHeader("x-forwarded-for");
@@ -88,18 +82,17 @@ public class WebUtil {
 
 		return ip;
 	}
-	
+
 	/**
 	 * 将request的Attribute转化为map
+	 * 
 	 * @param request
 	 * @return
-	 * @author yangz
-	 * @date 2013-1-23 上午10:09:59
 	 */
-	public static Map<String, Object> toAttributeMap(HttpServletRequest request){
+	public static Map<String, Object> toAttributeMap(HttpServletRequest request) {
 		Map<String, Object> result = new HashMap<String, Object>();
 		Enumeration<String> enumeration = request.getAttributeNames();
-		while(enumeration.hasMoreElements()){
+		while (enumeration.hasMoreElements()) {
 			String key = enumeration.nextElement();
 			result.put(key, request.getAttribute(key));
 		}

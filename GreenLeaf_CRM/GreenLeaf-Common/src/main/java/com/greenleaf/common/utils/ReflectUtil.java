@@ -5,8 +5,7 @@ import java.lang.reflect.Field;
 /**
  * 反射工具.
  * 
- * @author zhufu
- * @version 2013-7-16 下午2:47:54
+ * @author QiSF 2015-03-13
  */
 public class ReflectUtil {
 
@@ -18,12 +17,9 @@ public class ReflectUtil {
 	 * @param fieldName
 	 *            字段名
 	 * @return
-	 * @author zhufu
-	 * @version 2013-7-16 下午2:47:43
 	 */
 	public static Field getFieldByFieldName(Object obj, String fieldName) {
-		for (Class<?> superClass = obj.getClass(); superClass != Object.class; superClass = superClass
-				.getSuperclass()) {
+		for (Class<?> superClass = obj.getClass(); superClass != Object.class; superClass = superClass.getSuperclass()) {
 			try {
 				return superClass.getDeclaredField(fieldName);
 			} catch (NoSuchFieldException e) {
@@ -40,20 +36,8 @@ public class ReflectUtil {
 	 * @param fieldName
 	 *            字段名
 	 * @return 对象
-	 * @throws SecurityException
-	 *             SecurityException
-	 * @throws NoSuchFieldException
-	 *             NoSuchFieldException
-	 * @throws IllegalArgumentException
-	 *             IllegalArgumentException
-	 * @throws IllegalAccessException
-	 *             IllegalAccessException
-	 * @author zhufu
-	 * @version 2013-7-16 下午2:47:05
 	 */
-	public static Object getValueByFieldName(Object obj, String fieldName)
-			throws SecurityException, NoSuchFieldException,
-			IllegalArgumentException, IllegalAccessException {
+	public static Object getValueByFieldName(Object obj, String fieldName) throws SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
 		Field field = getFieldByFieldName(obj, fieldName);
 		Object value = null;
 		if (field != null) {
@@ -74,14 +58,8 @@ public class ReflectUtil {
 	 * @param obj
 	 * @param fieldName
 	 * @param value
-	 * @throws SecurityException
-	 * @throws NoSuchFieldException
-	 * @throws IllegalArgumentException
-	 * @throws IllegalAccessException
 	 */
-	public static void setValueByFieldName(Object obj, String fieldName,
-			Object value) throws SecurityException, NoSuchFieldException,
-			IllegalArgumentException, IllegalAccessException {
+	public static void setValueByFieldName(Object obj, String fieldName, Object value) throws SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
 		Field field = getFieldByFieldName(obj, fieldName);
 		if (field.isAccessible()) {
 			field.set(obj, value);

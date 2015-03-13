@@ -5,16 +5,9 @@ import java.util.Random;
 import org.apache.commons.lang.ArrayUtils;
 
 /**
- * <p>
  * Description:随机数工具类.
- * </p>
- * <p>
- * Company:cyou
- * </p>
  * 
- * @author shanfengqi
- * @date 2013-8-28
- * @version V1.0
+ * @author QiSF 2015-03-13
  */
 public class RandomUtil {
 
@@ -58,8 +51,6 @@ public class RandomUtil {
 	 * @param randomLength
 	 *            字符串长度
 	 * @return 随机小写英文字母字符串.
-	 * @author shanfengqi
-	 * @date 2013-8-28 上午11:28:28
 	 */
 	public static String getRandomLowerAlphabet(int randomLength) {
 		return getRandom(randomLength, RANDOM_LOWER_ALPHABET);
@@ -71,8 +62,6 @@ public class RandomUtil {
 	 * @param randomLength
 	 *            字符串长度
 	 * @return 随机大写英文字母字符串.
-	 * @author shanfengqi
-	 * @date 2013-8-28 上午11:28:28
 	 */
 	public static String getRandomUpperAlphabet(int randomLength) {
 		return getRandom(randomLength, RANDOM_UPPER_ALPHABET);
@@ -84,8 +73,6 @@ public class RandomUtil {
 	 * @param randomLength
 	 *            字符串长度
 	 * @return 随机数字字符串.
-	 * @author shanfengqi
-	 * @date 2013-8-28 上午11:28:28
 	 */
 	public static String getRandomNumber(int randomLength) {
 		return getRandom(randomLength, RANDOM_NUMBER);
@@ -97,8 +84,6 @@ public class RandomUtil {
 	 * @param randomLength
 	 *            字符串长度
 	 * @return 随机字母数字字符串.
-	 * @author shanfengqi
-	 * @date 2013-8-28 上午11:28:28
 	 */
 	public static String getRandomAlphabetNumber(int randomLength) {
 		return getRandom(randomLength, RANDOM_ALPHABET_NUMBER);
@@ -112,8 +97,6 @@ public class RandomUtil {
 	 * @param arr
 	 *            字符串数组
 	 * @return 随机字符串.
-	 * @author shanfengqi
-	 * @date 2013-8-28 上午11:58:25
 	 */
 	private static String getRandom(int randomLength, String[] arr) {
 		String str = "";

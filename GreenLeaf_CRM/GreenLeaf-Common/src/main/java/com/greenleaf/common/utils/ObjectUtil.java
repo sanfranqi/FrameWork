@@ -160,32 +160,31 @@ public class ObjectUtil {
 	}
 
 	/**
-	 * 拷贝List.
+	 * 复制list.
 	 * 
-	 * @param objList
-	 *            要拷贝的list
-	 * @param clazz
-	 *            目标list的对象类型
-	 * @author QiSF 2015-03-12
+	 * @param sourceList
+	 *            源list
+	 * @param targetClass
+	 *            目标类型
+	 * @return
 	 */
-	public static <M, T> List<T> convertList(List<M> objList, Class<T> clazz) {
+	@SuppressWarnings("rawtypes")
+	public static <T> List<T> copyList(List sourceList, Class<T> targetClass) {
 		List<T> list = new ArrayList<T>();
-		for (M m : objList) {
-			list.add(copyPorperties(m, clazz));
+		try {
+			for (int i = 0; i < sourceList.size(); i++) {
+				T o = targetClass.newInstance();
+				BeanUtils.copyProperties(sourceList.get(i), o);
+				list.add(o);
+			}
+		} catch (BeansException e) {
+			throw new UnCaughtException(e);
+		} catch (InstantiationException e) {
+			throw new UnCaughtException(e);
+		} catch (IllegalAccessException e) {
+			throw new UnCaughtException(e);
 		}
 		return list;
-	}
-
-	public static <M, T> List<T> convertList(List<M> objList, Converter<M, T> converter) {
-		List<T> list = new ArrayList<T>();
-		for (M m : objList) {
-			list.add(converter.convert(m));
-		}
-		return list;
-	}
-
-	public static interface Converter<H, Q> {
-		public Q convert(H h);
 	}
 
 	/**
@@ -197,7 +196,7 @@ public class ObjectUtil {
 	 *            要转换的list
 	 * @return
 	 */
-	public static <M> List<M> toBeanList(Class<M> clazz, List<Map<String, Object>> mapList) {
+	public static <M> List<M> mapListToBeanList(Class<M> clazz, List<Map<String, Object>> mapList) {
 		List<M> objectList = new ArrayList<M>();
 		for (Map<String, Object> map : mapList) {
 			objectList.add(mapToBean(clazz, map));
@@ -435,34 +434,6 @@ public class ObjectUtil {
 	}
 
 	/**
-	 * 复制list.
-	 * 
-	 * @param sourceList
-	 *            源list
-	 * @param targetClass
-	 *            目标类型
-	 * @return
-	 */
-	@SuppressWarnings("rawtypes")
-	public static <T> List<T> copyList(List sourceList, Class<T> targetClass) {
-		List<T> list = new ArrayList<T>();
-		try {
-			for (int i = 0; i < sourceList.size(); i++) {
-				T o = targetClass.newInstance();
-				BeanUtils.copyProperties(sourceList.get(i), o);
-				list.add(o);
-			}
-		} catch (BeansException e) {
-			throw new UnCaughtException(e);
-		} catch (InstantiationException e) {
-			throw new UnCaughtException(e);
-		} catch (IllegalAccessException e) {
-			throw new UnCaughtException(e);
-		}
-		return list;
-	}
-
-	/**
 	 * 获得成员值.
 	 * 
 	 * @param obj
@@ -471,8 +442,6 @@ public class ObjectUtil {
 	 *            字段名称
 	 * @return
 	 * @throws Exception
-	 * @author qingwu
-	 * @date 2014-2-19 下午1:28:14
 	 */
 	public static Object getFieldValue(Object obj, String fieldName) throws Exception {
 		String methodName = "get" + String.valueOf(fieldName.charAt(0)).toUpperCase() + fieldName.substring(1);
@@ -490,8 +459,6 @@ public class ObjectUtil {
 	 *            方法参数
 	 * @return
 	 * @throws Exception
-	 * @author qingwu
-	 * @date 2014-2-19 下午1:28:14
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static Object invokeMethod(Object owner, String methodName, Object[] args) throws Exception {
@@ -515,8 +482,6 @@ public class ObjectUtil {
 	 *            方法参数
 	 * @return
 	 * @throws Exception
-	 * @author qingwu
-	 * @date 2014-2-19 下午1:28:14
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static Object invokeStaticMethod(Class ownerClass, String methodName, Object[] args) throws Exception {

@@ -16,9 +16,6 @@ import com.greenleaf.crm.utils.context.WebContext;
 
 /**
  * 初始化web请求容器过滤器.
- * 
- * @author yangz
- * @date 2013-4-8 下午5:37:38
  */
 public class InitWebContentFilter implements Filter {
 
@@ -31,6 +28,14 @@ public class InitWebContentFilter implements Filter {
 		try {
 			WebContext.setRequest((HttpServletRequest) request);
 			WebContext.setResponse((HttpServletResponse) response);
+			WebContext.getResponse().setContentType("text/html;charset=UTF-8");
+			// String url = httpRequest.getServletPath();
+			// if (url.startsWith("/admin") && !url.startsWith("/admin/login"))
+			// {
+			// String returnUrl = "/admin/login.do";
+			// httpResponse.sendRedirect(returnUrl);
+			// }
+			// TODO 修改拦截
 			chain.doFilter(request, response);
 		} catch (Exception e) {
 			throw new UnCaughtException(e);

@@ -83,7 +83,7 @@ public abstract class BaseService<T> implements ApplicationContextAware {
 
 	public T get(Query query) {
 		List<Map<String, Object>> list = getDAO().findByQuery(query);
-		List<T> objects = ObjectUtil.toBeanList(t, list);
+		List<T> objects = ObjectUtil.mapListToBeanList(t, list);
 		if (objects.size() > 0) {
 			return objects.get(0);
 		}
@@ -145,7 +145,7 @@ public abstract class BaseService<T> implements ApplicationContextAware {
 	public List<T> findByQuery(Query query) {
 		try {
 			List<Map<String, Object>> list = getDAO().findByQuery(query);
-			List<T> objects = ObjectUtil.toBeanList(t, list);
+			List<T> objects = ObjectUtil.mapListToBeanList(t, list);
 			return objects;
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -5,10 +5,9 @@ import java.math.BigDecimal;
 import org.apache.log4j.Logger;
 
 /**
- * 数据类型
+ * 数据类型工具类.
  * 
- * @author yangz
- * @date 2012-7-28 下午02:42:26
+ * @author QiSF 2015-03-13
  */
 public class ValueUtil {
 	private static final Logger log = Logger.getLogger(ValueUtil.class);
@@ -18,8 +17,6 @@ public class ValueUtil {
 	 * 
 	 * @param value
 	 * @return
-	 * @author yangz
-	 * @date 2012-7-28 下午03:15:11
 	 */
 	public static String getString(Object value) {
 		String result = "";
@@ -47,8 +44,6 @@ public class ValueUtil {
 	 * 
 	 * @param value
 	 * @return
-	 * @author yangz
-	 * @date 2012-7-28 下午03:27:21
 	 */
 	public static long getLong(Object value) {
 		try {
@@ -63,8 +58,6 @@ public class ValueUtil {
 	 * 
 	 * @param value
 	 * @return
-	 * @author yangz
-	 * @date 2012-7-28 下午03:29:25
 	 */
 	public static double getDouble(Object value) {
 		try {
@@ -79,8 +72,6 @@ public class ValueUtil {
 	 * 
 	 * @param value
 	 * @return
-	 * @author yangz
-	 * @date 2012-7-28 下午03:29:35
 	 */
 	public static int getInt(Object value) {
 		try {
@@ -95,8 +86,6 @@ public class ValueUtil {
 	 * 
 	 * @param value
 	 * @return
-	 * @author yangz
-	 * @date 2012-10-12 上午09:00:16
 	 */
 	public static boolean getBoolean(Object value) {
 		try {
@@ -122,20 +111,16 @@ public class ValueUtil {
 	 * 
 	 * @param value
 	 * @return
-	 * @author yangz
-	 * @date 2013-3-31 下午4:12:37
 	 */
 	public static BigDecimal getBigDecimal(Object value) {
 		return new BigDecimal(getString(value));
 	}
 
 	/**
-	 * 判断值是否是0 null 或者其他 Title: isNullOrZero Description:
+	 * 判断值是否是0 null 或者其他
 	 * 
 	 * @param value
 	 * @return boolean
-	 * @author LittleHui
-	 * @date 2014-3-5
 	 */
 	public static boolean isNullOrZero(Integer value) {
 		try {

@@ -1,17 +1,19 @@
-/**
- * 
- */
 package com.greenleaf.crm.bean;
 
-import lombok.Data;
-
 /**
- * @author SanFran
- *
+ * 
+ * @author QiSF 2015-03-13
  */
-@Data
 public class User {
-	
+
 	private String id;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 }

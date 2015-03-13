@@ -23,10 +23,15 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class StringUtil extends StringUtils{
+/**
+ * String工具.
+ * 
+ * @author QiSF 2015-03-13
+ */
+public class StringUtil extends StringUtils {
 
 	/**
-	 * Log log。
+	 * Log log.
 	 */
 	private static final Log log = LogFactory.getLog(StringUtil.class);
 
@@ -38,10 +43,9 @@ public class StringUtil extends StringUtils{
 	}
 
 	/**
-	 * 将Unicode码字符串转为为GBK码.
-	 * 
+	 * 将GBK码转换为Unicode码.
 	 */
-	public static String GBToUnicode(final String strIn) {
+	public static String gbkToUnicode(final String strIn) {
 		String strOut = null;
 
 		if (strIn == null || (strIn.trim()).equals("")) {
@@ -56,10 +60,9 @@ public class StringUtil extends StringUtils{
 	}
 
 	/**
-	 * 将GBK码转换为Unicode码.
-	 * 
+	 * 将Unicode码字符串转为为GBK码.
 	 */
-	public static String unicodeToGB(final String strIn) {
+	public static String unicodeToGBK(final String strIn) {
 		String strOut = null;
 
 		if (strIn == null || (strIn.trim()).equals("")) {
@@ -75,10 +78,8 @@ public class StringUtil extends StringUtils{
 
 	/**
 	 * 字符串编码类型转换.
-	 * 
 	 */
-	public static String encode(final String str, final String oldCharset,
-			final String newCharset) {
+	public static String encode(final String str, final String oldCharset, final String newCharset) {
 		if (str == null) {
 			return str;
 		}
@@ -93,7 +94,6 @@ public class StringUtil extends StringUtils{
 
 	/**
 	 * 将以sgn为分隔符的字符串转化为数组.
-	 * 
 	 */
 	public static String[] split(String str, final String sgn) {
 		String[] returnValue = null;
@@ -142,16 +142,14 @@ public class StringUtil extends StringUtils{
 	 * @param split
 	 *            String
 	 */
-	public static String arrayToStrWithStr(final String[] array,
-			final String split) {
+	public static String arrayToStrWithStr(final String[] array, final String split) {
 		return StringUtil.arrayToStrWithStr(array, split, "0");
 
 	}
 
 	/**
      */
-	public static String arrayToStrWithStr(final String[] array,
-			final String split, final String optType) {
+	public static String arrayToStrWithStr(final String[] array, final String split, final String optType) {
 		if (array == null || array.length < 1) {
 			return null;
 		}
@@ -280,8 +278,7 @@ public class StringUtil extends StringUtils{
 	/**
 	 * 返回位于 String 对象中指定位置的子字符串.
 	 */
-	public static String getSubString(String str, final int beginIndex,
-			final int endIndex) {
+	public static String getSubString(String str, final int beginIndex, final int endIndex) {
 		String str1 = "";
 
 		if (str == null) {
@@ -299,8 +296,7 @@ public class StringUtil extends StringUtils{
 	 * 如果入参是null或者"",用另一入参rpt替代入参返回，否则返回入参的trim().
 	 */
 	public static String strnull(final String str, final String rpt) {
-		if (str == null || str.equals("null") || str.equals("")
-				|| str.trim() == null) {
+		if (str == null || str.equals("null") || str.equals("") || str.trim() == null) {
 			return rpt;
 		} else {
 			return str.trim();
@@ -343,7 +339,6 @@ public class StringUtil extends StringUtils{
 		if (strn == null) {
 			str = "0000-00-00 00:00:00";
 		} else {
-			// strn.toGMTString();
 			str = strn.toString();
 		}
 		return (str);
@@ -417,8 +412,7 @@ public class StringUtil extends StringUtils{
 	/**
 	 * 字符串替换.
 	 */
-	public static String replace(final String content, final String oldString,
-			final String newString) {
+	public static String replace(final String content, final String oldString, final String newString) {
 		if (content == null || oldString == null) {
 			return content;
 		}
@@ -430,22 +424,19 @@ public class StringUtil extends StringUtils{
 		int stringAtLocal = content.indexOf(oldString);
 		int startLocal = 0;
 		while (stringAtLocal >= 0) {
-			resultString = resultString
-					+ content.substring(startLocal, stringAtLocal) + newString;
+			resultString = resultString + content.substring(startLocal, stringAtLocal) + newString;
 			startLocal = stringAtLocal + oldString.length();
 			stringAtLocal = content.indexOf(oldString, startLocal);
 		}
 
-		resultString = resultString
-				+ content.substring(startLocal, content.length());
+		resultString = resultString + content.substring(startLocal, content.length());
 		return resultString;
 	}
 
 	/**
 	 * 替换字符串内容.
 	 */
-	public static String replaceStr(String strSource, final String strFrom,
-			final String strTo) {
+	public static String replaceStr(String strSource, final String strFrom, final String strTo) {
 		if (strFrom == null || strFrom.equals("")) {
 			return strSource;
 		}
@@ -565,8 +556,7 @@ public class StringUtil extends StringUtils{
 
 	/**
      */
-	public static boolean findString(final String sourceStr,
-			final String fieldStr) {
+	public static boolean findString(final String sourceStr, final String fieldStr) {
 		boolean strExist = false;
 		if (sourceStr.length() == 0) {
 			return strExist;
@@ -590,10 +580,6 @@ public class StringUtil extends StringUtils{
 	 * @param arr
 	 *            String[] 要进行排序的字符串数组
 	 * @return String[] 排序后的字符串数组
-	 * @author: Linxf
-	 * @修改记录： ==============================================================<br>
-	 *        日期:2004-08-09 Linxf 创建方法，并实现其功能
-	 *        ==============================================================<br>
 	 */
 	public static String[] bubbleSort(final String[] arr) {
 		int tag = 1;
@@ -614,8 +600,7 @@ public class StringUtil extends StringUtils{
 	/**
 	 * 依据ValueArr数组的排序，为ContentArr排序.
 	 */
-	public static String[] bubbleSort(final String[] valueArr,
-			final String[] contentArr) {
+	public static String[] bubbleSort(final String[] valueArr, final String[] contentArr) {
 		int tag = 1;
 		for (int i = 1; i < valueArr.length && tag == 1; i++) {
 			tag = 0;
@@ -666,20 +651,16 @@ public class StringUtil extends StringUtils{
 	/**
 	 * request中获取long类型的参数值.
 	 */
-	public static long getlongParameter(final HttpServletRequest request,
-			final String paraName) {
-		final long value = new Long(StringUtil.nullToZero(request
-				.getParameter(paraName))).longValue();
+	public static long getlongParameter(final HttpServletRequest request, final String paraName) {
+		final long value = new Long(StringUtil.nullToZero(request.getParameter(paraName))).longValue();
 		return value;
 	}
 
 	/**
 	 * 从request中获取long类型的参数值.
 	 */
-	public static Long getLongParameter(final HttpServletRequest request,
-			final String paraName) {
-		final Long value = new Long(StringUtil.nullToZero(request
-				.getParameter(paraName)));
+	public static Long getLongParameter(final HttpServletRequest request, final String paraName) {
+		final Long value = new Long(StringUtil.nullToZero(request.getParameter(paraName)));
 
 		return value;
 	}
@@ -687,18 +668,15 @@ public class StringUtil extends StringUtils{
 	/**
 	 * 从request中获取int类型的参数值.
 	 */
-	public static int getIntParameter(final HttpServletRequest request,
-			final String paraName) {
-		final int value = Integer.parseInt(StringUtil.nullToZero(request
-				.getParameter(paraName)));
+	public static int getIntParameter(final HttpServletRequest request, final String paraName) {
+		final int value = Integer.parseInt(StringUtil.nullToZero(request.getParameter(paraName)));
 		return value;
 	}
 
 	/**
 	 * 从request中获取String类型的参数值.
 	 */
-	public static String getStringParameter(final HttpServletRequest request,
-			final String paraName) {
+	public static String getStringParameter(final HttpServletRequest request, final String paraName) {
 		final String value = StringUtil.strnull(request.getParameter(paraName));
 		return value;
 	}
@@ -716,10 +694,8 @@ public class StringUtil extends StringUtils{
 			if (aFieldName.indexOf("_") >= 0) {
 				final int pos = aFieldName.indexOf("_");
 				final String low = aFieldName.substring(0, pos);
-				final String midd = aFieldName.substring(pos + 1, pos + 2)
-						.toUpperCase();
-				final String end = aFieldName.substring(pos + 2,
-						aFieldName.length());
+				final String midd = aFieldName.substring(pos + 1, pos + 2).toUpperCase();
+				final String end = aFieldName.substring(pos + 2, aFieldName.length());
 				aFieldName = low + midd + end;
 			}
 		} // end while
@@ -739,15 +715,12 @@ public class StringUtil extends StringUtils{
 			if (aTableName.indexOf("_") >= 0) {
 				final int pos = aTableName.indexOf("_");
 				final String low = aTableName.substring(0, pos);
-				final String midd = aTableName.substring(pos + 1, pos + 2)
-						.toUpperCase();
-				final String end = aTableName.substring(pos + 2,
-						aTableName.length());
+				final String midd = aTableName.substring(pos + 1, pos + 2).toUpperCase();
+				final String end = aTableName.substring(pos + 2, aTableName.length());
 				aTableName = low + midd + end;
 			}
 		} // end while
-		aTableName = aTableName.substring(0, 1).toUpperCase()
-				+ aTableName.substring(1, aTableName.length());
+		aTableName = aTableName.substring(0, 1).toUpperCase() + aTableName.substring(1, aTableName.length());
 		return aTableName;
 	}
 
@@ -763,8 +736,7 @@ public class StringUtil extends StringUtils{
 	 *            Algorithm used to do the digest
 	 * @return encypted password based on the algorithm.
 	 */
-	public static String encodePassword(final String password,
-			final String algorithm) {
+	public static String encodePassword(final String password, final String algorithm) {
 		final byte[] unencodedPassword = password.getBytes();
 
 		MessageDigest md = null;
@@ -803,8 +775,7 @@ public class StringUtil extends StringUtils{
 	/**
 	 * 在右边填充字符串.
 	 */
-	public static String padTrailing(final String rString, final int rLength,
-			final String rPad) {
+	public static String padTrailing(final String rString, final int rLength, final String rPad) {
 		String lTmpPad = "";
 
 		final String lTmpStr = StringUtil.strnull(rString);
@@ -822,8 +793,7 @@ public class StringUtil extends StringUtils{
 	/**
 	 * 在左边填充字符串.
 	 */
-	public static String padLeading(final String rString, final int rLength,
-			final String rPad) {
+	public static String padLeading(final String rString, final int rLength, final String rPad) {
 		String lTmpPad = "";
 
 		final String lTmpStr = StringUtil.strnull(rString);
@@ -854,27 +824,10 @@ public class StringUtil extends StringUtils{
 	 */
 	public static boolean isNullOrEmpty(final Object str) {
 		boolean result = false;
-		if (str == null || "null".equals(str)
-				|| "".equals(str.toString().trim())) {
+		if (str == null || "null".equals(str) || "".equals(str.toString().trim())) {
 			result = true;
 		}
 		return result;
-	}
-
-	/**
-	 * 方法功能: 将时间的格式转换成YYYYMMDDHHMMSS .
-	 */
-	public static final String dateTimeToStr(String aDate) {
-		String returnValue = "";
-		if (aDate != null && aDate.length() < 14) {
-			StringUtil.padTrailing(aDate, 14, "0");
-		}
-		String str = aDate.replaceAll("-", "");
-		String str1 = str.replaceAll(" ", "");
-		String str2 = str1.replaceAll(":", "");
-		returnValue = str2.substring(0, 14);
-
-		return (returnValue);
 	}
 
 	/**
@@ -901,8 +854,7 @@ public class StringUtil extends StringUtils{
 	 */
 	public static String strConverFromHtml(String src) {
 		StringBuffer sb = new StringBuffer();
-		java.util.regex.Pattern p = java.util.regex.Pattern
-				.compile("&[a-zA-Z]*;");
+		java.util.regex.Pattern p = java.util.regex.Pattern.compile("&[a-zA-Z]*;");
 		Matcher m = p.matcher(src);
 		int pos1 = 0;
 		while (m.find(pos1)) {
@@ -930,16 +882,10 @@ public class StringUtil extends StringUtils{
 		return sb.toString();
 	}
 
-	public static void main(String[] args) {
-		String str = "&lt;temp&gt;测试&amp;一下是&amp;否有效&lt;/temp&gt;";
-		System.out.println(strConverFromHtml(str));
-	}
-
 	/**
 	 * 方法功能: 获取下级的列表格式.
 	 */
-	public static List<String> getSubXmlList(String inXml, String maskStartStr,
-			String maskEndStr) {
+	public static List<String> getSubXmlList(String inXml, String maskStartStr, String maskEndStr) {
 
 		String tmp = inXml.replace(maskEndStr, maskStartStr);
 		tmp += " ";
@@ -961,57 +907,8 @@ public class StringUtil extends StringUtils{
 		if (source == null) {
 			return null;
 		}
-
 		String str = source.trim();
 		return str;
-	}
-
-	public static String numtochinese(String input) {
-		String s1 = "零壹贰叁肆伍陆柒捌玖";
-		String s4 = "分角整元拾佰仟万拾佰仟亿拾佰仟";
-		String temp = "";
-		String result = "";
-		if (input == null)
-			return null;
-		// return "输入字串不是数字串只能包括以下字符（'0'～'9'，'.')，输入字串最大只能精确到仟亿，小数点只能两位！";
-		temp = input.trim();
-		float f;
-		try {
-			f = Float.parseFloat(temp);
-
-		} catch (Exception e) {
-			return result;
-			// return "输入字串不是数字串只能包括以下字符（'0'～'9'，'.')，输入字串最大只能精确到仟亿，小数点只能两位！";
-		}
-		int len = 0;
-		if (temp.indexOf(".") == -1)
-			len = temp.length();
-		else
-			len = temp.indexOf(".");
-		if (len > s4.length() - 3)
-			return result;// ("输入字串最大只能精确到仟亿，小数点只能两位！");
-		int n1, n2 = 0;
-		String num = "";
-		String unit = "";
-
-		for (int i = 0; i < temp.length(); i++) {
-			if (i > len + 2) {
-				break;
-			}
-			if (i == len) {
-				continue;
-			}
-			n1 = Integer.parseInt(String.valueOf(temp.charAt(i)));
-			num = s1.substring(n1, n1 + 1);
-			n1 = len - i + 2;
-			unit = s4.substring(n1, n1 + 1);
-			result = result.concat(num).concat(unit);
-		}
-		if ((len == temp.length()) || (len == temp.length() - 1))
-			result = result.concat("整");
-		if (len == temp.length() - 2)
-			result = result.concat("零分");
-		return result;
 	}
 
 	/**
@@ -1050,10 +947,12 @@ public class StringUtil extends StringUtils{
 		}
 
 	}
-	
+
 	public static String WORD_SEPARATE = "-";
+
 	/**
 	 * 字符串是否存在中文
+	 * 
 	 * @param str
 	 * @return
 	 * @author yangz
@@ -1069,19 +968,18 @@ public class StringUtil extends StringUtils{
 		return false;
 	}
 
-    public static boolean isAllZH(String str) {
-        String regEx = "^[\\u4e00-\\u9fa5]+$";
-        Pattern p = Pattern.compile(regEx);
-        Matcher m = p.matcher(str);
-        return m.matches();
-    }
+	public static boolean isAllZH(String str) {
+		String regEx = "^[\\u4e00-\\u9fa5]+$";
+		Pattern p = Pattern.compile(regEx);
+		Matcher m = p.matcher(str);
+		return m.matches();
+	}
 
 	/**
 	 * 字符串第一个字母大写
+	 * 
 	 * @param s
 	 * @return
-	 * @author yangz
-	 * @date 2012-9-27 下午03:10:46
 	 */
 	public static String upperFirstChar(String s) {
 		if (!isEmpty(s)) {
@@ -1090,12 +988,12 @@ public class StringUtil extends StringUtils{
 			return s;
 		}
 	}
+
 	/**
 	 * 字符串第一个字母小写
+	 * 
 	 * @param s
 	 * @return
-	 * @author yangz
-	 * @date 2012-9-27 下午03:10:58
 	 */
 	public static String lowerFirstChar(String s) {
 		if (!isEmpty(s)) {
@@ -1104,12 +1002,12 @@ public class StringUtil extends StringUtils{
 			return s;
 		}
 	}
+
 	/**
 	 * 获取第一个大写字母
+	 * 
 	 * @param s
 	 * @return
-	 * @author yangz
-	 * @date 2012-10-23 上午09:06:18
 	 */
 	public static String getUpperFirstChar(String s) {
 		if (!isEmpty(s)) {
@@ -1118,21 +1016,25 @@ public class StringUtil extends StringUtils{
 			return s;
 		}
 	}
-	
+
 	/**
 	 * 四舍五入并去掉科学计数法, 默认小数点2位
-	 * @param value String, double, Double, BigDecimal
+	 * 
+	 * @param value
+	 *            String, double, Double, BigDecimal
 	 * @return
-	 * @author yangz
-	 * @date 2012-7-28 下午03:44:05
 	 */
 	public static String toNuSicen(Object value) {
 		return toNuSicen(value, 2);
 	}
+
 	/**
 	 * 四舍五入并去掉科学计数法
-	 * @param value String, double, Double, BigDecimal
-	 * @param precision 保留几位小数
+	 * 
+	 * @param value
+	 *            String, double, Double, BigDecimal
+	 * @param precision
+	 *            保留几位小数
 	 * @return
 	 * @author yangz
 	 * @date 2012-7-28 下午03:47:25
@@ -1143,46 +1045,48 @@ public class StringUtil extends StringUtils{
 		df.setMinimumFractionDigits(precision);
 		df.setMaximumFractionDigits(precision);
 		df.setGroupingUsed(false);
-		if(value instanceof BigDecimal){
+		if (value instanceof BigDecimal) {
 			result = value;
-		}else if(value instanceof String){
+		} else if (value instanceof String) {
 			result = new BigDecimal(String.valueOf(value));
-		}else if(value instanceof Number){
+		} else if (value instanceof Number) {
 			result = ValueUtil.getDouble(value);
-		}else{
+		} else {
 			throw new RuntimeException(value + "need extends Number or String");
 		}
 		return df.format(result);
 	}
+
 	/**
 	 * 获取不区分大小写正则Pattern
+	 * 
 	 * @param value
 	 * @return
 	 * @author yangz
 	 * @date 2012-10-9 下午03:32:33
 	 */
-	public static Pattern getInsensitivePattern(String value){
-		return Pattern.compile(ValueUtil.getString(value).replaceAll("([\\+\\-\\&\\.\\|\\!\\(\\)\\{\\}\\[\\]\\^\\\"\\~\\*\\?\\:])","\\\\$1"), Pattern.CASE_INSENSITIVE + Pattern.DOTALL);
-//		if(v.matches("[\\u4e00-\\u9fa5|\\w\\s]*")){
-//			return Pattern.compile(v, Pattern.CASE_INSENSITIVE + Pattern.DOTALL);
-//		}else{
-//			return Pattern.compile(UUID.generate(), Pattern.CASE_INSENSITIVE + Pattern.DOTALL); //忽略特殊字符查询
-//		}
+	public static Pattern getInsensitivePattern(String value) {
+		return Pattern.compile(ValueUtil.getString(value).replaceAll("([\\+\\-\\&\\.\\|\\!\\(\\)\\{\\}\\[\\]\\^\\\"\\~\\*\\?\\:])", "\\\\$1"), Pattern.CASE_INSENSITIVE + Pattern.DOTALL);
+		// if(v.matches("[\\u4e00-\\u9fa5|\\w\\s]*")){
+		// return Pattern.compile(v, Pattern.CASE_INSENSITIVE + Pattern.DOTALL);
+		// }else{
+		// return Pattern.compile(UUID.generate(), Pattern.CASE_INSENSITIVE +
+		// Pattern.DOTALL); //忽略特殊字符查询
+		// }
 	}
-	
 
-	
 	/**
 	 * 获取指定位数的随机数窜
-	 * @author jianchen
-	 * 2013-4-8
+	 * 
+	 * @author jianchen 2013-4-8
 	 */
-	public static String getRandomAsString(int max,int min) {
-		return String.valueOf(Math.round(Math.random()*(max-min)+min));
+	public static String getRandomAsString(int max, int min) {
+		return String.valueOf(Math.round(Math.random() * (max - min) + min));
 	}
-	
+
 	/**
 	 * 判断字符串数组中是否存在为null or “” 情况
+	 * 
 	 * @param strs
 	 * @return
 	 */
@@ -1195,29 +1099,30 @@ public class StringUtil extends StringUtils{
 		return false;
 	}
 
-    public static boolean allEmptyStr(String... strs) {
-        for (String str : strs) {
-            if (!isEmpty(str)) {
-                return false;
-            }
-        }
-        return true;
-    }
+	public static boolean allEmptyStr(String... strs) {
+		for (String str : strs) {
+			if (!isEmpty(str)) {
+				return false;
+			}
+		}
+		return true;
+	}
 
-    /**
-     * 数组转字符串并用','分隔
-     * @param strs
-     * @return
-     */
-    public static String arrayToString(String[] strs) {
-        if (strs == null || strs.length == 0) {
-            return "";
-        }
+	/**
+	 * 数组转字符串并用','分隔
+	 * 
+	 * @param strs
+	 * @return
+	 */
+	public static String arrayToString(String[] strs) {
+		if (strs == null || strs.length == 0) {
+			return "";
+		}
 
-        StringBuilder sb = new StringBuilder();
-        for (String str : strs) {
-            sb.append(str).append(",");
-        }
-        return sb.toString().substring(0 , sb.toString().length() -1);
-    }
+		StringBuilder sb = new StringBuilder();
+		for (String str : strs) {
+			sb.append(str).append(",");
+		}
+		return sb.toString().substring(0, sb.toString().length() - 1);
+	}
 }
