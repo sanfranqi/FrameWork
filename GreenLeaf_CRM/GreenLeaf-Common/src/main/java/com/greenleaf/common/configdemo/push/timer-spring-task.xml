@@ -15,21 +15,49 @@
    http://www.springframework.org/schema/task
    http://www.springframework.org/schema/task/spring-task-3.2.xsd">
 
-    <!-- 扫描所有类路径下的所有的配置文件 -->
-    <context:property-placeholder location="classpath:conf/server_cfg.properties" ignore-unresolvable="true"/>
-
-    <import resource="classpath*:spring/core-spring-pub.xml" />
-
-    <bean id="clearOnlineUserTask" class="com.cyou.fz.timer.task.ClearOnlineUserTask" />
-
-    <task:annotation-driven />
-
+	<!-- 可以用注解方式compont -->
+	<bean id="clearOnlineUserTask" class="com.cyou.fz.timer.task.ClearOnlineUserTask" />
+	<!-- 提供注解 -->
+	<context:annotation-config />
+	<!-- 扫描基本包路径 -->
+	<context:component-scan base-package="com.cyou.fz.pay.task" />
+	<!-- 定时器开关 -->
+	<task:annotation-driven />
+	<!-- 任务定义 -->
 	<task:scheduled-tasks>
-
-		<!-- 清理在线用户任务:每30分钟跑一次-->
-		<task:scheduled ref="clearOnlineUserTask" method="run"
+		<!-- 调用服务方通知业务平台订单完成的服务，每1分钟跑一次 -->
+		<task:scheduled ref="notifyBpOrderDoneTask" method="start"
+			cron="0 0/1 * * * ?" />
+		<!-- 调用服务方更新超时的订单的状态的服务，每30分钟跑一次 -->
+		<task:scheduled ref="updateOrderTimeoutTask" method="start"
 			cron="0 0/30 * * * ?" />
-
+		<!-- 调用服务方更新被系统冻结的G宝账户状态服务，每3分钟跑一次 -->
+		<task:scheduled ref="sysAutoUnlockGAccountTask" method="start"
+			cron="0 0/3 * * * ?" />
+		<!-- 调用服务方每日发送日统计邮件服务，每天凌晨3点跑一次 -->
+		<task:scheduled ref="statsExcelTask" method="daySendExcelTask"
+			cron="0 0 3 * * ?" />
+		<!-- 调用服务方每月发送月统计邮件服务，每月15号凌晨2点跑一次 -->
+		<task:scheduled ref="statsExcelTask" method="monthSendExcelTask"
+			cron="0 0 2 15 * ?" />
+		<!-- 调用服务方录入37玩玩对账记录，每天凌晨1点跑一次 -->
+		<task:scheduled ref="orderFor37WanWanTask" method="copyOrderFor37WW"
+			cron="0 0 1 * * ?" />
+		<!-- 调用服务方检测更新殴飞数卡所有类型的小类信息, 每天凌晨2点跑一次 -->
+		<task:scheduled ref="refreshAllCardClassTask" method="start"
+			cron="0 0 2 * * ?" />
+		<!-- 调用服务方检测更新殴飞数卡所有充值卡信息, 每天凌晨2点15分跑一次 -->
+		<task:scheduled ref="refreshAllCardInfoTask" method="start"
+			cron="0 15 2 * * ?" />
+		<!-- 调用服务方检测更新殴飞数卡所有类型的小类信息, 每天凌晨2点30分跑一次 -->
+		<task:scheduled ref="refreshAllAreaServerTask" method="start"
+			cron="0 30 2 * * ?" />
+		<!-- 调用服务方同步汇率信息, 每小时跑一次 -->
+		<task:scheduled ref="autoSyncExchangeRate" method="start"
+			cron="1 1 */1 * * ?" />
+		<!-- 调用服务方清空paypal交易次数, 每凌晨0点跑一次 -->
+		<task:scheduled ref="paypalAccountTask" method="start"
+			cron="0 0 0 * * ?" />
 	</task:scheduled-tasks>
 
 </beans>

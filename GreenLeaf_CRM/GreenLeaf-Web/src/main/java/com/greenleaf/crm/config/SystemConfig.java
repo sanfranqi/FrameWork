@@ -2,8 +2,6 @@ package com.greenleaf.crm.config;
 
 import org.springframework.stereotype.Component;
 
-import com.greenleaf.common.utils.PropertiesUtil;
-
 @Component
 public class SystemConfig {
 
@@ -17,15 +15,20 @@ public class SystemConfig {
 	 */
 	public static Integer FILE_SIZE;
 
-	static {
-		new SystemConfig().init();
+	public static String getTEMP_PATH() {
+		return TEMP_PATH;
 	}
 
-	public void init() {
-		// TODO 设置属性文件路径
-		PropertiesUtil p = new PropertiesUtil("");
-		TEMP_PATH = p.getProperties("file.tempPath");
-		FILE_SIZE = Integer.parseInt(p.getProperties("file.fileSize"));
+	public static void setTEMP_PATH(String tEMP_PATH) {
+		TEMP_PATH = tEMP_PATH;
+	}
+
+	public static Integer getFILE_SIZE() {
+		return FILE_SIZE;
+	}
+
+	public static void setFILE_SIZE(Integer fILE_SIZE) {
+		FILE_SIZE = fILE_SIZE;
 	}
 
 }

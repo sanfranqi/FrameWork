@@ -1,6 +1,7 @@
 package com.greenleaf.common.springmvc;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.support.WebBindingInitializer;
@@ -18,6 +19,7 @@ public class BindingInitializer implements WebBindingInitializer {
 		binder.registerCustomEditor(double.class, new HtmlFilterDoubleEditor());
 		binder.registerCustomEditor(String.class, new HtmlFilterStringEditor());
 		binder.registerCustomEditor(BigDecimal.class, new HtmlFilterBigDecimalEditor());
+		binder.registerCustomEditor(Date.class, new HtmlFilterDateEditor());
 		// binder.registerCustomEditor(Timestamp.class, new
 		// CustomTimestampEditor("yyyy-MM-dd HH:mm:ss",true));
 	}

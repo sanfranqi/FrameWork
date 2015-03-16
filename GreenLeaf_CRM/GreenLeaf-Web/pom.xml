@@ -10,6 +10,15 @@
 	<artifactId>GreenLeaf-Web</artifactId>
 	<packaging>war</packaging>
 	<name>GreenLeaf-Web Maven Webapp</name>
+	
+	<properties>
+		<common-lib_version>1.0.0</common-lib_version>
+		<org.apache.activemq_version>5.8.0</org.apache.activemq_version>
+		<c3p0_version>0.9.1.2</c3p0_version>
+		<j2ee-thirdpart-lib_version>1.0.0</j2ee-thirdpart-lib_version>
+		<jedis_version>2.4.0</jedis_version>
+		<spring-data-redis_version>1.2.1.RELEASE</spring-data-redis_version>
+	</properties>
 
 	<dependencies>
 		<dependency>
@@ -244,6 +253,18 @@
 		<dependency>
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
+		</dependency>
+		<!-- activeMQ -->
+		<dependency>
+			<groupId>org.apache.activemq</groupId>
+			<artifactId>activemq-all</artifactId>
+			<version>${org.apache.activemq_version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 	</dependencies>
 

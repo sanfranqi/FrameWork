@@ -1,8 +1,6 @@
 package com.greenleaf.crm.utils.context;
 
 import java.net.URLEncoder;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,7 +18,6 @@ public class WebContext {
 
 	private static ThreadLocal<HttpServletRequest> request = new ThreadLocal<HttpServletRequest>();
 	private static ThreadLocal<HttpServletResponse> response = new ThreadLocal<HttpServletResponse>();
-	private static Map<String, Object> cacheKey = new HashMap<String, Object>();
 
 	/**
 	 * 放入web请求
