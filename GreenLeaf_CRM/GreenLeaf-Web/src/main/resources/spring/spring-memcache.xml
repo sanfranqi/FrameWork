@@ -14,8 +14,8 @@
 	
 	<bean id="XMemcachedCacheProxy"
 		class="com.greenleaf.common.cache.memcache.XmemcachedCacheProxy">
-		<property name="addressList" value="${memcached_addressList}" />
-		<property name="connectionPoolSize" value="${memcached_connectionPoolSize}" />
+		<property name="addressList" value="${memcached.addressList}" />
+		<property name="connectionPoolSize" value="${memcached.connectionPoolSize}" />
 	</bean>
 	
 </beans>

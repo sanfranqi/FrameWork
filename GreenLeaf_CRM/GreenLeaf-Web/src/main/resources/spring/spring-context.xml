@@ -9,8 +9,8 @@
 	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd"
 	default-lazy-init="false">
 
-	<import resource="spring-jms.xml" />
-	<import resource="spring-memcache.xml" />
+	<!-- <import resource="spring-jms.xml" />
+	<import resource="spring-memcache.xml" /> -->
 	<import resource="spring-mybatis.xml" />
 
 	<!-- 启用spring mvc 注解 -->
@@ -54,10 +54,7 @@
 	<!-- 系统配置文件初始化 -->
 	<bean id="systemConfig" class="com.greenleaf.crm.config.SystemConfig">
 		<property name="TEMP_PATH">
-			<value>${url.TEMP_PATH}</value>
-		</property>
-		<property name="FILE_SIZE">
-			<value>${url.FILE_SIZE}</value>
+			<value>${file.tempPath}</value>
 		</property>
 	</bean>
 
@@ -65,25 +62,25 @@
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
 		<!-- 数据库驱动包 -->
-		<property name="driverClass" value="${db.driverClass}" />
+		<property name="driverClass" value="${mysql.driverClass}" />
 		<!-- 数据库连接地址 -->
-		<property name="jdbcUrl" value="${db.url}" />
-		<property name="user" value="${db.user}" />
-		<property name="password" value="${db.password}" />
+		<property name="jdbcUrl" value="${mysql.jdbcUrl}" />
+		<property name="user" value="${mysql.user}" />
+		<property name="password" value="${mysql.password}" />
 		<!-- 指定连接池里最小连接数 -->
-		<property name="minPoolSize" value="${db.minPoolSize}" />
+		<property name="minPoolSize" value="${mysql.minPoolSize}" />
 		<!-- 指定连接池里最大连接数 -->
-		<property name="maxPoolSize" value="${db.maxPoolSize}" />
+		<property name="maxPoolSize" value="${mysql.maxPoolSize}" />
 		<!-- 连接最大空闲时间，超过时间将被丢弃,单位是秒 -->
-		<property name="maxIdleTime" value="${db.maxIdleTime}" />
+		<property name="maxIdleTime" value="${mysql.maxIdleTime}" />
 		<!-- 当连接池里面的连接用完的时候，C3P0一次获取的新的连接数 -->
-		<property name="acquireIncrement" value="${db.acquireIncrement}" />
+		<property name="acquireIncrement" value="${mysql.acquireIncrement}" />
 		<!-- 指定连接池里最大缓存多少个Statement对象 -->
-		<property name="maxStatements" value="${db.maxStatements}" />
+		<property name="maxStatements" value="${mysql.maxStatements}" />
 		<!-- 初始创建连接的数量 -->
-		<property name="initialPoolSize" value="${db.initialPoolSize}" />
+		<property name="initialPoolSize" value="${mysql.initialPoolSize}" />
 		<!-- 每隔XX秒检查连接池里的空闲连接 ，单位是秒 -->
-		<property name="idleConnectionTestPeriod" value="${db.idleConnectionTestPeriod}" />
+		<property name="idleConnectionTestPeriod" value="${mysql.idleConnectionTestPeriod}" />
 		<property name="checkoutTimeout" value="1000" />
 	</bean>
 
