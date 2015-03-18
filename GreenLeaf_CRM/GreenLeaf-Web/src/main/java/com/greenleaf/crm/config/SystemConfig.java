@@ -1,8 +1,7 @@
 package com.greenleaf.crm.config;
 
-import org.springframework.stereotype.Component;
+import com.greenleaf.common.utils.PropertiesUtil;
 
-@Component
 public class SystemConfig {
 
 	/**
@@ -10,11 +9,12 @@ public class SystemConfig {
 	 */
 	public static String TEMP_PATH;
 
-	public static String getTEMP_PATH() {
-		return TEMP_PATH;
+	public SystemConfig() {
+		init();
 	}
 
-	public static void setTEMP_PATH(String tEMP_PATH) {
-		TEMP_PATH = tEMP_PATH;
+	public void init() {
+		PropertiesUtil p = new PropertiesUtil("/conf/server_cfg.properties");
+		TEMP_PATH = p.getProperties("file.tempPath");
 	}
 }

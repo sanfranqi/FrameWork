@@ -96,12 +96,12 @@
 		<pinyin.version>2.5.0</pinyin.version>
 		<!-- junrar -->
 		<junrar.version>0.7</junrar.version>
-
+		<!-- aspectj -->
+		<aspectj_version>1.7.2</aspectj_version>
 
 		<!-- third part -->
 		<ant.version>1.9.0</ant.version>
 		<joda-time_version>2.2</joda-time_version>
-		<aspectj_version>1.7.2</aspectj_version>
 		<javassist_version>3.15.0-GA</javassist_version>
 		<jedis_version>2.4.0</jedis_version>
 		<spring-data-redis_version>1.2.1.RELEASE</spring-data-redis_version>
@@ -442,6 +442,12 @@
 				<groupId>com.github.junrar</groupId>
 				<artifactId>junrar</artifactId>
 				<version>${junrar.version}</version>
+			</dependency>
+			<!-- aspectj -->
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjweaver</artifactId>
+				<version>${aspectj_version}</version>
 			</dependency>
 			<!--lombok -->
 			<dependency>

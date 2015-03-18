@@ -16,7 +16,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 public class ContextLoaderListenerManager extends ContextLoaderListener implements ServletContextListener {
 	private ServletContext servetContext;
 	private WebApplicationContext webApplicationContext;
-	private final static String APPLICATIONCONTEXTUYIL = "applicationContextUtil";
+	private final static String APPLICATIONCONTEXTUTIL = "applicationContextUtil";
 
 	public void contextInitialized(ServletContextEvent event) {
 		super.contextInitialized(event);
@@ -25,6 +25,6 @@ public class ContextLoaderListenerManager extends ContextLoaderListener implemen
 		this.webApplicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(servetContext);
 		this.servetContext.setAttribute("WEBAPPLICATIONCONTEXT", webApplicationContext);
 		WebApplicationContext webApplicationContext = (WebApplicationContext) this.servetContext.getAttribute("WEBAPPLICATIONCONTEXT");
-		ApplicationContextUtil aplicationContextUtil = (ApplicationContextUtil) webApplicationContext.getBean(APPLICATIONCONTEXTUYIL);
+		ApplicationContextUtil aplicationContextUtil = (ApplicationContextUtil) webApplicationContext.getBean(APPLICATIONCONTEXTUTIL);
 	}
 }

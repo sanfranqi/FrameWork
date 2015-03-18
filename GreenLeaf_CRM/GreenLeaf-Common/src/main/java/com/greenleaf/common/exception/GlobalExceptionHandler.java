@@ -17,8 +17,22 @@ import com.greenleaf.common.utils.WebUtil;
  * @author QiSF 2015-03-11
  */
 public class GlobalExceptionHandler implements HandlerExceptionResolver {
+	/**
+	 * 错误页.
+	 */
 	public final static String ERROR_PAGE = "exception/error";
+	/**
+	 * 404页.
+	 */
 	public final static String NOTFOUND_PAGE = "exception/404";
+	/**
+	 * 后台请求地址.
+	 */
+	public final static String ADMIN_REQUEST_URL = "admin/";
+	/**
+	 * 前台请求地址.
+	 */
+	public final static String FRONT_REQUEST_URL = "front/";
 
 	/**
 	 * 处理全局异常
