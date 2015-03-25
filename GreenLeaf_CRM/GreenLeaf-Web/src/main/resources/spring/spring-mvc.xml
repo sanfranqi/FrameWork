@@ -26,6 +26,11 @@
 			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 
+	<!-- 登陆拦截 -->
+	<mvc:interceptors>
+		<bean class="com.greenleaf.crm.utils.filter.LoginInteceptor"></bean>
+	</mvc:interceptors>
+
 	<!-- 支持上传文件 -->
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
@@ -76,7 +81,7 @@
 		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
 		<property name="defaultHandler" ref="wildcardMVCController" />
 	</bean>
-	<bean id="wildcardMVCController" class="com.greenleaf.common.springmvc.WildcardMVCController" />
+	<bean id="wildcardMVCController" class="com.greenleaf.crm.utils.web.WildcardMVCController" />
 	<!-- FreeMarker 配置 -->
 	<bean id="freemarkerConfig"
 		class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">

@@ -7,12 +7,12 @@ define(function(require, exports, module) {
         io = {};
 
     // helper
-    var isArray = Array.isArray || isType('Array');
     function isType(type) {
         return function(obj) {
             return Object.prototype.toString.call(obj) === '[object ' + type + ']';
         };
     }
+    var isArray = Array.isArray || isType('Array');
 
 	io.processor = function(json, callback) {
 
@@ -39,41 +39,56 @@ define(function(require, exports, module) {
 		 * 表单验证
 		 * 2. input(fieldErrors)
 		 */
-		if ($.inArray(json.result, ['success', 'failure']) != -1) {
-			msg = json.messages;
-			if (isArray(msg)) {
-				msg = msg.join('<br/>').replace('\n', '<br/>');
-			}
-			success = callback['success'] || callback;
-			error = callback['error'] ||
-				function(msg) {
-                    util.showMessage(msg);
-			    };
+        if (json.result == 'needLogin') {
+            msg = json.messages;
+            if (isArray(msg)) {
+                msg = msg.join('<br/>').replace('\n', '<br/>');
+            }
 
-			(json.result == 'success') ? success.call(json, msg) : error.call(json, msg);
+            setTimeout(function () {
+                window.location.href = '/';
+            }, 1500);
+            util.showError(msg || '需要登录');
+        } else if ($.inArray(json.result, ['success', 'login', 'failure']) != -1) {
+            msg = json.messages;
+            if (isArray(msg)) {
+                msg = msg.join('<br/>').replace('\n', '<br/>');
+            }
+            success = callback['success'] || callback;
+            error = callback['error'] ||
+                function (msg) {
+                    util.showError(msg || '未知错误，请联系管理员。');
+                };
 
-		} else if (json.result == 'input') {
+            if (json.result == 'success' || json.result == 'login') {
+                success.call(json, msg);
+            } else {
+                util.hideLoading();
+                error.call(json, msg);
+            }
 
-			if (!$.isEmptyObject(json['fieldErrors'])) {
+        } else if (json.result == 'input') {
 
-				$.each(json['fieldErrors'], function(field, v) {
+            if (!$.isEmptyObject(json['fieldErrors'])) {
 
-					msg = (v.shift && v.shift()) || v;
+                $.each(json['fieldErrors'], function (field, v) {
 
-					input = callback['input'];
+                    msg = (v.shift && v.shift()) || v;
 
-					input && input[field] && input[field].call(json, msg);
-				});
+                    input = callback['input'];
 
-			} else {
+                    input && input[field] && input[field].call(json, msg);
+                });
 
-				msg = json.messages.shift() || json.messages;
+            } else {
 
-				callback['input'] ? (callback['input'].call(json, msg))
-				//: ($.message(msg).modal());
-				: console.log(msg);
-			}
-		}
+                msg = json.messages.shift() || json.messages;
+
+                callback['input'] ? (callback['input'].call(json, msg))
+                    //: ($.message(msg).modal());
+                    : console.log(msg);
+            }
+        }
 	};
 
 	io.post = function(url, data, callback) {
@@ -135,7 +150,7 @@ define(function(require, exports, module) {
 	};
 
 	io.ajax = function(cfg) {
-		var async = typeof cfg.async == 'undefined' ? true : false;
+		var async = typeof cfg.async === 'undefined';
 
 		$.ajax({
 			async: async,

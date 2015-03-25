@@ -26,21 +26,15 @@ public class InitWebContentFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		try {
-			WebContext.setRequest((HttpServletRequest) request);
-			WebContext.setResponse((HttpServletResponse) response);
+			HttpServletRequest httpRequest = (HttpServletRequest) request;
+			HttpServletResponse httpResponse = (HttpServletResponse) response;
+			WebContext.setRequest(httpRequest);
+			WebContext.setResponse(httpResponse);
 			WebContext.getResponse().setContentType("text/html;charset=UTF-8");
-			// String url = httpRequest.getServletPath();
-			// if (url.startsWith("/admin") && !url.startsWith("/admin/login"))
-			// {
-			// String returnUrl = "/admin/login.do";
-			// httpResponse.sendRedirect(returnUrl);
-			// }
-			// TODO 修改拦截
 			chain.doFilter(request, response);
 		} catch (Exception e) {
-			throw new UnCaughtException(e);
-		} finally {
 			WebContext.remove();
+			throw new UnCaughtException(e);
 		}
 	}
 

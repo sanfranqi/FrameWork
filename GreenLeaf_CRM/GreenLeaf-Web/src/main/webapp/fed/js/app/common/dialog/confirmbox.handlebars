@@ -1,22 +1,31 @@
-{{#if title}}
-<div class="{{classPrefix}}-title" data-role="title">{{{title}}}</div>
-{{/if}}
-<div class="{{classPrefix}}-container">
-    <div class="{{classPrefix}}-message {{#if hasPadding}}{{classPrefix}}-padding{{/if}}" data-role="message">
-        {{{message}}}
+<div class="{{classPrefix}}-main">
+
+    {{#if title}}
+        <div class="{{classPrefix}}-header">
+            <h2 class="tit">{{{title}}}</h2>
+        </div>
+    {{/if}}
+
+    <div class="{{classPrefix}}-con">
+        <div data-role="message">
+            {{{message}}}
+        </div>
     </div>
+
     {{#if hasFoot}}
-    <div class="{{classPrefix}}-operation" data-role="foot">
-        {{#if confirmTpl}}
-        <div class="{{classPrefix}}-confirm" data-role="confirm">
-            {{{confirmTpl}}}
+        <div class="{{classPrefix}}-footer" data-role="foot">
+            {{#if cancelTpl}}
+                <div data-role="cancel" class="dialog-btn">
+                    {{{cancelTpl}}}
+                </div>
+            {{/if}}
+            {{#if confirmTpl}}
+                <div data-role="confirm" class="dialog-btn">
+                    {{{confirmTpl}}}
+                </div>
+            {{/if}}
         </div>
-        {{/if}}
-        {{#if cancelTpl}}
-        <div class="{{classPrefix}}-cancel" data-role="cancel">
-            {{{cancelTpl}}}
-        </div>
-        {{/if}}
-    </div>
+    {{else}}
+        <div class="{{classPrefix}}-footer"></div>
     {{/if}}
 </div>

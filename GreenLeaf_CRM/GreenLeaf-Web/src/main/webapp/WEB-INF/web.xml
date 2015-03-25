@@ -48,11 +48,10 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>WebFilter</filter-name>
-		<url-pattern>/admin/*</url-pattern>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>WebFilter</filter-name>
-		<url-pattern>*.htm</url-pattern>
+		<!-- <url-pattern>*.do</url-pattern> -->
+		<!-- <url-pattern>*.htm</url-pattern> -->
+		<!-- <url-pattern>*.html</url-pattern> -->
+		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
 	<servlet>
@@ -66,9 +65,10 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>SpringMVCServlet</servlet-name>
-		<url-pattern>*.htm</url-pattern>
-		<url-pattern>*.do</url-pattern>
-		<url-pattern>*.cache</url-pattern>
+<!-- 		<url-pattern>*.do</url-pattern> -->
+<!-- 		<url-pattern>*.htm</url-pattern> -->
+<!-- 		<url-pattern>*.html</url-pattern> -->
+		<url-pattern>/*</url-pattern>
 	</servlet-mapping>
 
 	<session-config>
