@@ -27,9 +27,9 @@
 	</context:component-scan>
 
 	<!-- 登陆拦截 -->
-	<mvc:interceptors>
-		<bean class="com.greenleaf.crm.utils.filter.LoginInteceptor"></bean>
-	</mvc:interceptors>
+	<!-- <mvc:interceptors> -->
+	<!-- <bean class="com.greenleaf.crm.utils.filter.LoginInteceptor"></bean> -->
+	<!-- </mvc:interceptors> -->
 
 	<!-- 支持上传文件 -->
 	<bean id="multipartResolver"

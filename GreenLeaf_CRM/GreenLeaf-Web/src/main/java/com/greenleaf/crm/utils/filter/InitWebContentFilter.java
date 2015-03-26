@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.greenleaf.common.exception.UnCaughtException;
+import com.greenleaf.common.response.ResponseFactory;
+import com.greenleaf.common.utils.Jackson2Util;
+import com.greenleaf.common.utils.WebUtil;
 import com.greenleaf.crm.utils.context.WebContext;
 
 /**
@@ -31,6 +34,23 @@ public class InitWebContentFilter implements Filter {
 			WebContext.setRequest(httpRequest);
 			WebContext.setResponse(httpResponse);
 			WebContext.getResponse().setContentType("text/html;charset=UTF-8");
+			String url = httpRequest.getRequestURI();
+			if (url.indexOf("/login") < 0 && url.indexOf("/index") < 0) {
+				// FIXME 暂时放开index
+				boolean isLogin = false;
+				if (WebContext.getLoginUser() != null) {
+					isLogin = true;
+				}
+				if (!isLogin) {
+					if (WebUtil.isAjaxRequest(httpRequest)) {
+						Jackson2Util.writeJson(httpResponse, ResponseFactory.getDefaultFailureResponse("未登入！"));
+						return;
+					} else {
+						httpResponse.sendRedirect("/login.htm");
+						return;
+					}
+				}
+			}
 			chain.doFilter(request, response);
 		} catch (Exception e) {
 			WebContext.remove();

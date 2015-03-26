@@ -1,12 +1,144 @@
-.page-index .content{background:url(http://ue2.17173cdn.com/a/2035/open/2014/img/bg2.jpg) top center no-repeat}.page-index .content-in{border:0;overflow:hidden;padding:45px 0 80px 0}
-.page-index .login-box{float:right}.page-service-admin .top-box{padding-bottom:5px}.page-manage-task .pn-custom .nodata-box{padding:129px 0 130px 0}.page-manage-schedule .pn-custom .nodata-box{padding:109px 0}
-.page-manage-reward .pn-custom .nodata-box{padding:176px 0}.page-manage-reward .pn-assess{padding-top:10px}.page-manage-reward .pn-assess .mod-comment{padding-top:10px}
-.page-manage-reward .pn-assess-end .mod-comment{padding:0}.page-manage-material .pn-custom .nodata-box{padding:68px 0}.page-manage-material .pn-custom .mobile-box .article .txt{max-height:360px}
-.page-manage-user .pn-nogroup .check-box{display:none}.page-manage-user .pn-nogroup .tit-name{padding-left:50px}.page-error .content{padding-top:15px}
-.page-error .content-in{border:0}.page-error .logo{margin-left:25px}.page-error .error-box{height:540px;background:url(http://ue3.17173cdn.com/a/2035/open/2014/img/bg3.jpg) 100px 140px no-repeat;position:relative}
-.page-error .error-info{position:absolute;right:210px;top:170px;overflow:hidden}.page-error .error-info .tit{font-size:20px;padding-bottom:5px}.page-error .countdown{overflow:hidden;float:left}
-.page-error .countdown .num{font-size:30px;color:#ffa019;line-height:1;float:left;margin-right:5px}.page-error .countdown .txt{float:left;font-size:16px;margin-top:6px}
-.page-error .error-info .link{display:block;float:left;font-size:16px;color:#ffa019;margin:6px 0 0 35px}.page-error .error-info .link:hover{text-decoration:underline}
-.page-error .error-box2{background:url(http://ue1.17173cdn.com/a/2035/open/2014/img/bg4.jpg) 120px 60px no-repeat}.page-error .error-box2 .error-info{left:120px;right:auto;top:255px}
-.page-error .error-box2 .error-info .tit{font-size:18px}.page-circle .content-col .content-in{background-image:url(http://ue2.17173cdn.com/a/2035/open/2014/img/bg-l.jpg)}
-.page-circle .side{width:300px}
+.page-index .content {
+	background: url(http://ue2.17173cdn.com/a/2035/open/2014/img/bg2.jpg)
+		top center no-repeat
+}
+
+.page-index .content-in {
+	border: 0;
+	overflow: hidden;
+	padding: 45px 0 80px 0
+}
+
+.page-index .login-box {
+	float: right
+}
+
+.page-service-admin .top-box {
+	padding-bottom: 5px
+}
+
+.page-manage-task .pn-custom .nodata-box {
+	padding: 129px 0 130px 0
+}
+
+.page-manage-schedule .pn-custom .nodata-box {
+	padding: 109px 0
+}
+
+.page-manage-reward .pn-custom .nodata-box {
+	padding: 176px 0
+}
+
+.page-manage-reward .pn-assess {
+	padding-top: 10px
+}
+
+.page-manage-reward .pn-assess .mod-comment {
+	padding-top: 10px
+}
+
+.page-manage-reward .pn-assess-end .mod-comment {
+	padding: 0
+}
+
+.page-manage-material .pn-custom .nodata-box {
+	padding: 68px 0
+}
+
+.page-manage-material .pn-custom .mobile-box .article .txt {
+	max-height: 360px
+}
+
+.page-manage-user .pn-nogroup .check-box {
+	display: none
+}
+
+.page-manage-user .pn-nogroup .tit-name {
+	padding-left: 50px
+}
+
+.page-error .content {
+	padding-top: 15px
+}
+
+.page-error .content-in {
+	border: 0
+}
+
+.page-error .logo {
+	margin-left: 25px
+}
+
+.page-error .error-box {
+	height: 540px;
+	background: url(http://ue3.17173cdn.com/a/2035/open/2014/img/bg3.jpg)
+		100px 140px no-repeat;
+	position: relative
+}
+
+.page-error .error-info {
+	position: absolute;
+	right: 210px;
+	top: 170px;
+	overflow: hidden
+}
+
+.page-error .error-info .tit {
+	font-size: 20px;
+	padding-bottom: 5px
+}
+
+.page-error .countdown {
+	overflow: hidden;
+	float: left
+}
+
+.page-error .countdown .num {
+	font-size: 30px;
+	color: #ffa019;
+	line-height: 1;
+	float: left;
+	margin-right: 5px
+}
+
+.page-error .countdown .txt {
+	float: left;
+	font-size: 16px;
+	margin-top: 6px
+}
+
+.page-error .error-info .link {
+	display: block;
+	float: left;
+	font-size: 16px;
+	color: #ffa019;
+	margin: 6px 0 0 35px
+}
+
+.page-error .error-info .link:hover {
+	text-decoration: underline
+}
+
+.page-error .error-box2 {
+	background: url(http://ue1.17173cdn.com/a/2035/open/2014/img/bg4.jpg)
+		120px 60px no-repeat
+}
+
+.page-error .error-box2 .error-info {
+	left: 120px;
+	right: auto;
+	top: 255px
+}
+
+.page-error .error-box2 .error-info .tit {
+	font-size: 18px
+}
+
+.page-circle .content-col .content-in {
+	background-image:
+		url(http://ue2.17173cdn.com/a/2035/open/2014/img/bg-l.jpg)
+}
+
+.page-circle .side {
+	width: 300px
+}

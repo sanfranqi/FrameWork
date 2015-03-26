@@ -7,22 +7,25 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.greenleaf.common.response.ResponseFactory;
+import com.greenleaf.common.utils.DateUtil;
 import com.greenleaf.common.utils.Jackson2Util;
 import com.greenleaf.common.utils.WebUtil;
 import com.greenleaf.crm.utils.context.WebContext;
 
 /**
- * 登入拦截器.
+ * 登入拦截器.(不用)
  * 
  * @author QiSF 2015-03-25
  */
+@Deprecated
 public class LoginInteceptor extends HandlerInterceptorAdapter {
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		if (handler instanceof HandlerMethod) {
-			String url = request.getServletPath();
-			if (!url.startsWith("/login") && !url.startsWith("/") && !url.startsWith("")) {
+			String url = request.getRequestURI();
+			System.out.println("LoginInteceptor begin" + DateUtil.getDateTime());
+			if (!url.startsWith("/login") && !url.startsWith("/")) {
 				boolean isLogin = false;
 				if (WebContext.getLoginUser() == null) {
 					isLogin = false;

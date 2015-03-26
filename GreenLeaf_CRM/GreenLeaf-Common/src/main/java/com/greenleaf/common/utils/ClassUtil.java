@@ -175,7 +175,6 @@ public class ClassUtil {
 	 */
 	@SuppressWarnings("rawtypes")
 	public static boolean isCGLibProxy(Class type) {
-		// FIXME 这种方法可行, 但是比较土
 		return type.getName().contains("EnhancerByCGLIB");
 	}
 

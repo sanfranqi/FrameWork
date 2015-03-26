@@ -48,10 +48,9 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>WebFilter</filter-name>
-		<!-- <url-pattern>*.do</url-pattern> -->
-		<!-- <url-pattern>*.htm</url-pattern> -->
-		<!-- <url-pattern>*.html</url-pattern> -->
-		<url-pattern>/*</url-pattern>
+		<url-pattern>*.do</url-pattern>
+		<url-pattern>*.htm</url-pattern>
+		<url-pattern>*.html</url-pattern>
 	</filter-mapping>
 
 	<servlet>
@@ -65,10 +64,9 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>SpringMVCServlet</servlet-name>
-<!-- 		<url-pattern>*.do</url-pattern> -->
-<!-- 		<url-pattern>*.htm</url-pattern> -->
-<!-- 		<url-pattern>*.html</url-pattern> -->
-		<url-pattern>/*</url-pattern>
+		<url-pattern>*.do</url-pattern>
+		<url-pattern>*.htm</url-pattern>
+		<url-pattern>*.html</url-pattern>
 	</servlet-mapping>
 
 	<session-config>
@@ -76,7 +74,7 @@
 	</session-config>
 
 	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>login.htm</welcome-file>
 	</welcome-file-list>
 
 	<mime-mapping>

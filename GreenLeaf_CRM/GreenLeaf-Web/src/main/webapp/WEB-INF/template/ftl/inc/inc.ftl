@@ -16,7 +16,7 @@
     <script type="text/javascript">
         var ctx = '${ctx!''}';
         var version = '${version}';
-        var root = '${jsRoot + '/'}';
+        var root = '${seaRoot + '/'}';
         var imageURL = '${imageURL!''}';
         var userImagePath = '${userImagePath!''}';
         var rewardDomainUrl = '${rewardDomainUrl!''}';
