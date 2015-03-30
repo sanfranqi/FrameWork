@@ -32,11 +32,6 @@
 
 <#macro footer>
     <#-- Javascript -->
-    <script type="text/javascript" src="${jsRoot}/jquery/1.10.1/jquery.js?v=${version}"></script>
-    <script type="text/javascript" src="${seaRoot}/seajs/seajs/2.2.1/sea.js?v=${version}"></script>
-    <script type="text/javascript" src="${seaRoot}/seajs/seajs-style/1.0.2/seajs-style.js?v=${version}"></script>
-    <script type="text/javascript" src="${seaRoot}/seajs/seajs-text/1.0.2/seajs-text.js?v=${version}"></script>
-    <script type="text/javascript" src="${jsRoot}/sea-config.js?v=${version}"></script>
     <#nested>
 </body>
 </html>
