@@ -130,9 +130,10 @@ public abstract class BaseService<T> implements ApplicationContextAware {
 	 * 
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	public List<T> findAll() {
 		try {
-			Query query = Query.build(t);
+			Query<T> query = Query.build(t);
 			List<T> objects = findByQuery(query);
 			return objects;
 		} catch (Exception e) {
@@ -142,7 +143,7 @@ public abstract class BaseService<T> implements ApplicationContextAware {
 		return Collections.emptyList();
 	}
 
-	public List<T> findByQuery(Query query) {
+	public List<T> findByQuery(Query<T> query) {
 		try {
 			List<Map<String, Object>> list = getDAO().findByQuery(query);
 			List<T> objects = ObjectUtil.mapListToBeanList(t, list);
@@ -196,5 +197,9 @@ public abstract class BaseService<T> implements ApplicationContextAware {
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
 		this.applicationContext = applicationContext;
+	}
+
+	public ApplicationContext getApplicationContext() {
+		return applicationContext;
 	}
 }

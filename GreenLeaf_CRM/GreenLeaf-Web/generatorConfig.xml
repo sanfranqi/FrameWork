@@ -46,7 +46,7 @@
 			targetProject="GreenLeaf-Web/src/main/java" type="XMLMAPPER" />
 
 		<!-- tableName:用于自动生成代码的数据库表；domainObjectName:对应于数据库表的javaBean类名 -->
-		<table tableName="T_PERSON" domainObjectName="Person"
+		<table tableName="menu" domainObjectName="OsMenu"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false"></table>

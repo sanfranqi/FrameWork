@@ -423,6 +423,9 @@
 	<script src="../../../fed/scripts/index.js" type="text/javascript"></script>
 	<script src="../../../fed/scripts/tasks.js" type="text/javascript"></script>        
 	<!-- END PAGE LEVEL SCRIPTS -->  
+	<script src="../../../fed/plugins/bootbox/bootbox.min.js" type="text/javascript" ></script>
+	<script src="../../../fed/app/common/io.js" type="text/javascript"></script>
+	<script src="../../../fed/app/inc/sidebar.js" type="text/javascript"></script>
 	<script>
 		jQuery(document).ready(function() {    
 		   App.init(); // initlayout and core plugins
@@ -435,6 +438,7 @@
 		   Index.initDashboardDaterange();
 		   Index.initIntro();
 		   Tasks.initDashboardWidget();
+		   Sidebar.init();
 		});
 	</script>
 	<!-- END JAVASCRIPTS -->

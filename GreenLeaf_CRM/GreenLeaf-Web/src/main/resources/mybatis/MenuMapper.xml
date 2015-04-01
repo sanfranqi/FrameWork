@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.greenleaf.crm.dao.MenuDAO" >
+<!--   <resultMap id="BaseResultMap" type="com.greenleaf.crm.bean.Menu" > -->
+<!--     <id column="ID" property="id" jdbcType="INTEGER" /> -->
+<!--     <result column="MENU_NAME" property="menuName" jdbcType="VARCHAR" /> -->
+<!--     <result column="PARENT_ID" property="parentId" jdbcType="INTEGER" /> -->
+<!--     <result column="SORT" property="sort" jdbcType="INTEGER" /> -->
+<!--     <result column="ICON" property="icon" jdbcType="VARCHAR" /> -->
+<!--     <result column="METHOD" property="method" jdbcType="VARCHAR" /> -->
+<!--     <result column="EXPAND" property="expand" jdbcType="VARCHAR" /> -->
+<!--     <result column="GROUP_ID" property="groupId" jdbcType="INTEGER" /> -->
+<!--   </resultMap> -->
+<!--   <sql id="Base_Column_List" > -->
+<!--     ID, MENU_NAME, PARENT_ID, SORT, ICON, METHOD, EXPAND, GROUP_ID -->
+<!--   </sql> -->
+<!--   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" > -->
+<!--     select  -->
+<!--     <include refid="Base_Column_List" /> -->
+<!--     from menu -->
+<!--     where ID = #{id,jdbcType=INTEGER} -->
+<!--   </select> -->
+<!--   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" > -->
+<!--     delete from menu -->
+<!--     where ID = #{id,jdbcType=INTEGER} -->
+<!--   </delete> -->
+<!--   <insert id="insert" parameterType="com.greenleaf.crm.bean.Menu" > -->
+<!--     insert into menu (ID, MENU_NAME, PARENT_ID,  -->
+<!--       SORT, ICON, METHOD,  -->
+<!--       EXPAND, GROUP_ID) -->
+<!--     values (#{id,jdbcType=INTEGER}, #{menuName,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER},  -->
+<!--       #{sort,jdbcType=INTEGER}, #{icon,jdbcType=VARCHAR}, #{method,jdbcType=VARCHAR},  -->
+<!--       #{expand,jdbcType=VARCHAR}, #{groupId,jdbcType=INTEGER}) -->
+<!--   </insert> -->
+<!--   <insert id="insertSelective" parameterType="com.greenleaf.crm.bean.Menu" > -->
+<!--     insert into menu -->
+<!--     <trim prefix="(" suffix=")" suffixOverrides="," > -->
+<!--       <if test="id != null" > -->
+<!--         ID, -->
+<!--       </if> -->
+<!--       <if test="menuName != null" > -->
+<!--         MENU_NAME, -->
+<!--       </if> -->
+<!--       <if test="parentId != null" > -->
+<!--         PARENT_ID, -->
+<!--       </if> -->
+<!--       <if test="sort != null" > -->
+<!--         SORT, -->
+<!--       </if> -->
+<!--       <if test="icon != null" > -->
+<!--         ICON, -->
+<!--       </if> -->
+<!--       <if test="method != null" > -->
+<!--         METHOD, -->
+<!--       </if> -->
+<!--       <if test="expand != null" > -->
+<!--         EXPAND, -->
+<!--       </if> -->
+<!--       <if test="groupId != null" > -->
+<!--         GROUP_ID, -->
+<!--       </if> -->
+<!--     </trim> -->
+<!--     <trim prefix="values (" suffix=")" suffixOverrides="," > -->
+<!--       <if test="id != null" > -->
+<!--         #{id,jdbcType=INTEGER}, -->
+<!--       </if> -->
+<!--       <if test="menuName != null" > -->
+<!--         #{menuName,jdbcType=VARCHAR}, -->
+<!--       </if> -->
+<!--       <if test="parentId != null" > -->
+<!--         #{parentId,jdbcType=INTEGER}, -->
+<!--       </if> -->
+<!--       <if test="sort != null" > -->
+<!--         #{sort,jdbcType=INTEGER}, -->
+<!--       </if> -->
+<!--       <if test="icon != null" > -->
+<!--         #{icon,jdbcType=VARCHAR}, -->
+<!--       </if> -->
+<!--       <if test="method != null" > -->
+<!--         #{method,jdbcType=VARCHAR}, -->
+<!--       </if> -->
+<!--       <if test="expand != null" > -->
+<!--         #{expand,jdbcType=VARCHAR}, -->
+<!--       </if> -->
+<!--       <if test="groupId != null" > -->
+<!--         #{groupId,jdbcType=INTEGER}, -->
+<!--       </if> -->
+<!--     </trim> -->
+<!--   </insert> -->
+<!--   <update id="updateByPrimaryKeySelective" parameterType="com.greenleaf.crm.bean.Menu" > -->
+<!--     update menu -->
+<!--     <set > -->
+<!--       <if test="menuName != null" > -->
+<!--         MENU_NAME = #{menuName,jdbcType=VARCHAR}, -->
+<!--       </if> -->
+<!--       <if test="parentId != null" > -->
+<!--         PARENT_ID = #{parentId,jdbcType=INTEGER}, -->
+<!--       </if> -->
+<!--       <if test="sort != null" > -->
+<!--         SORT = #{sort,jdbcType=INTEGER}, -->
+<!--       </if> -->
+<!--       <if test="icon != null" > -->
+<!--         ICON = #{icon,jdbcType=VARCHAR}, -->
+<!--       </if> -->
+<!--       <if test="method != null" > -->
+<!--         METHOD = #{method,jdbcType=VARCHAR}, -->
+<!--       </if> -->
+<!--       <if test="expand != null" > -->
+<!--         EXPAND = #{expand,jdbcType=VARCHAR}, -->
+<!--       </if> -->
+<!--       <if test="groupId != null" > -->
+<!--         GROUP_ID = #{groupId,jdbcType=INTEGER}, -->
+<!--       </if> -->
+<!--     </set> -->
+<!--     where ID = #{id,jdbcType=INTEGER} -->
+<!--   </update> -->
+<!--   <update id="updateByPrimaryKey" parameterType="com.greenleaf.crm.bean.Menu" > -->
+<!--     update menu -->
+<!--     set MENU_NAME = #{menuName,jdbcType=VARCHAR}, -->
+<!--       PARENT_ID = #{parentId,jdbcType=INTEGER}, -->
+<!--       SORT = #{sort,jdbcType=INTEGER}, -->
+<!--       ICON = #{icon,jdbcType=VARCHAR}, -->
+<!--       METHOD = #{method,jdbcType=VARCHAR}, -->
+<!--       EXPAND = #{expand,jdbcType=VARCHAR}, -->
+<!--       GROUP_ID = #{groupId,jdbcType=INTEGER} -->
+<!--     where ID = #{id,jdbcType=INTEGER} -->
+<!--   </update> -->
+</mapper>
