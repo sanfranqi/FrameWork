@@ -2,17 +2,24 @@ package com.greenleaf.common.mybatis.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.ApplicationContextAware;
 
 import com.greenleaf.common.mybatis.dao.BaseDAO;
 import com.greenleaf.common.mybatis.dao.MysqlBaseDAO;
+import com.greenleaf.common.utils.ClassUtil;
 
-public class MysqlBaseService<T> extends BaseService<T> implements ApplicationContextAware {
+public class MysqlBaseService<T> extends BaseService<T> {
 
 	private final static Logger logger = LoggerFactory.getLogger(MysqlBaseService.class);
 
 	public MysqlBaseService() {
-		super();
+		System.out.println("||" + this.getClass());
+		System.out.println("||" + ClassUtil.getActualType(this.getClass()));
+		Class<T> type = ClassUtil.getActualType(this.getClass());
+		if (type == null) {
+			throw new RuntimeException("继承类没有加泛型!");
+		}
+
+		this.t = type;
 	}
 
 	@Override

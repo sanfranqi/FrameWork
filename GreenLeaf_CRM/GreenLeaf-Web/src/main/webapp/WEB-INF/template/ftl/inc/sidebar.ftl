@@ -23,34 +23,11 @@
 					</form> -->
 					<!-- END RESPONSIVE QUICK SEARCH FORM -->
 				<!-- </li> -->
-				<li class="start active ">
-					<a href="index.html">
+				<li class="start active" id="menu_index">
+					<a href="/index.html">
 					<i class="fa fa-home"></i> 
 					<span class="title">Dashboard</span>
 					<span class="selected"></span>
-					</a>
-				</li>
-				<li class="">
-					<a href="javascript:;">
-					<i class="fa fa-map-marker"></i> 
-					<span class="title">Maps</span>
-					<span class="arrow "></span>
-					</a>
-					<ul class="sub-menu">
-						<li >
-							<a href="maps_google.html">
-							Google Maps</a>
-						</li>
-						<li >
-							<a href="maps_vector.html">
-							Vector Maps</a>
-						</li>
-					</ul>
-				</li>
-				<li class="last ">
-					<a href="charts.html">
-					<i class="fa fa-bar-chart-o"></i> 
-					<span class="title">Visual Charts</span>
 					</a>
 				</li>
 			</ul>

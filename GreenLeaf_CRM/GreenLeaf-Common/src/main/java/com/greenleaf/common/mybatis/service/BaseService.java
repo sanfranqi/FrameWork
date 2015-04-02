@@ -15,24 +15,23 @@ import org.springframework.context.ApplicationContextAware;
 import com.greenleaf.common.mybatis.bean.Paged;
 import com.greenleaf.common.mybatis.bean.Query;
 import com.greenleaf.common.mybatis.dao.BaseDAO;
-import com.greenleaf.common.utils.ClassUtil;
 import com.greenleaf.common.utils.ColumnUtils;
 import com.greenleaf.common.utils.ObjectUtil;
 
-public abstract class BaseService<T> implements ApplicationContextAware {
+public class BaseService<T> implements ApplicationContextAware {
 	private final static Logger logger = LoggerFactory.getLogger(BaseService.class);
 
 	protected Class<T> t;
 	private ApplicationContext applicationContext;
 
 	public BaseService() {
-		Class<T> type = ClassUtil.getActualType(this.getClass());
-
-		if (type == null) {
-			throw new RuntimeException("继承类没有加泛型!");
-		}
-
-		this.t = type;
+		// Class<T> type = ClassUtil.getActualType(this.getClass());
+		//
+		// if (type == null) {
+		// throw new RuntimeException("继承类没有加泛型!");
+		// }
+		//
+		// this.t = type;
 
 	}
 

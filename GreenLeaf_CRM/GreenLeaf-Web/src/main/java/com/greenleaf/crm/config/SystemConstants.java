@@ -11,4 +11,9 @@ public class SystemConstants {
 	public static final String LOGIN_URL = "login";
 	public static final String INDEX_URL = "index";
 
+	public static final String DISABLE = "0";
+	public static final String ENABLE = "1";
+	public static final String DELETED = "0";
+	public static final String NO_DELETE = "1";
+
 }

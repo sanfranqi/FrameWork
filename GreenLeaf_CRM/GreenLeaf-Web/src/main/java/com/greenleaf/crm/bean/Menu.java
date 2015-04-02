@@ -3,6 +3,9 @@ package com.greenleaf.crm.bean;
 import com.greenleaf.common.mybatis.annotation.Id;
 import com.greenleaf.common.mybatis.annotation.Table;
 
+/**
+ * @author QiSF 2015-04-02
+ */
 @Table("menu")
 public class Menu {
 	@Id
@@ -18,9 +21,17 @@ public class Menu {
 
 	private String method;
 
-	private String expand;
+	private String keyName;
 
 	private Integer groupId;
+	/**
+	 * 0:disable;1:enable
+	 */
+	private String ableFlag;
+	/**
+	 * 0:deleted;1:normal
+	 */
+	private String deleteFlag;
 
 	public Integer getId() {
 		return id;
@@ -70,12 +81,12 @@ public class Menu {
 		this.method = method == null ? null : method.trim();
 	}
 
-	public String getExpand() {
-		return expand;
+	public String getKeyName() {
+		return keyName;
 	}
 
-	public void setExpand(String expand) {
-		this.expand = expand == null ? null : expand.trim();
+	public void setKeyName(String keyName) {
+		this.keyName = keyName;
 	}
 
 	public Integer getGroupId() {
@@ -84,5 +95,27 @@ public class Menu {
 
 	public void setGroupId(Integer groupId) {
 		this.groupId = groupId;
+	}
+
+	public String getAbleFlag() {
+		return ableFlag;
+	}
+
+	public void setAbleFlag(String ableFlag) {
+		this.ableFlag = ableFlag;
+	}
+
+	public String getDeleteFlag() {
+		return deleteFlag;
+	}
+
+	public void setDeleteFlag(String deleteFlag) {
+		this.deleteFlag = deleteFlag;
+	}
+
+	@Override
+	public String toString() {
+		return "Menu [id=" + id + ", menuName=" + menuName + ", parentId=" + parentId + ", sort=" + sort + ", icon=" + icon + ", method=" + method + ", keyName=" + keyName + ", groupId=" + groupId
+				+ ", ableFlag=" + ableFlag + ", deleteFlag=" + deleteFlag + "]";
 	}
 }

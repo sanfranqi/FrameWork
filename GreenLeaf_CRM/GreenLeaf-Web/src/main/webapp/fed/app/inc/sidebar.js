@@ -1,27 +1,25 @@
 /**
  * Core script to handle the sidebar
  */
-var Sidebar = function() {
-
+var SideBar = function() {
+	
 	// init Menus
-	var initMenus = function() {
-		getMenuTree();
+	var initMenus = function(menuLink) {
+		getMenuTree(menuLink);
 	}
 
 	// get menu tree
-	var getMenuTree = function() {
+	var getMenuTree = function(menuLink) {
 
 		var url = "/menu/queryMenuList.do";
 		var data = {};
-
 		io.get(url, data, function(returnData) {
-			createMenus(returnData);
+			createMenus(returnData,menuLink);
 		});
 	};
 
 	// create menus
-	var createMenus = function(menuJson) {
-		// $(".active").removeClass("active");
+	var createMenus = function(menuJson,menuLink) {
 		if (!menuJson) {
 			return;
 		}
@@ -35,13 +33,11 @@ var Sidebar = function() {
 			var parentMenu = menuList[i];
 			if (parentMenu.parentId == 0) {
 				var liClass = "";
-				// if (i == 0) {
-				// liClass = "active";
-				// }
-				li += "<li class=\""
-						+ liClass
-						+ "\"><a href=\"index.html\"><i class=\"fa fa-home\"></i><span class=\"title\">"
-						+ parentMenu.menuName + "</span>";
+				li += "<li class=\"" + liClass + "\" id =\"" + parentMenu.keyName
+						+ "\"><a href=\"" + parentMenu.method
+						+ "\"><i class=\"fa " + parentMenu.icon
+						+ "\"></i><span class=\"title\">" + parentMenu.menuName
+						+ "</span>";
 				var hasChild = false;
 				var childLi = "";
 				for (var j = 1; j < menuList.length; j++) {
@@ -49,7 +45,8 @@ var Sidebar = function() {
 					if (childMenu.parentId != 0
 							&& parentMenu.id == childMenu.parentId) {
 						hasChild = true;
-						childLi += "<li><a href=\"index.html\">"
+						childLi += "<li id =\"" + childMenu.keyName
+								+ "\"><a href=\"" + childMenu.method + "\">"
 								+ childMenu.menuName + "</li>"
 					}
 				}
@@ -62,13 +59,31 @@ var Sidebar = function() {
 				li += "</li>";
 			}
 		}
+		//add menus
 		$(".page-sidebar-menu").append(li);
+		//remove old style
+		$(".active").removeClass("active");
+		$(".open").removeClass("open");
+		$("span.selected").remove();
+		//get select menu
+		var clickMenu = $("#"+menuLink);
+		//add select menu active
+		clickMenu.addClass("active");
+		//get parent li tag
+		var parentLi = clickMenu.parent().parent("li");
+		if(parentLi.length>0){// has parent
+			parentLi.addClass("active");
+			parentLi.children("a").children("span.arrow").addClass("open");
+			parentLi.children("a").append("<span class=\"selected\"></span>");
+		}else{//no parent
+			clickMenu.children("a").append("<span class=\"selected\"></span>");
+		}
 	};
 
 	return {
 
-		init : function() {
-			initMenus();
+		init : function(menuLink) {
+			initMenus(menuLink);
 		}
 
 	};
