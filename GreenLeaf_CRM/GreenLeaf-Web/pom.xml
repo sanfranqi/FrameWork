@@ -99,7 +99,6 @@
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
-			<version>${aspectj_version}</version>
 		</dependency>
 		<!-- mybatis -->
 		<dependency>
@@ -114,7 +113,6 @@
 		<dependency>
 			<groupId>c3p0</groupId>
 			<artifactId>c3p0</artifactId>
-			<version>${c3p0.version}</version>
 		</dependency>
 		<!-- mysql -->
 		<dependency>
@@ -125,6 +123,11 @@
 		<dependency>
 			<groupId>org.freemarker</groupId>
 			<artifactId>freemarker</artifactId>
+		</dependency>
+		<!-- cglib -->
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
 		</dependency>
 	</dependencies>
 

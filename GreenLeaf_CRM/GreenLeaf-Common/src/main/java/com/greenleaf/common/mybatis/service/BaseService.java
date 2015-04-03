@@ -15,6 +15,7 @@ import org.springframework.context.ApplicationContextAware;
 import com.greenleaf.common.mybatis.bean.Paged;
 import com.greenleaf.common.mybatis.bean.Query;
 import com.greenleaf.common.mybatis.dao.BaseDAO;
+import com.greenleaf.common.utils.ClassUtil;
 import com.greenleaf.common.utils.ColumnUtils;
 import com.greenleaf.common.utils.ObjectUtil;
 
@@ -25,13 +26,13 @@ public class BaseService<T> implements ApplicationContextAware {
 	private ApplicationContext applicationContext;
 
 	public BaseService() {
-		// Class<T> type = ClassUtil.getActualType(this.getClass());
-		//
-		// if (type == null) {
-		// throw new RuntimeException("继承类没有加泛型!");
-		// }
-		//
-		// this.t = type;
+		Class<T> type = ClassUtil.getActualType(this.getClass());
+
+		if (type == null) {
+			throw new RuntimeException("继承类没有加泛型!");
+		}
+
+		this.t = type;
 
 	}
 
@@ -132,7 +133,7 @@ public class BaseService<T> implements ApplicationContextAware {
 	@SuppressWarnings("unchecked")
 	public List<T> findAll() {
 		try {
-			Query<T> query = Query.build(t);
+			Query query = Query.build(t);
 			List<T> objects = findByQuery(query);
 			return objects;
 		} catch (Exception e) {

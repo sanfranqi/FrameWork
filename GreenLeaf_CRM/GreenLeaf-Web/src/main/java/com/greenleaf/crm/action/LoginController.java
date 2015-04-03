@@ -35,20 +35,20 @@ public class LoginController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
-	public Response<String> login(String userName, String password) {
-		if (ObjectUtil.isEmpty(userName))
+	public Response<String> login(String userNo, String password) {
+		if (ObjectUtil.isEmpty(userNo))
 			return Response.getFailedResponse("name不能为空!");
 		try {
-			if (userName.equals("test")) {
+			if (userNo.equals("test")) {
 				User user = new User();
-				user.setName(userName);
+				user.setUserNo(userNo);
 				WebContext.setLoginSession(user);
 				return Response.getSuccessResponse();
 			} else {
 				return Response.getFailedResponse("用户不存在！");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 			return Response.getFailedResponse(e.getMessage());
 		}
 	}
@@ -66,7 +66,7 @@ public class LoginController {
 			WebContext.remove();
 			return Response.getSuccessResponse(true);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 			return Response.getFailedResponse(e.getMessage());
 		}
 	}

@@ -5,21 +5,13 @@ import org.slf4j.LoggerFactory;
 
 import com.greenleaf.common.mybatis.dao.BaseDAO;
 import com.greenleaf.common.mybatis.dao.MysqlBaseDAO;
-import com.greenleaf.common.utils.ClassUtil;
 
 public class MysqlBaseService<T> extends BaseService<T> {
 
 	private final static Logger logger = LoggerFactory.getLogger(MysqlBaseService.class);
 
 	public MysqlBaseService() {
-		System.out.println("||" + this.getClass());
-		System.out.println("||" + ClassUtil.getActualType(this.getClass()));
-		Class<T> type = ClassUtil.getActualType(this.getClass());
-		if (type == null) {
-			throw new RuntimeException("继承类没有加泛型!");
-		}
-
-		this.t = type;
+		super();
 	}
 
 	@Override

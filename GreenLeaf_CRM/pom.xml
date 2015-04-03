@@ -15,20 +15,20 @@
 	</modules>
 
 	<!-- 配置远程发布到私服，mvn deploy -->
-	<distributionManagement>
-		<!-- 正式版发布仓库 -->
-		<repository>
-			<id>releases</id>
-			<name>Nexus Release Repository</name>
-			<url>http://10.59.94.24:8081/nexus/content/repositories/releases</url>
-		</repository>
-		<!-- 快照版发布仓库 -->
-		<snapshotRepository>
-			<id>snapshots</id>
-			<name>Nexus Snapshot Repository</name>
-			<url>http://10.59.94.24:8081/nexus/content/repositories/snapshots</url>
-		</snapshotRepository>
-	</distributionManagement>
+	<!-- <distributionManagement> -->
+	<!-- 正式版发布仓库 -->
+	<!-- <repository> -->
+	<!-- <id>releases</id> -->
+	<!-- <name>Nexus Release Repository</name> -->
+	<!-- <url>http://10.59.94.24:8081/nexus/content/repositories/releases</url> -->
+	<!-- </repository> -->
+	<!-- 快照版发布仓库 -->
+	<!-- <snapshotRepository> -->
+	<!-- <id>snapshots</id> -->
+	<!-- <name>Nexus Snapshot Repository</name> -->
+	<!-- <url>http://10.59.94.24:8081/nexus/content/repositories/snapshots</url> -->
+	<!-- </snapshotRepository> -->
+	<!-- </distributionManagement> -->
 
 
 	<properties>
@@ -341,7 +341,7 @@
 			<dependency>
 				<groupId>cglib</groupId>
 				<artifactId>cglib</artifactId>
-				<version>${cglib_version}</version>
+				<version>${cglib.version}</version>
 			</dependency>
 			<!-- mybatis -->
 			<dependency>

@@ -175,7 +175,10 @@ public class ClassUtil {
 	 */
 	@SuppressWarnings("rawtypes")
 	public static boolean isCGLibProxy(Class type) {
-		return type.getName().contains("EnhancerByCGLIB");
+		if (type.getName().contains("EnhancerByCGLIB") || type.getName().contains("EnhancerBySpringCGLIB")) {
+			return true;
+		}
+		return false;
 	}
 
 	/**

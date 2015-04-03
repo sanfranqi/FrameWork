@@ -36,7 +36,7 @@ public class UserController {
 			return Response.getFailedResponse("name不能为空!");
 		try {
 			User user = new User();
-			user.setName(name);
+			user.setUserNo(name);
 			return Response.getSuccessResponse(userService.insert(user));
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -87,7 +87,7 @@ public class UserController {
 		try {
 			User user = new User();
 			user.setId(id);
-			user.setName(name);
+			user.setUserNo(name);
 			userService.update(user);
 			return Response.getSuccessResponse(true);
 		} catch (Exception e) {

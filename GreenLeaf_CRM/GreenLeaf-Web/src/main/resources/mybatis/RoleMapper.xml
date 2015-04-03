@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.greenleaf.crm.dao.RoleMapper" >
+  <resultMap id="BaseResultMap" type="com.greenleaf.crm.bean.Role" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="ROLE_NAME" property="roleName" jdbcType="VARCHAR" />
+    <result column="COMMENTS" property="comments" jdbcType="VARCHAR" />
+    <result column="ADD_USER" property="addUser" jdbcType="INTEGER" />
+    <result column="ADD_TIME" property="addTime" jdbcType="BIGINT" />
+    <result column="UPDATE_USER" property="updateUser" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="BIGINT" />
+    <result column="ABLE_FLAG" property="ableFlag" jdbcType="CHAR" />
+    <result column="DELETE_FLAG" property="deleteFlag" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ROLE_NAME, COMMENTS, ADD_USER, ADD_TIME, UPDATE_USER, UPDATE_TIME, ABLE_FLAG, 
+    DELETE_FLAG
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from role
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from role
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.greenleaf.crm.bean.Role" >
+    insert into role (ID, ROLE_NAME, COMMENTS, 
+      ADD_USER, ADD_TIME, UPDATE_USER, 
+      UPDATE_TIME, ABLE_FLAG, DELETE_FLAG
+      )
+    values (#{id,jdbcType=INTEGER}, #{roleName,jdbcType=VARCHAR}, #{comments,jdbcType=VARCHAR}, 
+      #{addUser,jdbcType=INTEGER}, #{addTime,jdbcType=BIGINT}, #{updateUser,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=BIGINT}, #{ableFlag,jdbcType=CHAR}, #{deleteFlag,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.greenleaf.crm.bean.Role" >
+    insert into role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="roleName != null" >
+        ROLE_NAME,
+      </if>
+      <if test="comments != null" >
+        COMMENTS,
+      </if>
+      <if test="addUser != null" >
+        ADD_USER,
+      </if>
+      <if test="addTime != null" >
+        ADD_TIME,
+      </if>
+      <if test="updateUser != null" >
+        UPDATE_USER,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="ableFlag != null" >
+        ABLE_FLAG,
+      </if>
+      <if test="deleteFlag != null" >
+        DELETE_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="roleName != null" >
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="comments != null" >
+        #{comments,jdbcType=VARCHAR},
+      </if>
+      <if test="addUser != null" >
+        #{addUser,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="ableFlag != null" >
+        #{ableFlag,jdbcType=CHAR},
+      </if>
+      <if test="deleteFlag != null" >
+        #{deleteFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.greenleaf.crm.bean.Role" >
+    update role
+    <set >
+      <if test="roleName != null" >
+        ROLE_NAME = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="comments != null" >
+        COMMENTS = #{comments,jdbcType=VARCHAR},
+      </if>
+      <if test="addUser != null" >
+        ADD_USER = #{addUser,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        ADD_TIME = #{addTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateUser != null" >
+        UPDATE_USER = #{updateUser,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="ableFlag != null" >
+        ABLE_FLAG = #{ableFlag,jdbcType=CHAR},
+      </if>
+      <if test="deleteFlag != null" >
+        DELETE_FLAG = #{deleteFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.greenleaf.crm.bean.Role" >
+    update role
+    set ROLE_NAME = #{roleName,jdbcType=VARCHAR},
+      COMMENTS = #{comments,jdbcType=VARCHAR},
+      ADD_USER = #{addUser,jdbcType=INTEGER},
+      ADD_TIME = #{addTime,jdbcType=BIGINT},
+      UPDATE_USER = #{updateUser,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=BIGINT},
+      ABLE_FLAG = #{ableFlag,jdbcType=CHAR},
+      DELETE_FLAG = #{deleteFlag,jdbcType=CHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

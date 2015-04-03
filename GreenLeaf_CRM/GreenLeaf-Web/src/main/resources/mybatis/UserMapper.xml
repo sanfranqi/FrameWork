@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.greenleaf.crm.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.greenleaf.crm.bean.User" >
+    <id column="USER_ID" property="userId" jdbcType="INTEGER" />
+    <result column="USER_NO" property="userNo" jdbcType="VARCHAR" />
+    <result column="COMPANY" property="company" jdbcType="VARCHAR" />
+    <result column="FULL_NAME" property="fullName" jdbcType="VARCHAR" />
+    <result column="NAME_CODE" property="nameCode" jdbcType="VARCHAR" />
+    <result column="USER_PWD" property="userPwd" jdbcType="VARCHAR" />
+    <result column="IDENTIFICATION" property="identification" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="MOBILE" property="mobile" jdbcType="VARCHAR" />
+    <result column="TELEPHONE" property="telephone" jdbcType="VARCHAR" />
+    <result column="MARRY_FLAG" property="marryFlag" jdbcType="CHAR" />
+    <result column="QQ" property="qq" jdbcType="VARCHAR" />
+    <result column="POSITION" property="position" jdbcType="INTEGER" />
+    <result column="USER_RANK" property="userRank" jdbcType="INTEGER" />
+    <result column="JOIN_DATE" property="joinDate" jdbcType="BIGINT" />
+    <result column="REGULARIZE_DATE" property="regularizeDate" jdbcType="BIGINT" />
+    <result column="CONTR_BEGIN_DATE" property="contrBeginDate" jdbcType="BIGINT" />
+    <result column="CONTR_END_DATE" property="contrEndDate" jdbcType="BIGINT" />
+    <result column="GENDER" property="gender" jdbcType="CHAR" />
+    <result column="USER_REGION" property="userRegion" jdbcType="VARCHAR" />
+    <result column="OCCUP_STATE" property="occupState" jdbcType="CHAR" />
+    <result column="DEPART" property="depart" jdbcType="INTEGER" />
+    <result column="WORK_PLACE" property="workPlace" jdbcType="VARCHAR" />
+    <result column="AVATAR" property="avatar" jdbcType="VARCHAR" />
+    <result column="BIRTHDAY" property="birthday" jdbcType="BIGINT" />
+    <result column="PWD_LAST_SET" property="pwdLastSet" jdbcType="BIGINT" />
+    <result column="COMMENTS" property="comments" jdbcType="VARCHAR" />
+    <result column="ADD_USER" property="addUser" jdbcType="INTEGER" />
+    <result column="ADD_TIME" property="addTime" jdbcType="BIGINT" />
+    <result column="UPDATE_USER" property="updateUser" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="BIGINT" />
+    <result column="ENABLE_FLAG" property="enableFlag" jdbcType="CHAR" />
+    <result column="DELETE_FLAG" property="deleteFlag" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    USER_ID, USER_NO, COMPANY, FULL_NAME, NAME_CODE, USER_PWD, IDENTIFICATION, EMAIL, 
+    MOBILE, TELEPHONE, MARRY_FLAG, QQ, POSITION, USER_RANK, JOIN_DATE, REGULARIZE_DATE, 
+    CONTR_BEGIN_DATE, CONTR_END_DATE, GENDER, USER_REGION, OCCUP_STATE, DEPART, WORK_PLACE, 
+    AVATAR, BIRTHDAY, PWD_LAST_SET, COMMENTS, ADD_USER, ADD_TIME, UPDATE_USER, UPDATE_TIME, 
+    ENABLE_FLAG, DELETE_FLAG
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where USER_ID = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user
+    where USER_ID = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.greenleaf.crm.bean.User" >
+    insert into user (USER_ID, USER_NO, COMPANY, 
+      FULL_NAME, NAME_CODE, USER_PWD, 
+      IDENTIFICATION, EMAIL, MOBILE, 
+      TELEPHONE, MARRY_FLAG, QQ, 
+      POSITION, USER_RANK, JOIN_DATE, 
+      REGULARIZE_DATE, CONTR_BEGIN_DATE, CONTR_END_DATE, 
+      GENDER, USER_REGION, OCCUP_STATE, 
+      DEPART, WORK_PLACE, AVATAR, 
+      BIRTHDAY, PWD_LAST_SET, COMMENTS, 
+      ADD_USER, ADD_TIME, UPDATE_USER, 
+      UPDATE_TIME, ENABLE_FLAG, DELETE_FLAG
+      )
+    values (#{userId,jdbcType=INTEGER}, #{userNo,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR}, 
+      #{fullName,jdbcType=VARCHAR}, #{nameCode,jdbcType=VARCHAR}, #{userPwd,jdbcType=VARCHAR}, 
+      #{identification,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{telephone,jdbcType=VARCHAR}, #{marryFlag,jdbcType=CHAR}, #{qq,jdbcType=VARCHAR}, 
+      #{position,jdbcType=INTEGER}, #{userRank,jdbcType=INTEGER}, #{joinDate,jdbcType=BIGINT}, 
+      #{regularizeDate,jdbcType=BIGINT}, #{contrBeginDate,jdbcType=BIGINT}, #{contrEndDate,jdbcType=BIGINT}, 
+      #{gender,jdbcType=CHAR}, #{userRegion,jdbcType=VARCHAR}, #{occupState,jdbcType=CHAR}, 
+      #{depart,jdbcType=INTEGER}, #{workPlace,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR}, 
+      #{birthday,jdbcType=BIGINT}, #{pwdLastSet,jdbcType=BIGINT}, #{comments,jdbcType=VARCHAR}, 
+      #{addUser,jdbcType=INTEGER}, #{addTime,jdbcType=BIGINT}, #{updateUser,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=BIGINT}, #{enableFlag,jdbcType=CHAR}, #{deleteFlag,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.greenleaf.crm.bean.User" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="userNo != null" >
+        USER_NO,
+      </if>
+      <if test="company != null" >
+        COMPANY,
+      </if>
+      <if test="fullName != null" >
+        FULL_NAME,
+      </if>
+      <if test="nameCode != null" >
+        NAME_CODE,
+      </if>
+      <if test="userPwd != null" >
+        USER_PWD,
+      </if>
+      <if test="identification != null" >
+        IDENTIFICATION,
+      </if>
+      <if test="email != null" >
+        EMAIL,
+      </if>
+      <if test="mobile != null" >
+        MOBILE,
+      </if>
+      <if test="telephone != null" >
+        TELEPHONE,
+      </if>
+      <if test="marryFlag != null" >
+        MARRY_FLAG,
+      </if>
+      <if test="qq != null" >
+        QQ,
+      </if>
+      <if test="position != null" >
+        POSITION,
+      </if>
+      <if test="userRank != null" >
+        USER_RANK,
+      </if>
+      <if test="joinDate != null" >
+        JOIN_DATE,
+      </if>
+      <if test="regularizeDate != null" >
+        REGULARIZE_DATE,
+      </if>
+      <if test="contrBeginDate != null" >
+        CONTR_BEGIN_DATE,
+      </if>
+      <if test="contrEndDate != null" >
+        CONTR_END_DATE,
+      </if>
+      <if test="gender != null" >
+        GENDER,
+      </if>
+      <if test="userRegion != null" >
+        USER_REGION,
+      </if>
+      <if test="occupState != null" >
+        OCCUP_STATE,
+      </if>
+      <if test="depart != null" >
+        DEPART,
+      </if>
+      <if test="workPlace != null" >
+        WORK_PLACE,
+      </if>
+      <if test="avatar != null" >
+        AVATAR,
+      </if>
+      <if test="birthday != null" >
+        BIRTHDAY,
+      </if>
+      <if test="pwdLastSet != null" >
+        PWD_LAST_SET,
+      </if>
+      <if test="comments != null" >
+        COMMENTS,
+      </if>
+      <if test="addUser != null" >
+        ADD_USER,
+      </if>
+      <if test="addTime != null" >
+        ADD_TIME,
+      </if>
+      <if test="updateUser != null" >
+        UPDATE_USER,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="enableFlag != null" >
+        ENABLE_FLAG,
+      </if>
+      <if test="deleteFlag != null" >
+        DELETE_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userNo != null" >
+        #{userNo,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null" >
+        #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="fullName != null" >
+        #{fullName,jdbcType=VARCHAR},
+      </if>
+      <if test="nameCode != null" >
+        #{nameCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userPwd != null" >
+        #{userPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="identification != null" >
+        #{identification,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="marryFlag != null" >
+        #{marryFlag,jdbcType=CHAR},
+      </if>
+      <if test="qq != null" >
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=INTEGER},
+      </if>
+      <if test="userRank != null" >
+        #{userRank,jdbcType=INTEGER},
+      </if>
+      <if test="joinDate != null" >
+        #{joinDate,jdbcType=BIGINT},
+      </if>
+      <if test="regularizeDate != null" >
+        #{regularizeDate,jdbcType=BIGINT},
+      </if>
+      <if test="contrBeginDate != null" >
+        #{contrBeginDate,jdbcType=BIGINT},
+      </if>
+      <if test="contrEndDate != null" >
+        #{contrEndDate,jdbcType=BIGINT},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=CHAR},
+      </if>
+      <if test="userRegion != null" >
+        #{userRegion,jdbcType=VARCHAR},
+      </if>
+      <if test="occupState != null" >
+        #{occupState,jdbcType=CHAR},
+      </if>
+      <if test="depart != null" >
+        #{depart,jdbcType=INTEGER},
+      </if>
+      <if test="workPlace != null" >
+        #{workPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="avatar != null" >
+        #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=BIGINT},
+      </if>
+      <if test="pwdLastSet != null" >
+        #{pwdLastSet,jdbcType=BIGINT},
+      </if>
+      <if test="comments != null" >
+        #{comments,jdbcType=VARCHAR},
+      </if>
+      <if test="addUser != null" >
+        #{addUser,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="enableFlag != null" >
+        #{enableFlag,jdbcType=CHAR},
+      </if>
+      <if test="deleteFlag != null" >
+        #{deleteFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.greenleaf.crm.bean.User" >
+    update user
+    <set >
+      <if test="userNo != null" >
+        USER_NO = #{userNo,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null" >
+        COMPANY = #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="fullName != null" >
+        FULL_NAME = #{fullName,jdbcType=VARCHAR},
+      </if>
+      <if test="nameCode != null" >
+        NAME_CODE = #{nameCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userPwd != null" >
+        USER_PWD = #{userPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="identification != null" >
+        IDENTIFICATION = #{identification,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        MOBILE = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        TELEPHONE = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="marryFlag != null" >
+        MARRY_FLAG = #{marryFlag,jdbcType=CHAR},
+      </if>
+      <if test="qq != null" >
+        QQ = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        POSITION = #{position,jdbcType=INTEGER},
+      </if>
+      <if test="userRank != null" >
+        USER_RANK = #{userRank,jdbcType=INTEGER},
+      </if>
+      <if test="joinDate != null" >
+        JOIN_DATE = #{joinDate,jdbcType=BIGINT},
+      </if>
+      <if test="regularizeDate != null" >
+        REGULARIZE_DATE = #{regularizeDate,jdbcType=BIGINT},
+      </if>
+      <if test="contrBeginDate != null" >
+        CONTR_BEGIN_DATE = #{contrBeginDate,jdbcType=BIGINT},
+      </if>
+      <if test="contrEndDate != null" >
+        CONTR_END_DATE = #{contrEndDate,jdbcType=BIGINT},
+      </if>
+      <if test="gender != null" >
+        GENDER = #{gender,jdbcType=CHAR},
+      </if>
+      <if test="userRegion != null" >
+        USER_REGION = #{userRegion,jdbcType=VARCHAR},
+      </if>
+      <if test="occupState != null" >
+        OCCUP_STATE = #{occupState,jdbcType=CHAR},
+      </if>
+      <if test="depart != null" >
+        DEPART = #{depart,jdbcType=INTEGER},
+      </if>
+      <if test="workPlace != null" >
+        WORK_PLACE = #{workPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="avatar != null" >
+        AVATAR = #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        BIRTHDAY = #{birthday,jdbcType=BIGINT},
+      </if>
+      <if test="pwdLastSet != null" >
+        PWD_LAST_SET = #{pwdLastSet,jdbcType=BIGINT},
+      </if>
+      <if test="comments != null" >
+        COMMENTS = #{comments,jdbcType=VARCHAR},
+      </if>
+      <if test="addUser != null" >
+        ADD_USER = #{addUser,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        ADD_TIME = #{addTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateUser != null" >
+        UPDATE_USER = #{updateUser,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="enableFlag != null" >
+        ENABLE_FLAG = #{enableFlag,jdbcType=CHAR},
+      </if>
+      <if test="deleteFlag != null" >
+        DELETE_FLAG = #{deleteFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where USER_ID = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.greenleaf.crm.bean.User" >
+    update user
+    set USER_NO = #{userNo,jdbcType=VARCHAR},
+      COMPANY = #{company,jdbcType=VARCHAR},
+      FULL_NAME = #{fullName,jdbcType=VARCHAR},
+      NAME_CODE = #{nameCode,jdbcType=VARCHAR},
+      USER_PWD = #{userPwd,jdbcType=VARCHAR},
+      IDENTIFICATION = #{identification,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      MOBILE = #{mobile,jdbcType=VARCHAR},
+      TELEPHONE = #{telephone,jdbcType=VARCHAR},
+      MARRY_FLAG = #{marryFlag,jdbcType=CHAR},
+      QQ = #{qq,jdbcType=VARCHAR},
+      POSITION = #{position,jdbcType=INTEGER},
+      USER_RANK = #{userRank,jdbcType=INTEGER},
+      JOIN_DATE = #{joinDate,jdbcType=BIGINT},
+      REGULARIZE_DATE = #{regularizeDate,jdbcType=BIGINT},
+      CONTR_BEGIN_DATE = #{contrBeginDate,jdbcType=BIGINT},
+      CONTR_END_DATE = #{contrEndDate,jdbcType=BIGINT},
+      GENDER = #{gender,jdbcType=CHAR},
+      USER_REGION = #{userRegion,jdbcType=VARCHAR},
+      OCCUP_STATE = #{occupState,jdbcType=CHAR},
+      DEPART = #{depart,jdbcType=INTEGER},
+      WORK_PLACE = #{workPlace,jdbcType=VARCHAR},
+      AVATAR = #{avatar,jdbcType=VARCHAR},
+      BIRTHDAY = #{birthday,jdbcType=BIGINT},
+      PWD_LAST_SET = #{pwdLastSet,jdbcType=BIGINT},
+      COMMENTS = #{comments,jdbcType=VARCHAR},
+      ADD_USER = #{addUser,jdbcType=INTEGER},
+      ADD_TIME = #{addTime,jdbcType=BIGINT},
+      UPDATE_USER = #{updateUser,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=BIGINT},
+      ENABLE_FLAG = #{enableFlag,jdbcType=CHAR},
+      DELETE_FLAG = #{deleteFlag,jdbcType=CHAR}
+    where USER_ID = #{userId,jdbcType=INTEGER}
+  </update>
+</mapper>

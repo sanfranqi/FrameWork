@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.greenleaf.crm.dao.MenuFunMapper" >
+  <resultMap id="BaseResultMap" type="com.greenleaf.crm.bean.MenuFun" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="MENU_ID" property="menuId" jdbcType="INTEGER" />
+    <result column="FUN_ID" property="funId" jdbcType="INTEGER" />
+    <result column="FUN_NAME" property="funName" jdbcType="VARCHAR" />
+    <result column="COMMENTS" property="comments" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, MENU_ID, FUN_ID, FUN_NAME, COMMENTS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from menu_fun
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from menu_fun
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.greenleaf.crm.bean.MenuFun" >
+    insert into menu_fun (ID, MENU_ID, FUN_ID, 
+      FUN_NAME, COMMENTS)
+    values (#{id,jdbcType=INTEGER}, #{menuId,jdbcType=INTEGER}, #{funId,jdbcType=INTEGER}, 
+      #{funName,jdbcType=VARCHAR}, #{comments,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.greenleaf.crm.bean.MenuFun" >
+    insert into menu_fun
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="menuId != null" >
+        MENU_ID,
+      </if>
+      <if test="funId != null" >
+        FUN_ID,
+      </if>
+      <if test="funName != null" >
+        FUN_NAME,
+      </if>
+      <if test="comments != null" >
+        COMMENTS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="menuId != null" >
+        #{menuId,jdbcType=INTEGER},
+      </if>
+      <if test="funId != null" >
+        #{funId,jdbcType=INTEGER},
+      </if>
+      <if test="funName != null" >
+        #{funName,jdbcType=VARCHAR},
+      </if>
+      <if test="comments != null" >
+        #{comments,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.greenleaf.crm.bean.MenuFun" >
+    update menu_fun
+    <set >
+      <if test="menuId != null" >
+        MENU_ID = #{menuId,jdbcType=INTEGER},
+      </if>
+      <if test="funId != null" >
+        FUN_ID = #{funId,jdbcType=INTEGER},
+      </if>
+      <if test="funName != null" >
+        FUN_NAME = #{funName,jdbcType=VARCHAR},
+      </if>
+      <if test="comments != null" >
+        COMMENTS = #{comments,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.greenleaf.crm.bean.MenuFun" >
+    update menu_fun
+    set MENU_ID = #{menuId,jdbcType=INTEGER},
+      FUN_ID = #{funId,jdbcType=INTEGER},
+      FUN_NAME = #{funName,jdbcType=VARCHAR},
+      COMMENTS = #{comments,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

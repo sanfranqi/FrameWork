@@ -3,10 +3,7 @@ package com.greenleaf.crm.bean;
 import com.greenleaf.common.mybatis.annotation.Id;
 import com.greenleaf.common.mybatis.annotation.Table;
 
-/**
- * @author QiSF 2015-04-02
- */
-@Table("menu")
+@Table("MENU")
 public class Menu {
 	@Id
 	private Integer id;
@@ -23,14 +20,16 @@ public class Menu {
 
 	private String keyName;
 
-	private Integer groupId;
-	/**
-	 * 0:disable;1:enable
-	 */
+	private Integer addUser;
+
+	private Long addTime;
+
+	private Integer updateUser;
+
+	private Long updateTime;
+
 	private String ableFlag;
-	/**
-	 * 0:deleted;1:normal
-	 */
+
 	private String deleteFlag;
 
 	public Integer getId() {
@@ -86,15 +85,39 @@ public class Menu {
 	}
 
 	public void setKeyName(String keyName) {
-		this.keyName = keyName;
+		this.keyName = keyName == null ? null : keyName.trim();
 	}
 
-	public Integer getGroupId() {
-		return groupId;
+	public Integer getAddUser() {
+		return addUser;
 	}
 
-	public void setGroupId(Integer groupId) {
-		this.groupId = groupId;
+	public void setAddUser(Integer addUser) {
+		this.addUser = addUser;
+	}
+
+	public Long getAddTime() {
+		return addTime;
+	}
+
+	public void setAddTime(Long addTime) {
+		this.addTime = addTime;
+	}
+
+	public Integer getUpdateUser() {
+		return updateUser;
+	}
+
+	public void setUpdateUser(Integer updateUser) {
+		this.updateUser = updateUser;
+	}
+
+	public Long getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(Long updateTime) {
+		this.updateTime = updateTime;
 	}
 
 	public String getAbleFlag() {
@@ -102,7 +125,7 @@ public class Menu {
 	}
 
 	public void setAbleFlag(String ableFlag) {
-		this.ableFlag = ableFlag;
+		this.ableFlag = ableFlag == null ? null : ableFlag.trim();
 	}
 
 	public String getDeleteFlag() {
@@ -110,12 +133,12 @@ public class Menu {
 	}
 
 	public void setDeleteFlag(String deleteFlag) {
-		this.deleteFlag = deleteFlag;
+		this.deleteFlag = deleteFlag == null ? null : deleteFlag.trim();
 	}
 
 	@Override
 	public String toString() {
-		return "Menu [id=" + id + ", menuName=" + menuName + ", parentId=" + parentId + ", sort=" + sort + ", icon=" + icon + ", method=" + method + ", keyName=" + keyName + ", groupId=" + groupId
-				+ ", ableFlag=" + ableFlag + ", deleteFlag=" + deleteFlag + "]";
+		return "Menu [id=" + id + ", menuName=" + menuName + ", parentId=" + parentId + ", sort=" + sort + ", icon=" + icon + ", method=" + method + ", keyName=" + keyName + ", addUser=" + addUser
+				+ ", addTime=" + addTime + ", updateUser=" + updateUser + ", updateTime=" + updateTime + ", ableFlag=" + ableFlag + ", deleteFlag=" + deleteFlag + "]";
 	}
 }

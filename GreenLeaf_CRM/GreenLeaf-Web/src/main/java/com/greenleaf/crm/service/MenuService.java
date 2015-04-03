@@ -37,4 +37,5 @@ public class MenuService extends MysqlBaseService<Menu> {
 		paged.setListData(this.findByQuery(query));
 		return paged;
 	}
+
 }

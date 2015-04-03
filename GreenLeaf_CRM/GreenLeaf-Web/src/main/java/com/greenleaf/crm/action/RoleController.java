@@ -11,29 +11,29 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.greenleaf.common.bean.PageQueryParam;
 import com.greenleaf.common.mybatis.bean.Paged;
 import com.greenleaf.common.response.Response;
-import com.greenleaf.crm.bean.Menu;
-import com.greenleaf.crm.service.MenuService;
+import com.greenleaf.crm.service.RoleService;
+import com.greenleaf.crm.vo.RoleVo;
 
 /**
- * @author QiSF 2015-04-01
+ * @author QiSF 2015-04-03
  */
 @Controller
-@RequestMapping("/menu")
-public class MenusController {
+@RequestMapping("/role")
+public class RoleController {
 
 	@Autowired
-	private MenuService menuService;
+	private RoleService roleService;
 
 	/**
-	 * query page menu list.
+	 * query page Role list.
 	 * 
 	 * @author QiSF 2015-03-17
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/queryPageMenuList", produces = MediaType.APPLICATION_JSON_VALUE)
-	public Response<Paged<Menu>> queryPageMenuList(PageQueryParam param) {
+	@RequestMapping(value = "/queryPageRoleList", produces = MediaType.APPLICATION_JSON_VALUE)
+	public Response<Paged<RoleVo>> queryPageRoleList(PageQueryParam param, String userName) {
 		try {
-			return Response.getSuccessResponse(menuService.queryMenuList(param));
+			return Response.getSuccessResponse(roleService.queryRoleVoList(param, userName));
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Response.getFailedResponse(e.getMessage());
@@ -41,15 +41,15 @@ public class MenusController {
 	}
 
 	/**
-	 * query menu list.
+	 * query Role list.
 	 * 
 	 * @author QiSF 2015-03-17
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/queryMenuList", produces = MediaType.APPLICATION_JSON_VALUE)
-	public Response<List<Menu>> queryMenuList(PageQueryParam param) {
+	@RequestMapping(value = "/queryRoleList", produces = MediaType.APPLICATION_JSON_VALUE)
+	public Response<List<RoleVo>> queryRoleList(PageQueryParam param) {
 		try {
-			return Response.getSuccessResponse(menuService.queryMenuList(param).getListData());
+			return Response.getSuccessResponse(roleService.queryRoleVoList(param, "").getListData());
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Response.getFailedResponse(e.getMessage());
